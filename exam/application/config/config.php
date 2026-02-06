@@ -15,7 +15,7 @@
 |
 */
 //$config['base_url']	= 'https://ditrppro.com/exam/';
-$config['base_url']	= 'https://ditrpindia.org/exam/';
+$config['base_url']	= 'https://ditrp.digitalnexstep.com/exam/';
 
 /*
 |--------------------------------------------------------------------------

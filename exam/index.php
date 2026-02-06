@@ -23,7 +23,7 @@ $_SERVER['HTTP_HOST'] = strtolower($_SERVER['HTTP_HOST']);
 	
 	//define('HOST','https://ditrppro.com/app/');
 
-	define('HOST','https://ditrpindia.org/admin/');
+	define('HOST','https://ditrp.digitalnexstep.com/admin/');
 	
 /*
  *---------------------------------------------------------------

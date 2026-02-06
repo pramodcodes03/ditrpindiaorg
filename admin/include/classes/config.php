@@ -1,8 +1,8 @@
 <?php
 
 define("APP_TITLE", "Demo Site");
-define('HTTP_HOST', 'https://ditrpindia.org/');
-define('HTTP_HOST_ADMIN', 'https://ditrpindia.org/admin');
+define('HTTP_HOST', 'https://ditrp.digitalnexstep.com/');
+define('HTTP_HOST_ADMIN', 'https://ditrp.digitalnexstep.com/admin');
 
 define("MOBILE_START_DIGIT", serialize(array(9, 8, 7, 6, 5, 4, 3, 2, 1, 0)));
 
@@ -109,11 +109,11 @@ define("GALLERY", "../uploads/gallery");
 
 
 //QR Url
-define('STUDENT_VERIFY_QRURL', 'https://ditrpindia.org/student_verify.php?');
-define('STUDENT_PAYMENT_QRURL', 'https://ditrpindia.org/payment_verify.php?');
-define('STUDENT_CERT_QRURL', 'https://ditrpindia.org/verification.php?');
-define('ATC_CERT_QRURL', 'https://ditrpindia.org/atc_verification.php?');
-define('TEACHER_QRURL', 'https://ditrpindia.org/teacher_verification.php?');
+define('STUDENT_VERIFY_QRURL', 'https://ditrp.digitalnexstep.com/student_verify.php?');
+define('STUDENT_PAYMENT_QRURL', 'https://ditrp.digitalnexstep.com/payment_verify.php?');
+define('STUDENT_CERT_QRURL', 'https://ditrp.digitalnexstep.com/verification.php?');
+define('ATC_CERT_QRURL', 'https://ditrp.digitalnexstep.com/atc_verification.php?');
+define('TEACHER_QRURL', 'https://ditrp.digitalnexstep.com/teacher_verification.php?');
 
 //sms whatsapp api
 define('INSTANCE_ID', '6461FD234B587');
@@ -129,10 +129,10 @@ define("PAYU_BASE_URL", "https://test.payu.in");
 //define("MERCHANT_KEY", "KnT61oXY");
 //define("SALT","DTLwfcebBm");
 //define("PAYU_BASE_URL", "https://secure.payu.in");
-define("SUCCESS_URL", "https://ditrpindia.org/admin/payment_success.php");
-define("FAILURE_URL", "https://ditrpindia.org/admin/payment_failure.php");
-define("SUCCESS_URL_COURIER", "https://ditrpindia.org/admin/payment_success_courier.php");
-define("FAILURE_URL_COURIER", "https://ditrpindia.org/admin/payment_failure_courier.php");
+define("SUCCESS_URL", "https://ditrp.digitalnexstep.com/admin/payment_success.php");
+define("FAILURE_URL", "https://ditrp.digitalnexstep.com/admin/payment_failure.php");
+define("SUCCESS_URL_COURIER", "https://ditrp.digitalnexstep.com/admin/payment_success_courier.php");
+define("FAILURE_URL_COURIER", "https://ditrp.digitalnexstep.com/admin/payment_failure_courier.php");
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -143,8 +143,8 @@ define("FAILURE_URL_COURIER", "https://ditrpindia.org/admin/payment_failure_cour
 // 	define("DB_DATABASE", "ditrpindiaorg");
 
 define("DB_HOST", "localhost");
-define("DB_USER", "ditrpindia_ditrporg");
-define("DB_PASSWORD", "Z@gv7EW2GRiN");
+define("DB_USER", "root");
+define("DB_PASSWORD", "Letsfindindia@102");
 define("DB_DATABASE", "ditrpindia_ditrporg");
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);

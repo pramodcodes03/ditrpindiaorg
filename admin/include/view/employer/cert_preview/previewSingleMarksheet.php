@@ -114,7 +114,7 @@ $html .= "<div class='total_bottom'><b>870</b></div>";
 
 
 $html2 .= '<div class="qrcodeimage"><img src="' . $file . '"></div>';
-$html .= "<div class='weblink'> Online Certificate Verification available on : www.ditrpindia.org </div>";
+$html .= "<div class='weblink'> Online Certificate Verification available on : www.ditrp.digitalnexstep.com </div>";
 
 $html2 .= '<img src="' . $marksheet_image . '" style="width:100%" />';
 $html2 .= $html;

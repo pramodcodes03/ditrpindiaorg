@@ -1,7 +1,7 @@
 <?php
 
 // Set the target domain for proxying requests
-$target_domain = 'https://ditrpindia.org';  // Replace this with your actual target domain
+$target_domain = 'https://ditrp.digitalnexstep.com';  // Replace this with your actual target domain
 
 // Regular expressions for detecting SQL injection and XSS
 $sql_injection_patterns = [

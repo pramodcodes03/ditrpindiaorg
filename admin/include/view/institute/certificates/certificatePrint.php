@@ -207,7 +207,7 @@ if ($checkstud != '' && !empty($checkstud)) {
 				<div class="line">---------------------------------------------</div>
 				<div class="ownername">' . $OWNER_NAME . '</div>
 			    <div class="bttext">Controller Of Examination</div> 
-			    <div class="weblink">Online Certificate Verification available on : www.ditrpindia.org</div>
+			    <div class="weblink">Online Certificate Verification available on : www.ditrp.digitalnexstep.com</div>
 			
 				';
 

@@ -6,7 +6,7 @@ if ($action != '') {
     $month_select = date("m", strtotime($date_select));
     $date_select = date("d", strtotime($date_select));
 
-    header('location:page.php?page=https://ditrpindia.org/admin/list-festival&day=' . $date_select . '&month=' . $month_select);
+    header('location:page.php?page=https://ditrp.digitalnexstep.com/admin/list-festival&day=' . $date_select . '&month=' . $month_select);
 }
 
 
@@ -472,13 +472,13 @@ if ($action == 'Select Image') {
 
 
                                                     <div class="btn-group col-md-12 mbB-30" role="group" aria-label="Basic example">
-                                                        <a href="https://ditrpindia.org/admin/list-festival&day=<?= $date_select_yesterday; ?>&month=<?= $month_select_yesterday; ?>" class="btn btn-outline-secondary col-md-4 title_date" title="Yesterday">
+                                                        <a href="https://ditrp.digitalnexstep.com/admin/list-festival&day=<?= $date_select_yesterday; ?>&month=<?= $month_select_yesterday; ?>" class="btn btn-outline-secondary col-md-4 title_date" title="Yesterday">
                                                             <i class="fa fa-calendar-minus-o ft-45" aria-hidden="true"></i> Yesterday
                                                         </a>
-                                                        <a href="https://ditrpindia.org/admin/list-festival&day=<?= $date_select_todays_date; ?>&month=<?= $month_select_todays_date; ?>" class="btn btn-outline-secondary col-md-4 title_date" title="Today">
+                                                        <a href="https://ditrp.digitalnexstep.com/admin/list-festival&day=<?= $date_select_todays_date; ?>&month=<?= $month_select_todays_date; ?>" class="btn btn-outline-secondary col-md-4 title_date" title="Today">
                                                             <i class="fa fa-calendar ft-45" aria-hidden="true"></i>Today
                                                         </a>'
-                                                        <a href="https://ditrpindia.org/admin/list-festival&day=<?= $date_select_tomorrow; ?>&month=<?= $month_select_tomorrow; ?>" class="btn btn-outline-secondary col-md-4 title_date" title="Tomorrow">
+                                                        <a href="https://ditrp.digitalnexstep.com/admin/list-festival&day=<?= $date_select_tomorrow; ?>&month=<?= $month_select_tomorrow; ?>" class="btn btn-outline-secondary col-md-4 title_date" title="Tomorrow">
                                                             <i class="fa fa-calendar-plus-o ft-45" aria-hidden="true"></i>Tomorrow
                                                         </a>
                                                     </div>
@@ -553,7 +553,7 @@ if ($action == 'Select Image') {
                     <script type="text/javascript">
                         function date(date) {
                             var data = "";
-                            data = 'https://ditrpindia.org/admin/list-festival&date=' + date;
+                            data = 'https://ditrp.digitalnexstep.com/admin/list-festival&date=' + date;
                             window.location.href = data;
                         }
                     </script>

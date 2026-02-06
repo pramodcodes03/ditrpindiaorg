@@ -90,7 +90,7 @@ $html .= '
 				<div class="line">---------------------------------------------</div>
 				<div class="ownername">NEXSTEP COMPUTER ACADEMY</div>
 			    <div class="bttext">Controller Of Examination</div>
-			     <div class="weblink">www.ditrpindia.org</div>
+			     <div class="weblink">www.ditrp.digitalnexstep.com</div>
 			
 				';
 //==============================================================

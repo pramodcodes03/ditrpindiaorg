@@ -55,8 +55,8 @@ $db['default']['username'] = 'myglobaluser';
 $db['default']['password'] = 'myglobaluser@8579';
 $db['default']['database'] = 'my_eduweb'; */
 
-$db['default']['username'] = 'ditrpindia_ditrporg';
-$db['default']['password'] = 'Z@gv7EW2GRiN';
+$db['default']['username'] = 'root';
+$db['default']['password'] = 'Letsfindindia@102';
 $db['default']['database'] = 'ditrpindia_ditrporg';
 
 

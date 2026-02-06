@@ -1,5 +1,5 @@
 <?php
-//ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 include('include/common/html_header.php');
 if (!isset($_SESSION['user_login_id'])) {
 	header('location:login.php');

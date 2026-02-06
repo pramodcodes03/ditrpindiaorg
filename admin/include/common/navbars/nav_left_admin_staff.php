@@ -13,7 +13,7 @@
           <span class="icon-menu"></span>
         </button>
 
-        <a href="https://ditrpindia.org//admin/ourCentersLocation" target="_blank" style="    color: #fff;
+        <a href="https://ditrp.digitalnexstep.com//admin/ourCentersLocation" target="_blank" style="    color: #fff;
     padding: 10px 30px;
     font-weight: 700;">OUR CENTER'S</a>
 

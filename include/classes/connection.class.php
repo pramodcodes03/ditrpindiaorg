@@ -1,7 +1,8 @@
 <?php
+ini_set('display_errors', 1);
 
-	define('HTTP_HOST','https://ditrpindia.org');
-	define('HTTP_HOST_SERVER','https://ditrpindia.org');	 
+	define('HTTP_HOST','https://ditrp.digitalnexstep.com');
+	define('HTTP_HOST_SERVER','https://ditrp.digitalnexstep.com');	 
 	define("ADMIN_FOLDER_NAME","admin");		
 	
 	
@@ -59,7 +60,7 @@
 	define("STUD_PHOTO_ID","photo_identity");
 	define("STUD_PHOTO_SIGN","photo_sign");
 
-	define('ATC_CERT_QRURL','https://ditrpindia.org/atc_verification.php?');
+	define('ATC_CERT_QRURL','https://ditrp.digitalnexstep.com/atc_verification.php?');
  
 // 	define("DB_HOST", "localhost");
 // 	define("DB_USER", "root");

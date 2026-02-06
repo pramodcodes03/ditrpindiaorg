@@ -41,7 +41,7 @@ if ($res != '') {
                     <div class="modal-body">
                         <!-- <a href="<?= $link ?>" target="<?= $link ?>"> <img src='<?= $ads_image ?>' style='border-radius:0;'/></a> -->
 
-                        <a href="https://ditrpindia.org/" target="https://ditrpindia.org/"> <img src='uploads/popup/_119921648_logo.jpg' style='border-radius:0;' /></a>
+                        <a href="https://ditrp.digitalnexstep.com/" target="https://ditrp.digitalnexstep.com/"> <img src='uploads/popup/_119921648_logo.jpg' style='border-radius:0;' /></a>
 
                     </div>
                 </div>
