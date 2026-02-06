@@ -201,7 +201,7 @@ if ($institute != '') $cond .= " AND A.INSTITUTE_ID='" . intval($institute) . "'
 										FROM certificate_requests_master A
 										INNER JOIN user_login_master B ON A.INSTITUTE_ID=B.USER_ID
 										LEFT JOIN institute_details I ON A.INSTITUTE_ID=I.INSTITUTE_ID
-										LEFT JOIN city_master CI ON I.CITY_ID=CI.CITY_ID
+										LEFT JOIN city_master CI ON I.CITY=CI.CITY_ID
 										LEFT JOIN postal_dispatch C ON A.CERTIFICATE_REQUEST_MASTER_ID = C.CERTIFICATE_REQUEST_MASTER_ID
 										WHERE A.DELETE_FLAG=0 AND (B.USER_ROLE=2 OR B.USER_ROLE=8) $cond
 										ORDER BY A.CREATED_ON DESC LIMIT $offset, $rec_limit";
