@@ -119,7 +119,21 @@ if ($institute != '') $cond .= " AND A.INSTITUTE_ID='" . intval($institute) . "'
 										<div class="form-group col-sm-2">
 											<label>Course</label>
 											<select class="form-control" name="course" id="course">
-												<?php echo $db->MenuItemsDropdown('certificate_requests A LEFT JOIN courses B ON A.AICPE_COURSE_ID=B.COURSE_ID', "AICPE_COURSE_ID", "COURSE_NAME", "DISTINCT A.AICPE_COURSE_ID, B.COURSE_NAME ", $course, " WHERE A.DELETE_FLAG=0"); ?>
+												<option value="">--select--</option>
+												<?php
+												$course_sql = "SELECT DISTINCT A.COURSE_ID, B.COURSE_NAME
+													FROM certificate_requests A
+													INNER JOIN courses B ON A.COURSE_ID=B.COURSE_ID
+													WHERE A.DELETE_FLAG=0 AND A.COURSE_ID IS NOT NULL AND A.COURSE_ID != 0
+													ORDER BY B.COURSE_NAME";
+												$course_res = $db->execQuery($course_sql);
+												if ($course_res && $course_res->num_rows > 0) {
+													while ($crow = $course_res->fetch_assoc()) {
+														$sel = ($crow['COURSE_ID'] == $course) ? 'selected' : '';
+														echo '<option value="' . $crow['COURSE_ID'] . '" ' . $sel . '>' . htmlspecialchars(strtoupper($crow['COURSE_NAME'])) . '</option>';
+													}
+												}
+												?>
 											</select>
 										</div>
 
