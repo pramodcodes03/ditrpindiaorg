@@ -123,7 +123,7 @@ if ($institute != '') $cond .= " AND A.INSTITUTE_ID='$institute'";
 								After Applying For Approve Certificate You Will Able To View Student Certificates And Marksheets.
 							</p>
 
-							<!-- <div class="box-header" style="margin:10px 0px">			
+							<!-- <div class="box-header" style="margin:10px 0px">
 								<?php if ($db->permission('print_certificate')) { ?>
 									<input type="submit" class="btn btn-primary" name="submit"  value="Approve Certificates" />
 									<input type="hidden" class="btn btn-sm btn-primary" name="action" value="printcertificates">
@@ -132,69 +132,83 @@ if ($institute != '') $cond .= " AND A.INSTITUTE_ID='$institute'";
 							<div class="box-body">
 								<div class="table-responsive">
 									<?php
-									//$sql = "SELECT A.CERTIFICATE_REQUEST_MASTER_ID, A.INSTITUTE_ID, get_institute_code(A.INSTITUTE_ID) AS INSTITUTE_CODE,get_institute_name(A.INSTITUTE_ID) AS INSTITUTE_NAME,DATE_FORMAT(A.CREATED_ON, '%d-%m-%Y %h:%i:%p') AS CREATED_DATE,get_institute_city(A.INSTITUTE_ID) AS INSTITUTE_CITY, A.TOTAL_EXAM_FEES, (SELECT COUNT(*) FROM certificate_requests WHERE CERTIFICATE_REQUEST_MASTER_ID=A.CERTIFICATE_REQUEST_MASTER_ID AND DELETE_FLAG=0) AS TOTAL_REQ FROM certificate_requests_master A WHERE A.DELETE_FLAG=0 $cond ORDER BY A.CREATED_ON DESC";
-
-									/* Pagination Code */
+									/* Pagination Setup */
 									$rec_limit = 50;
+									$current_page = isset($_GET['pg']) ? max(1, intval($_GET['pg'])) : 1;
+									$offset = ($current_page - 1) * $rec_limit;
 
-									$sql = "SELECT COUNT(certificate_requests_master.CERTIFICATE_REQUEST_MASTER_ID) as total FROM certificate_requests_master WHERE certificate_requests_master.DELETE_FLAG=0";
-									$exc = $db->execQuery($sql);
+									/* Build filter query string for pagination links */
+									$filter_params = '';
+									if ($institute != '') $filter_params .= '&institute=' . urlencode($institute);
+									if ($studid != '') $filter_params .= '&studid=' . urlencode($studid);
+									if ($examtitle != '') $filter_params .= '&examtitle=' . urlencode($examtitle);
+									if ($requeststatus != '') $filter_params .= '&requeststatus=' . urlencode($requeststatus);
+									if ($course != '') $filter_params .= '&course=' . urlencode($course);
+
+									/* Count query matching main query conditions */
+									$count_sql = "SELECT COUNT(*) as total
+										FROM certificate_requests_master A
+										LEFT JOIN user_login_master B ON A.INSTITUTE_ID=B.USER_ID
+										WHERE A.DELETE_FLAG=0 AND (B.USER_ROLE=2 OR B.USER_ROLE=8) $cond";
+									$exc = $db->execQuery($count_sql);
 									$rec = $exc->fetch_assoc();
 									$rec_count = $rec['total'];
+									$total_pages = max(1, ceil($rec_count / $rec_limit));
+									if ($current_page > $total_pages) $current_page = $total_pages;
+									$offset = ($current_page - 1) * $rec_limit;
 
-									if (isset($_GET['pg'])) {
-										$page = $_GET['pg'] + 1;
-										$offset = $rec_limit * $page;
-									} else {
-										$page = 0;
-										$offset = 0;
-									}
-									$left_rec = $rec_count - ($page * $rec_limit);
-									$pageUrl = 'page.php?page=listRequestedCertificates';
-									/* Pagination COde */
+									$pageUrl = 'page.php?page=listRequestedCertificates' . $filter_params;
 
-									//$sql = "SELECT A.CERTIFICATE_REQUEST_MASTER_ID, A.INSTITUTE_ID, get_institute_code(A.INSTITUTE_ID) AS INSTITUTE_CODE,get_institute_name(A.INSTITUTE_ID) AS 
-									//INSTITUTE_NAME,get_prime_member(A.INSTITUTE_ID) AS PRIMEMEMBER,DATE_FORMAT(A.CREATED_ON, '%d-%m-%Y %h:%i:%p') AS CREATED_DATE,get_institute_city(A.INSTITUTE_ID) AS INSTITUTE_CITY, A.TOTAL_EXAM_FEES, 
-									//(SELECT COUNT(*) FROM certificate_requests WHERE CERTIFICATE_REQUEST_MASTER_ID=A.CERTIFICATE_REQUEST_MASTER_ID AND DELETE_FLAG=0) AS TOTAL_REQ, B.USER_NAME,
-									//B.USER_LOGIN_ID ,B.PASS_TEXT, C.DISPATCH_ID, C.RECEIPTNO, C.DISPATCH_DATE, C.NO_OF_CERTIFICATE, C.MODE_OF_DISPATCH, C.PREVIEW_SMS, C.DISPATCH_STATUS 
-									//FROM certificate_requests_master A LEFT JOIN user_login_master B ON A.INSTITUTE_ID=B.USER_ID LEFT JOIN postal_dispatch C ON 
-									//A.CERTIFICATE_REQUEST_MASTER_ID = C.CERTIFICATE_REQUEST_MASTER_ID WHERE A.DELETE_FLAG=0  AND B.USER_ROLE=2 $cond ORDER BY A.CREATED_ON DESC LIMIT $offset, $rec_limit";
-
-									$sql = "SELECT A.CERTIFICATE_REQUEST_MASTER_ID, A.INSTITUTE_ID, get_institute_code(A.INSTITUTE_ID) AS INSTITUTE_CODE,get_institute_name(A.INSTITUTE_ID) AS 
-								INSTITUTE_NAME,get_prime_member(A.INSTITUTE_ID) AS PRIMEMEMBER,DATE_FORMAT(A.CREATED_ON, '%d-%m-%Y %h:%i:%p') AS CREATED_DATE,(SELECT F.CITY_NAME as city_name FROM city_master F WHERE A.INSTITUTE_ID=F.CITY_ID) AS INSTITUTE_CITY, A.TOTAL_EXAM_FEES, 
-								(SELECT COUNT(*) FROM certificate_requests WHERE CERTIFICATE_REQUEST_MASTER_ID=A.CERTIFICATE_REQUEST_MASTER_ID AND DELETE_FLAG=0) AS TOTAL_REQ, B.USER_NAME,
-								B.USER_LOGIN_ID ,B.PASS_TEXT, C.DISPATCH_ID, C.RECEIPTNO, C.DISPATCH_DATE, C.NO_OF_CERTIFICATE, C.MODE_OF_DISPATCH, C.PREVIEW_SMS, C.DISPATCH_STATUS 
-								FROM certificate_requests_master A LEFT JOIN user_login_master B ON A.INSTITUTE_ID=B.USER_ID LEFT JOIN postal_dispatch C ON 
-								A.CERTIFICATE_REQUEST_MASTER_ID = C.CERTIFICATE_REQUEST_MASTER_ID WHERE A.DELETE_FLAG=0  AND B.USER_ROLE=2 OR B.USER_ROLE=8  $cond ORDER BY A.CREATED_ON DESC LIMIT $offset, $rec_limit";
-
-									//   $sql = "SELECT A.CERTIFICATE_REQUEST_MASTER_ID, A.INSTITUTE_ID, get_institute_code(A.INSTITUTE_ID) AS INSTITUTE_CODE,get_institute_name(A.INSTITUTE_ID) AS 
-									// INSTITUTE_NAME,get_prime_member(A.INSTITUTE_ID) AS PRIMEMEMBER,DATE_FORMAT(A.CREATED_ON, '%d-%m-%Y %h:%i:%p') AS CREATED_DATE,(SELECT F.CITY_NAME as city_name FROM city_master F WHERE A.INSTITUTE_ID=F.CITY_ID) AS INSTITUTE_CITY, A.TOTAL_EXAM_FEES, 
-									// (SELECT COUNT(*) FROM certificate_requests WHERE CERTIFICATE_REQUEST_MASTER_ID=A.CERTIFICATE_REQUEST_MASTER_ID AND DELETE_FLAG=0) AS TOTAL_REQ, B.USER_NAME,
-									// B.USER_LOGIN_ID ,B.PASS_TEXT
-									// FROM certificate_requests_master A LEFT JOIN user_login_master B ON A.INSTITUTE_ID=B.USER_ID  WHERE A.DELETE_FLAG=0  AND B.USER_ROLE=2 OR B.USER_ROLE=8  $cond ORDER BY A.CREATED_ON DESC LIMIT $offset, $rec_limit";
-
-
-									//echo $sql; exit();
+									/* Main data query */
+									$sql = "SELECT A.CERTIFICATE_REQUEST_MASTER_ID, A.INSTITUTE_ID, get_institute_code(A.INSTITUTE_ID) AS INSTITUTE_CODE, get_institute_name(A.INSTITUTE_ID) AS
+									INSTITUTE_NAME, get_prime_member(A.INSTITUTE_ID) AS PRIMEMEMBER, DATE_FORMAT(A.CREATED_ON, '%d-%m-%Y %h:%i:%p') AS CREATED_DATE, (SELECT F.CITY_NAME as city_name FROM city_master F WHERE A.INSTITUTE_ID=F.CITY_ID) AS INSTITUTE_CITY, A.TOTAL_EXAM_FEES,
+									(SELECT COUNT(*) FROM certificate_requests WHERE CERTIFICATE_REQUEST_MASTER_ID=A.CERTIFICATE_REQUEST_MASTER_ID AND DELETE_FLAG=0) AS TOTAL_REQ, B.USER_NAME,
+									B.USER_LOGIN_ID, B.PASS_TEXT, C.DISPATCH_ID, C.RECEIPTNO, C.DISPATCH_DATE, C.NO_OF_CERTIFICATE, C.MODE_OF_DISPATCH, C.PREVIEW_SMS, C.DISPATCH_STATUS
+									FROM certificate_requests_master A LEFT JOIN user_login_master B ON A.INSTITUTE_ID=B.USER_ID LEFT JOIN postal_dispatch C ON
+									A.CERTIFICATE_REQUEST_MASTER_ID = C.CERTIFICATE_REQUEST_MASTER_ID WHERE A.DELETE_FLAG=0 AND (B.USER_ROLE=2 OR B.USER_ROLE=8) $cond ORDER BY A.CREATED_ON DESC LIMIT $offset, $rec_limit";
 
 									$res1 = $db->execQuery($sql);
 
 									if ($res1 != '') {
-										$sr = 1;
-										/* Pagination */
-										if ($page > 0) {
-											$last = $page - 2;
-											echo "<a class='btn btn-success btnPagination' href = \"$pageUrl&pg=$last\">Last 50 Records</a> |";
-											echo "<a class='btn btn-success btnPagination' href = \"$pageUrl&pg=$page\">Next 50 Records</a>";
-										} else if ($page == 0) {
-											echo "<a class='btn btn-success btnPagination' href = \"$pageUrl&pg=$page\">Next 50 Records</a>";
-										} else if ($left_rec < $rec_limit) {
-											$last = $page - 2;
-											echo "<a class='btn btn-success btnPagination' href = \"$pageUrl&pg=$last\">Last 50 Records</a>";
-										}
-										/* Pagination */
+										$sr = $offset + 1;
+
+										/* Pagination Navigation - Top */
+										$start_record = $offset + 1;
+										$end_record = min($offset + $rec_limit, $rec_count);
+										?>
+										<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
+											<span class="badge badge-info" style="font-size:13px; padding:8px 12px;">
+												Showing <?= $start_record ?> - <?= $end_record ?> of <?= $rec_count ?> records | Page <?= $current_page ?> of <?= $total_pages ?>
+											</span>
+											<?php if ($total_pages > 1) { ?>
+											<nav>
+												<ul class="pagination" style="margin:0;">
+													<?php if ($current_page > 1) { ?>
+														<li class="page-item"><a class="page-link" href="<?= $pageUrl ?>&pg=1">&laquo; First</a></li>
+														<li class="page-item"><a class="page-link" href="<?= $pageUrl ?>&pg=<?= $current_page - 1 ?>">&lsaquo; Prev</a></li>
+													<?php } ?>
+													<?php
+													$start_pg = max(1, $current_page - 2);
+													$end_pg = min($total_pages, $current_page + 2);
+													for ($p = $start_pg; $p <= $end_pg; $p++) {
+														if ($p == $current_page) { ?>
+															<li class="page-item active"><span class="page-link"><?= $p ?></span></li>
+														<?php } else { ?>
+															<li class="page-item"><a class="page-link" href="<?= $pageUrl ?>&pg=<?= $p ?>"><?= $p ?></a></li>
+														<?php }
+													} ?>
+													<?php if ($current_page < $total_pages) { ?>
+														<li class="page-item"><a class="page-link" href="<?= $pageUrl ?>&pg=<?= $current_page + 1 ?>">Next &rsaquo;</a></li>
+														<li class="page-item"><a class="page-link" href="<?= $pageUrl ?>&pg=<?= $total_pages ?>">Last &raquo;</a></li>
+													<?php } ?>
+												</ul>
+											</nav>
+											<?php } ?>
+										</div>
+										<?php
 
 										$maintbl = '
-										
+
 												<table class="table table-bordered table-hover table-striped" style="margin: 5px 0px;">
 												<tr>
 													<th></th>
@@ -216,25 +230,17 @@ if ($institute != '') $cond .= " AND A.INSTITUTE_ID='$institute'";
 											if ($TOTAL_REQ > 0) {
 												$addpayment  = '<a href="page.php?page=add-examfees-payment&reqid=' . $CERTIFICATE_REQUEST_MASTER_ID . '">Add Payment</a>';
 												$action1 = '';
-												/*	if($db->permission('delete_certificate'))						
-										$action1 = "<a href='javascript:void(0)' onclick='deleteCertificateRequestAll($CERTIFICATE_REQUEST_MASTER_ID, $sr)' class='btn' title='Delete'><i class='fa fa-trash'></i></a>";
-										*/
 
 												//Print Address of Institute
 
 												$printCert = "<a href='page.php?page=printFranchiseAddress&inst[]=$INSTITUTE_ID' class='btn btn-primary table-btn' title='Print Address' target='_blank'><i class=' mdi mdi-message-text'></i></a>";
 												$inst_mobile = $db->get_user_mobile($INSTITUTE_ID, 2);
 
-												//$action1 .= "<a href='javascript:void(0)' class='btn btn-link send-cert-dispatch-sms' title='Send Dispatch SMS' data-toggle='modal' data-target='.cert_disptach_sms' data-total='$TOTAL_REQ' data-id='$CERTIFICATE_REQUEST_MASTER_ID' data-name='$INSTITUTE_NAME' data-mobile='$inst_mobile' data-instid='$INSTITUTE_ID'><i class=' fa fa-envelope'></i></a>";	
-
-												//$action1 .= "<a href='javascript:void(0)' class='btn btn-link send-cert-dispatch-sms' title='Send Dispatch SMS' data-toggle='modal' data-target='.cert_disptach_sms' data-total='$TOTAL_REQ' data-id='$CERTIFICATE_REQUEST_MASTER_ID' data-name='$INSTITUTE_NAME' data-mobile='$inst_mobile'><i class='fa fa-address-card'></i></a>";
-
 												$action1 = "<a href='javascript:void(0)' class='btn btn-link' title='SMS FOR ORDER CERTIFICATE' onclick=\"orderbeforeSMS($inst_mobile)\"><i class='fa fa-envelope'>SMS</i></a>";
 
 												//Institute Login
 												$params = "'$USER_NAME','" . md5($PASS_TEXT) . "'";
 												$loginBtn = "<a href='javascript:void(0)' class='btn btn-primary btn-xs' title='LOGIN' onclick=\"loginToInst($params)\"><i class=' fa fa-sign-in'></i>Login</a>";
-												//	$loginBtn='';
 
 												$parcel_status = "";
 
@@ -257,13 +263,13 @@ if ($institute != '') $cond .= " AND A.INSTITUTE_ID='$institute'";
 														</a><a href="javascript:void(0)" onclick="toggleRow(' . $sr . ')" class="label label-default pull-right">' . $TOTAL_REQ . '</a></td>
 														<td>' . $sr . '</td>
 														<td>' . $INSTITUTE_CODE . ' <p>' . $printCert . ' ' . $loginBtn . '</p></td>
-														<td ' . $color . '>' . $INSTITUTE_NAME . '</td>									
-														<td>' . $TOTAL_EXAM_FEES . '</td>									
+														<td ' . $color . '>' . $INSTITUTE_NAME . '</td>
+														<td>' . $TOTAL_EXAM_FEES . '</td>
 														<!-- <td>' . $addpayment . '</td> -->
-														<td>' . $CREATED_DATE . '</td>	
-														<!-- <td>' . $action1 . ' ' . $parcel_status . '</td> -->			
+														<td>' . $CREATED_DATE . '</td>
+														<!-- <td>' . $action1 . ' ' . $parcel_status . '</td> -->
 													</tr>
-													
+
 													';
 
 												$condition = " AND A.CERTIFICATE_REQUEST_MASTER_ID=$CERTIFICATE_REQUEST_MASTER_ID";
@@ -277,7 +283,7 @@ if ($institute != '') $cond .= " AND A.INSTITUTE_ID='$institute'";
 												$subtable = '';
 												if ($res != '') {
 													$subtable = '
-													<tr style="display:none" id="row-' . $sr . '"><td colspan="7">						
+													<tr style="display:none" id="row-' . $sr . '"><td colspan="7">
 													<table class="table table-bordered">
 													<tr class="success">
 													<th><input type="checkbox" name="selectall" id="checkCert' . $sr . '" class="selectall_cert"  /></th>
@@ -285,11 +291,11 @@ if ($institute != '') $cond .= " AND A.INSTITUTE_ID='$institute'";
 													<th>Action</th>
 													<th>Photo</th>
 													<th>Student</th>
-													<th>Course</th>				
-													<th>Exam Fees</th>				
-													<th>Marks</th> 
+													<th>Course</th>
+													<th>Exam Fees</th>
+													<th>Marks</th>
 													<th>Result</th>
-												<!-- <th>Certificate Status</th> -->		
+												<!-- <th>Certificate Status</th> -->
 													<th>Date</th>
 												 </tr>';
 													while ($data = $res->fetch_assoc()) {
@@ -302,10 +308,6 @@ if ($institute != '') $cond .= " AND A.INSTITUTE_ID='$institute'";
 															$backClr = "style='background-color:yellow'";
 														}
 
-														/*	$PHOTO = '../uploads/default_user.png';					
-												if($STUDENT_PHOTO!='')
-													$PHOTO = STUDENT_DOCUMENTS_PATH.'/'.$STUDENT_ID.'/'.$STUDENT_PHOTO;
-													*/
 														$PHOTO = '../uploads/default_user.png';
 														if ($STUDENT_PHOTO != '')
 															$PHOTO = STUDENT_DOCUMENTS_PATH . '/' . $STUDENT_ID . '/' . $STUDENT_PHOTO;
@@ -335,27 +337,21 @@ if ($institute != '') $cond .= " AND A.INSTITUTE_ID='$institute'";
 																$action .= "<a href='page.php?page=print-certificate&checkstud[]=$CERTIFICATE_REQUEST_ID' class='btn btn-primary btn1' title='Print'><i class='mdi mdi-download'></i> Approve </a>";
 														}
 
-														//	if($db->permission('delete_certificate'))						
-														//	$action .= "<a href='javascript:void(0)' onclick='deleteStudentResult(this.id)' id='result$CERTIFICATE_REQUEST_ID' class='btn' title='Delete'><i class='fa fa-trash'></i></a>";
-														/*	if($db->permission('delete_certificate'))				
-											$action .= "<a href='javascript:void(0)' onclick='deleteCertificateRequest($CERTIFICATE_REQUEST_ID)' id='result$CERTIFICATE_REQUEST_ID' class='btn' title='Delete'><i class='fa fa-trash'></i></a>";	
-												
-											*/
 														$subtable .= "<tr id='irow-$CERTIFICATE_REQUEST_ID' $backClr >
 														<td> <input type='checkbox' name='checkstud[]' id='checkstud$CERTIFICATE_REQUEST_ID' value='$CERTIFICATE_REQUEST_ID' class='checkCert$sr' /> </td>
-													
+
 														<td>$srno</td>
 															<td>$action</td>
-														<td><img src='$PHOTO' class='img img-responsive img-circle' style='width:50px; height:50px'></td>							
+														<td><img src='$PHOTO' class='img img-responsive img-circle' style='width:50px; height:50px'></td>
 														<td>$STUDENT_NAME</td>
-														<td>$EXAM_TITLE</td>							
-														<td>$EXAM_FEES</td>	
-														<td>$MARKS_PER  % </td> 																	
-														<td>$RESULT_STATUS </td> 																	
-														<!-- <td>$REQUEST_STATUS_NAME</td>	 -->												
+														<td>$EXAM_TITLE</td>
+														<td>$EXAM_FEES</td>
+														<td>$MARKS_PER  % </td>
+														<td>$RESULT_STATUS </td>
+														<!-- <td>$REQUEST_STATUS_NAME</td>	 -->
 														<td>$CREATED_DATE</td>
-														
-														</tr>							
+
+														</tr>
 														";
 														$srno++;
 													}
@@ -369,19 +365,38 @@ if ($institute != '') $cond .= " AND A.INSTITUTE_ID='$institute'";
 										}
 										echo	$maintbl .= '</table>';
 									}
-									/* Pagination */
-									if ($page > 0) {
-										$last = $page - 2;
-										echo "<a class='btn btn-success btnPagination' href = \"$pageUrl&pg=$last\">Last 50 Records</a> |";
-										echo "<a class='btn btn-success btnPagination' href = \"$pageUrl&pg=$page\">Next 50 Records</a>";
-									} else if ($page == 0) {
-										echo "<a class='btn btn-success btnPagination' href = \"$pageUrl&pg=$page\">Next 50 Records</a>";
-									} else if ($left_rec < $rec_limit) {
-										$last = $page - 2;
-										echo "<a class='btn btn-success btnPagination' href = \"$pageUrl&pg=$last\">Last 50 Records</a>";
-									}
-									/* Pagination */
+
+									/* Pagination Navigation - Bottom */
+									if ($rec_count > 0 && $total_pages > 1) {
 									?>
+									<div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; flex-wrap:wrap; gap:8px;">
+										<span class="badge badge-info" style="font-size:13px; padding:8px 12px;">
+											Showing <?= $start_record ?> - <?= $end_record ?> of <?= $rec_count ?> records | Page <?= $current_page ?> of <?= $total_pages ?>
+										</span>
+										<nav>
+											<ul class="pagination" style="margin:0;">
+												<?php if ($current_page > 1) { ?>
+													<li class="page-item"><a class="page-link" href="<?= $pageUrl ?>&pg=1">&laquo; First</a></li>
+													<li class="page-item"><a class="page-link" href="<?= $pageUrl ?>&pg=<?= $current_page - 1 ?>">&lsaquo; Prev</a></li>
+												<?php } ?>
+												<?php
+												$start_pg = max(1, $current_page - 2);
+												$end_pg = min($total_pages, $current_page + 2);
+												for ($p = $start_pg; $p <= $end_pg; $p++) {
+													if ($p == $current_page) { ?>
+														<li class="page-item active"><span class="page-link"><?= $p ?></span></li>
+													<?php } else { ?>
+														<li class="page-item"><a class="page-link" href="<?= $pageUrl ?>&pg=<?= $p ?>"><?= $p ?></a></li>
+													<?php }
+												} ?>
+												<?php if ($current_page < $total_pages) { ?>
+													<li class="page-item"><a class="page-link" href="<?= $pageUrl ?>&pg=<?= $current_page + 1 ?>">Next &rsaquo;</a></li>
+													<li class="page-item"><a class="page-link" href="<?= $pageUrl ?>&pg=<?= $total_pages ?>">Last &raquo;</a></li>
+												<?php } ?>
+											</ul>
+										</nav>
+									</div>
+									<?php } ?>
 
 
 								</div>
