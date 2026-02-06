@@ -2270,6 +2270,100 @@ if ($action != '') {
 			break;
 
 
+		case ('get_certificate_sub_rows'):
+			include_once('exam.class.php');
+			$exam = new exam();
+			$cert_master_id = isset($_POST['cert_master_id']) ? intval($_POST['cert_master_id']) : 0;
+			$inst_id = isset($_POST['inst_id']) ? intval($_POST['inst_id']) : 0;
+			$studid = isset($_POST['studid']) ? $db->test($_POST['studid']) : '';
+			$requeststatus = isset($_POST['requeststatus']) ? $db->test($_POST['requeststatus']) : '';
+			$course = isset($_POST['course']) ? $db->test($_POST['course']) : '';
+			$sr = isset($_POST['sr']) ? intval($_POST['sr']) : 0;
+
+			if ($cert_master_id == 0) {
+				echo json_encode(['error' => 'Invalid request']);
+				break;
+			}
+
+			$condition = " AND A.CERTIFICATE_REQUEST_MASTER_ID=$cert_master_id";
+			if ($requeststatus != '') $condition .= " AND A.REQUEST_STATUS=" . intval($requeststatus);
+			if ($course != '') $condition .= " AND A.COURSE_ID=" . intval($course);
+
+			$res = $exam->list_certificates_requests('', $studid, $inst_id, $condition);
+
+			$html = '';
+			if ($res != '') {
+				$html .= '<table class="table table-bordered">';
+				$html .= '<tr class="success">
+					<th><input type="checkbox" name="selectall" id="checkCert' . $sr . '" class="selectall_cert" /></th>
+					<th>#</th>
+					<th>Action</th>
+					<th>Photo</th>
+					<th>Student</th>
+					<th>Course</th>
+					<th>Exam Fees</th>
+					<th>Marks</th>
+					<th>Result</th>
+					<th>Date</th>
+				</tr>';
+
+				$srno = 1;
+				while ($data = $res->fetch_assoc()) {
+					extract($data);
+
+					$backClr = "";
+					if ($TYPING_COURSE_ID != "" || $TYPING_COURSE_ID != 0 || $TYPING_COURSE_ID != NULL) {
+						$backClr = "style='background-color:yellow'";
+					}
+
+					$PHOTO = '../uploads/default_user.png';
+					if ($STUDENT_PHOTO != '')
+						$PHOTO = STUDENT_DOCUMENTS_PATH . '/' . $STUDENT_ID . '/' . $STUDENT_PHOTO;
+
+					$EXAM_TYPE_NAME = !empty($EXAM_TYPE_NAME) ? $EXAM_TYPE_NAME : '-';
+					$GRADE = !empty($GRADE) ? $GRADE : '-';
+					$action_btn = '';
+
+					$check_print = $access->list_printed_certificates('', $CERTIFICATE_REQUEST_ID, ' ORDER BY CERTIFICATE_DETAILS_ID DESC LIMIT 0,1');
+					if ($check_print != '') {
+						$check_cert = $check_print->fetch_assoc();
+						$CERTIFICATE_FILE = $check_cert['CERTIFICATE_FILE'];
+						$CERTIFICATE_DETAILS_ID = $check_cert['CERTIFICATE_DETAILS_ID'];
+						$MARKS_PER = $check_cert['MARKS_PER'];
+
+						if ($db->permission('view_certificate'))
+							$action_btn .= "<a href='page.php?page=view-student-certificate&checkstud=$STUDENT_ID&certreq=$CERTIFICATE_REQUEST_ID&course=$COURSE_ID&course_multi_sub=$MULTI_SUB_COURSE_ID&course_typing=$TYPING_COURSE_ID' target='_blank' class='btn btn-primary table-btn' title='View Certificate'><i class='mdi mdi-eye'></i></a>";
+						$action_btn .= "<a href='page.php?page=print-requested-marksheet&checkstud=$STUDENT_ID&certreq=$CERTIFICATE_REQUEST_ID&course=$COURSE_ID&course_multi_sub=$MULTI_SUB_COURSE_ID&course_typing=$TYPING_COURSE_ID' target='_blank' class='btn btn-primary table-btn' title='View Marksheet'><i class='mdi mdi-file-pdf'></i></a>";
+						$action_btn .= "<a href='page.php?page=certificatePrint&checkstud=$STUDENT_ID&certreq=$CERTIFICATE_REQUEST_ID&course=$COURSE_ID&course_multi_sub=$MULTI_SUB_COURSE_ID&course_typing=$TYPING_COURSE_ID' target='_blank' class='btn btn-warning table-btn' title='Print Certificate'><i class='mdi mdi-eye'></i></a>";
+						$action_btn .= "<a href='page.php?page=marksheetPrint&checkstud=$STUDENT_ID&certreq=$CERTIFICATE_REQUEST_ID&course=$COURSE_ID&course_multi_sub=$MULTI_SUB_COURSE_ID&course_typing=$TYPING_COURSE_ID' target='_blank' class='btn btn-warning table-btn' title='Print Marksheet'><i class='mdi mdi-file-pdf'></i></a>";
+						$action_btn .= "<a href='page.php?page=print-modify-certificate&cert_detail_id=$CERTIFICATE_DETAILS_ID' target='_blank' class='btn btn-primary table-btn' title='Update Certificate'><i class='mdi mdi-grease-pencil'></i></a>";
+					} else {
+						if ($db->permission('print_certificate'))
+							$action_btn .= "<a href='page.php?page=print-certificate&checkstud[]=$CERTIFICATE_REQUEST_ID' class='btn btn-primary btn1' title='Print'><i class='mdi mdi-download'></i> Approve </a>";
+					}
+
+					$html .= "<tr id='irow-$CERTIFICATE_REQUEST_ID' $backClr>
+						<td><input type='checkbox' name='checkstud[]' id='checkstud$CERTIFICATE_REQUEST_ID' value='$CERTIFICATE_REQUEST_ID' class='checkCert$sr' /></td>
+						<td>$srno</td>
+						<td>$action_btn</td>
+						<td><img src='$PHOTO' class='img img-responsive img-circle' style='width:50px; height:50px'></td>
+						<td>$STUDENT_NAME</td>
+						<td>$EXAM_TITLE</td>
+						<td>$EXAM_FEES</td>
+						<td>$MARKS_PER %</td>
+						<td>$RESULT_STATUS</td>
+						<td>$CREATED_DATE</td>
+					</tr>";
+					$srno++;
+				}
+				$html .= '</table>';
+			} else {
+				$html = '<p class="text-muted">No certificate requests found.</p>';
+			}
+
+			echo json_encode(['html' => $html]);
+			break;
+
 		default:
 			echo "Invalid request!";
 			break;
