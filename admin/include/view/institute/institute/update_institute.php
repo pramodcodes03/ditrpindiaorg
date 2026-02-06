@@ -1,0 +1,501 @@
+<style>
+	.error {
+		color: red;
+		font-size: 0.9em;
+	}
+
+	.success {
+		color: green;
+		font-size: 0.9em;
+	}
+</style>
+<?php
+//ini_set('display_errors', 1);
+$institute_id = isset($_GET['id']) ? $_GET['id'] : '';
+
+$action = isset($_POST['update_institute']) ? $_POST['update_institute'] : '';
+
+include_once('include/classes/institute.class.php');
+$institute = new institute();
+
+if ($action != '') {
+	$institute_id = isset($_POST['institute_id']) ? $_POST['institute_id'] : '';
+
+	$result = $institute->update_institute($institute_id);
+	$result = json_decode($result, true);
+	$success = isset($result['success']) ? $result['success'] : '';
+	$message = $result['message'];
+	$errors = isset($result['errors']) ? $result['errors'] : '';
+	if ($success == true) {
+		$_SESSION['msg'] = $message;
+		$_SESSION['msg_flag'] = $success;
+		if ($_SESSION['user_role'] == 2)
+			header('location:page.php?page=listFranchise');
+		else
+			header('location:page.php?page=index.php');
+	}
+}
+/* get institute details */
+$res = $institute->list_institute($institute_id, '');
+if ($res != '') {
+	$srno = 1;
+	while ($data = $res->fetch_assoc()) {
+		extract($data);
+	}
+}
+?>
+
+<div class="content-wrapper">
+	<div class="row">
+		<div class="col-12 grid-margin stretch-card">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title"> Update Franchise</h4>
+					<form role="form" class="form-validate" action="" method="post" enctype="multipart/form-data" onsubmit="return validatePassword() && pageLoaderOverlay('show');" id="add_student">
+						<div class="box-body">
+							<!-- left column -->
+							<?php
+							if (isset($success)) {
+							?>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="alert alert-<?= ($success == true) ? 'success' : 'danger' ?> alert-dismissible" id="messages">
+											<button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
+											<h4><i class="icon fa fa-check"></i> <?= ($success == true) ? 'Success' : 'Error' ?>:</h4>
+											<?= isset($message) ? $message : 'Please correct the errors.'; ?>
+										</div>
+									</div>
+								</div>
+							<?php
+							}
+							?>
+							<input type="hidden" name="institute_id" value="<?= isset($INSTITUTE_ID) ? $INSTITUTE_ID : '' ?>" />
+							<input type="hidden" name="institute_login_id" value="<?= isset($USER_LOGIN_ID) ? $USER_LOGIN_ID : '' ?>" />
+
+							<div class="row">
+
+								<div class="form-group col-sm-4 <?= (isset($errors['instcode'])) ? 'has-error' : '' ?>">
+									<label>Franchise Code</label>
+									<input class="form-control" id="instcode" name="instcode" placeholder="Franchise Code" value="<?= isset($_POST['instcode']) ? $_POST['instcode'] : $INSTITUTE_CODE ?>" type="text" readonly>
+									<span class="help-block"><?= isset($errors['instcode']) ? $errors['instcode'] : '' ?></span>
+								</div>
+
+								<div class="form-group col-sm-4 <?= (isset($errors['instname'])) ? 'has-error' : '' ?>">
+									<label>Franchise Name</label>
+									<input class="form-control" id="instname" name="instname" placeholder="Franchise name" value="<?= isset($_POST['instname']) ? $_POST['instname'] : $INSTITUTE_NAME ?>" type="text">
+									<span class="help-block"><?= isset($errors['instname']) ? $errors['instname'] : '' ?></span>
+								</div>
+
+								<div class="form-group col-sm-4 <?= (isset($errors['instowner'])) ? 'has-error' : '' ?>">
+									<label>Owner Name</label>
+									<input class="form-control" id="instowner" name="instowner" placeholder="Owner name" value="<?= isset($_POST['instowner']) ? $_POST['instowner'] : $INSTITUTE_OWNER_NAME ?>" type="text">
+									<span class="help-block"><?= isset($errors['instowner']) ? $errors['instowner'] : '' ?></span>
+								</div>
+
+								<div class="form-group col-sm-4">
+									<label>Designation</label>
+									<select class="form-control" name="designation" id="designation">
+										<?php
+										$designation = isset($_POST['designation']) ? $_POST['designation'] : $DESIGNATION;
+										echo $db->MenuItemsDropdown('designation_master', 'DESIGNATION_ID', 'DESIGNATION', 'DESIGNATION_ID,DESIGNATION', $designation, ' WHERE ROLE=2 ORDER BY DESIGNATION ASC'); ?>
+									</select>
+								</div>
+
+								<div class="form-group col-sm-4 <?= (isset($errors['dob'])) ? 'has-error' : '' ?>">
+									<label>Date Of Birth</label>
+									<input class="form-control pull-right" name="dob" value="<?= isset($_POST['dob']) ? $_POST['dob'] : $DOB_FORMATTED ?>" id="dob" type="date" max="2999-12-31">
+									<span class="help-block"><?= (isset($errors['dob'])) ? $errors['dob'] : '' ?></span>
+								</div>
+
+								<div class="form-group col-sm-4 <?= (isset($errors['email'])) ? 'has-error' : '' ?>">
+									<label>Email</label>
+									<input class="form-control" id="email" name="email" placeholder="Email" value="<?= isset($_POST['email']) ? $_POST['email'] : $EMAIL ?>" type="email" onchange="document.getElementById('uname').value = this.value;">
+									<span class="help-block"><?= isset($errors['email']) ? $errors['email'] : '' ?></span>
+								</div>
+
+								<div class="form-group col-sm-4 <?= (isset($errors['mobile'])) ? 'has-error' : '' ?>">
+									<label>Mobile</label>
+									<input class="form-control" id="mobile" name="mobile" maxlength="10" placeholder="Mobile" value="<?= isset($_POST['mobile']) ? $_POST['mobile'] : $MOBILE ?>" type="text">
+									<span class="help-block"><?= isset($errors['mobile']) ? $errors['mobile'] : '' ?></span>
+								</div>
+
+								<div class="form-group col-sm-4 <?= (isset($errors['address1'])) ? 'has-error' : '' ?>">
+									<label>Address </label>
+									<textarea class="form-control" id="address1" name="address1" placeholder="Address" type="text"><?= isset($_POST['address1']) ? $_POST['address1'] : $ADDRESS_LINE1 ?></textarea>
+									<span class="help-block"><?= (isset($errors['address1'])) ? $errors['address1'] : '' ?></span>
+								</div>
+
+								<!-- <div class="form-group">
+					<label for="address2" class="col-sm-3 control-label">Address Line 2</label>
+					<div class="col-sm-9">
+						<input class="form-control" id="address2" name="address2" placeholder="Address Line 2" type="text" value="<?= isset($_POST['address2']) ? $_POST['address2'] : $ADDRESS_LINE2 ?>" />
+					</div>
+					</div>
+					-->
+
+								<div class="form-group col-sm-4 <?= (isset($errors['city'])) ? 'has-error' : '' ?>">
+									<label>State</label>
+									<select class="form-control select2" name="state" id="state" onchange="getCitiesByState(this.value)">
+										<?php
+										$state = isset($_POST['state']) ? $_POST['state'] : $STATE;
+										echo $db->MenuItemsDropdown('states_master', 'STATE_ID', 'STATE_NAME', 'STATE_ID,STATE_NAME', $state, ' ORDER BY STATE_NAME ASC'); ?>
+									</select>
+									<span class="help-block"><?= isset($errors['state']) ? $errors['state'] : '' ?></span>
+								</div>
+
+								<div class="form-group col-sm-4 <?= (isset($errors['city'])) ? 'has-error' : '' ?>">
+									<label>City</label>
+									<input type="text" class=" form-control" name="city" placeholder="City" value="<?= isset($_POST['city']) ? $_POST['city'] : $CITY ?>" />
+									<span class="help-block"><?= isset($errors['city']) ? $errors['city'] : '' ?></span>
+								</div>
+
+								<div class="form-group col-sm-4">
+									<label>Taluka</label>
+									<input class="form-control" id="taluka" name="taluka" placeholder="Taluka Name" type="text" value="<?= isset($_POST['taluka']) ? $_POST['taluka'] : $TALUKA ?>" />
+								</div>
+
+								<div class="form-group col-sm-4">
+									<label>Country</label>
+									<select class="form-control" name="country_sel" id="country_sel" disabled>
+										<?php
+										$country = isset($_POST['country']) ? $_POST['country'] : $COUNTRY;
+										echo $db->MenuItemsDropdown('countries_master', 'COUNTRY_ID', 'COUNTRY_NAME', 'COUNTRY_ID,COUNTRY_NAME', 1, ' WHERE COUNTRY_ID=1 ORDER BY COUNTRY_NAME ASC'); ?>
+									</select>
+									<input type="hidden" name="country" id="country" value="<?= $country ?>" />
+								</div>
+
+								<div class="form-group col-sm-4">
+									<label>Postal Code</label>
+									<input class="form-control" id="postcode" name="postcode" placeholder="Postcode" value="<?= isset($_POST['postcode']) ? $_POST['postcode'] : $POSTCODE ?>" maxlength="6" type="text">
+								</div>
+
+								<div class="form-group col-sm-4">
+									<label>Total number of computers</label>
+									<input type="text" class=" form-control" name="no_of_comp" placeholder="Total number of computers" value="<?= isset($_POST['no_of_comp']) ? $_POST['no_of_comp'] : $NO_OF_COMPUTERS ?>" />
+								</div>
+
+								<div class="form-group col-sm-4">
+									<label>Total number of staff</label>
+									<input type="text" class=" form-control" name="no_of_staff" placeholder="Total number of staff" value="<?= isset($_POST['no_of_staff']) ? $_POST['no_of_staff'] : $NO_OF_STAFF ?>" />
+								</div>
+
+								<!-- <div class="form-group">
+					<label for="instdetails" class="col-sm-3 control-label">Details about Institute</label>
+					<div class="col-sm-9">
+						<textarea class="form-control" id="instdetails" name="instdetails" placeholder="Please provide details about Staff,Infrastructure, Current business, and Reason of joining DITRP" type="text"><?= isset($_POST['instdetails']) ? $_POST['instdetails'] : $DETAIL_DESCRIPTION ?></textarea>
+					</div>
+					</div> -->
+
+								<div class="form-group col-sm-4 <?= (isset($errors['uname'])) ? 'has-error' : '' ?>">
+									<label>Username</label>
+									<input class="form-control" id="uname" name="uname" placeholder="Username" value="<?= isset($_POST['uname']) ? $_POST['uname'] : $USER_NAME ?>" type="text" style="text-transform: none;" readonly />
+									<span class="help-block"><?= isset($errors['uname']) ? $errors['uname'] : '' ?></span>
+								</div>
+
+								<!-- <div class="form-group col-sm-4 <?= (isset($errors['pword'])) ? 'has-error' : '' ?>">
+									<label>New Password</label>
+									<input class="form-control" oninput="validatePassword()" id="pword" name="pword" placeholder="New Password" value="<?= isset($_POST['pword']) ? $_POST['pword'] : '' ?>" type="password" autocomplete="off">
+									<span class="help-block"><?= isset($errors['pword']) ? $errors['pword'] : '' ?></span>
+									<div id="error-message" class="error"></div>
+								</div>
+
+								<div class="form-group  col-sm-4 <?= (isset($errors['confpword'])) ? 'has-error' : '' ?>">
+									<label>Confirm New Password</label>
+									<input class="form-control" id="confpword" name="confpword" placeholder="Confirm New Password" value="<?= isset($_POST['confpword']) ? $_POST['confpword'] : '' ?>" type="password" autocomplete="off">
+									<span class="help-block"><?= isset($errors['confpword']) ? $errors['confpword'] : '' ?></span>
+								</div> -->
+
+								<div class="form-group col-sm-4 <?= (isset($errors['plan'])) ? 'has-error' : '' ?>">
+									<label>Select Plan For Institute</label>
+									<select class="form-control" id="plan" name="plan">
+										<?php
+										$plan = isset($_POST['plan']) ? $_POST['plan'] : $PLAN_ID;
+										echo $db->MenuItemsDropdown('institute_plans', 'PLAN_ID', 'PLAN_NAME', 'PLAN_ID,PLAN_NAME', $plan, ' WHERE ACTIVE=1 AND DELETE_FLAG=0');
+										?>
+									</select>
+									<span class="help-block"><?= isset($errors['plan']) ? $errors['plan'] : '' ?></span>
+								</div>
+
+								<div class="form-group col-sm-4">
+									<?php
+									$status = isset($_POST['status']) ? $_POST['status'] : $ACTIVE;
+									?>
+									<label>Status</label>
+									<div class="radio">
+										<label>
+											<input name="status" id="optionsRadios1" value="1" <?= ($status == 1) ? "checked=''" : ''  ?> type="radio">
+											Active
+										</label>
+										<label>
+											<input name="status" id="optionsRadios2" value="0" <?= ($status == 0) ? "checked=''" : ''  ?> type="radio">
+											Inactive
+										</label>
+									</div>
+								</div>
+
+								<div class="form-group col-sm-4">
+									<?php
+									$verify = isset($_POST['verify']) ? $_POST['verify'] : $VERIFIED;
+									?>
+									<label>Verify</label>
+									<div class="radio">
+										<label>
+											<input name="verify" id="optionsRadios3" value="1" <?= ($verify == 1) ? "checked=''" : ''  ?> type="radio">
+											Yes
+										</label>
+										<label>
+											<input name="verify" id="optionsRadios4" value="0" <?= ($verify == 0) ? "checked=''" : ''  ?> type="radio">
+											No
+										</label>
+									</div>
+								</div>
+
+								<div class="form-group col-sm-4">
+									<label>GST Number</label>
+									<input class="form-control" id="gstno" name="gstno" placeholder="GST Number" value="<?= isset($_POST['gstno']) ? $_POST['gstno'] : $GSTNO ?>" type="text">
+								</div>
+
+								<div class="col-md-12">
+									<!-- general form elements -->
+									<div class="box box-primary">
+										<div class="box-header with-border">
+											<h3 class="box-title">Upload Franchise Documents</h3>
+										</div>
+										<div class="box-body row">
+											<?php
+
+											?>
+											<div class="form-group col-sm-4 <?= (isset($errors['instlogo'])) ? 'has-error' : '' ?>">
+												<label>Franchise Logo</label>
+												<?= $institute->get_institute_docs_all($INSTITUTE_ID, 'logo', true);	?>
+												<input id="instlogo" name="instlogo" type="file">
+												<p class="help-block"><?= (isset($errors['instlogo'])) ? $errors['instlogo'] : 'Logo' ?></p>
+											</div>
+
+											<div class="form-group col-sm-4 <?= (isset($errors['passphoto'])) ? 'has-error' : '' ?>">
+												<label>Owner Passport Photo</label>
+												<?= $institute->get_institute_docs_all($INSTITUTE_ID, 'owner_photo', true);	?>
+												<input id="passphoto" name="passphoto" type="file">
+												<p class="help-block"><?= (isset($errors['passphoto'])) ? $errors['passphoto'] : 'Photo' ?></p>
+											</div>
+
+											<div class="form-group col-sm-4 <?= (isset($errors['instsign'])) ? 'has-error' : '' ?>">
+												<label>Franchise Signature</label>
+												<?= $institute->get_institute_docs_all($INSTITUTE_ID, 'sign', true); ?>
+												<input id="instsign" name="instsign" type="file">
+												<p class="help-block"><?= (isset($errors['instsign'])) ? $errors['instsign'] : 'Sign' ?></p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+									<div class="box box-primary">
+										<div class="box-header with-border">
+											<h3 class="box-title">For Office Use</h3>
+										</div>
+										<div class="box-body row">
+											<!--<div class="form-group <?= (isset($errors['creditcount'])) ? 'has-error' : '' ?>">
+									<label for="creditcount" class="col-sm-3 control-label">Credit</label>
+									<div class="col-sm-9">
+										<input class="form-control" id="creditcount" name="creditcount" value="<?= isset($_POST['creditcount']) ? $_POST['creditcount'] : $CREDIT ?>" placeholder="Credit" type="number">
+										<span class="help-block"><?= (isset($errors['creditcount'])) ? $errors['creditcount'] : '' ?></span>
+									</div>
+								</div>
+								<div class="form-group <?= (isset($errors['democount'])) ? 'has-error' : '' ?>">
+									<label for="democount" class="col-sm-3 control-label">Demo</label>
+									<div class="col-sm-9">
+										<input class="form-control" id="democount" name="democount" value="<?= isset($_POST['democount']) ? $_POST['democount'] : $DEMO_PER ?>" placeholder="Demo per student" type="number">
+										<span class="help-block"><?= (isset($errors['democount'])) ? $errors['democount'] : '' ?></span>
+									</div>
+								</div>-->
+											<div class="form-group col-sm-4">
+												<label>Register On</label>
+												<input class="form-control pull-right" value="<?= isset($_POST['registrationdate']) ? $_POST['registrationdate'] : $REG_DATE; ?>" id="registrationdate" type="date" name="registrationdate" max="2999-12-31" onchange="setAccExpDate(this.value)">
+											</div>
+
+											<div class="form-group col-sm-4">
+												<label for="verifydate" class="col-sm-4 control-label">Verified On</label>
+												<input class="form-control pull-right" value="<?= isset($_POST['verifydate']) ? $_POST['verifydate'] : $VERIFIED_ON_FORMATTED; ?>" id="dateto" type="date" name="verifydate" max="2999-12-31" />
+												<span class="help-block"><?= (isset($errors['verifydate'])) ? $errors['verifydate'] : '' ?></span>
+											</div>
+
+											<div class="form-group col-sm-4 <?= (isset($errors['expirationdate'])) ? 'has-error' : '' ?>">
+												<label>Expire On</label>
+												<input class="form-control pull-right" value="<?= isset($_POST['expirationdate']) ? $_POST['expirationdate'] : $EXP_DATE; ?>" id="expirationdate" type="date" name="expirationdate" max="2999-12-31">
+												<span class="help-block"><?= (isset($errors['expirationdate'])) ? $errors['expirationdate'] : '' ?></span>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-12">
+										<div class="box box-primary">
+											<div class="box-header with-border">
+												<h3 class="box-title">For Festival Package</h3>
+											</div>
+											<div class="box-body row">
+												<div class="form-group col-sm-4">
+													<label for="registrationdate" class="col-sm-12">Contact Number 2 : </label>
+													<div class="col-sm-12">
+														<input class="form-control" id="contact2" name="contact2" maxlength="10" value="<?= isset($_POST['contact2']) ? $_POST['contact2'] : $CONTACT_NUMBER2 ?>" type="text">
+														<span class="help-block"><?= isset($errors['contact2']) ? $errors['contact2'] : '' ?></span>
+
+													</div>
+												</div>
+
+												<div class="form-group col-sm-4">
+													<label for="registrationdate" class="col-sm-12">Website Address : </label>
+													<div class="col-sm-12">
+														<input class="form-control" id="website" name="website" value="<?= isset($_POST['website']) ? $_POST['website'] : $WEBSITE ?>" type="text">
+														<span class="help-block"><?= isset($errors['website']) ? $errors['website'] : '' ?></span>
+
+													</div>
+												</div>
+
+												<div class="form-group col-sm-4">
+													<label for="registrationdate" class="col-sm-12">Package Last Date : </label>
+													<div class="col-sm-12">
+														<input class="form-control" id="lastdate" name="lastdate" value="<?= isset($_POST['lastdate']) ? $_POST['lastdate'] : $FESTIVAL_LAST_DATE  ?? null ?>" type="date">
+														<span class="help-block"><?= isset($errors['lastdate']) ? $errors['lastdate'] : '' ?></span>
+
+													</div>
+												</div>
+
+
+												<div class="form-group col-sm-4">
+													<?php
+													$package_festival = isset($_POST['package_festival']) ? $_POST['package_festival'] : $FESTIVAL_PACKAGE;
+													?>
+													<label for="package_festival" class="control-label">Festival Package</label>
+													<div class="radio">
+														<label>
+															<input name="package_festival" id="optionsRadios1" value="1" <?= ($package_festival == 1) ? "checked=''" : ''  ?> type="radio">
+															Package Active
+														</label>
+														<label>
+															<input name="package_festival" id="optionsRadios2" value="0" <?= ($package_festival == 0) ? "checked=''" : ''  ?> type="radio">
+															Package Inactive
+														</label>
+													</div>
+												</div>
+											</div>
+
+											<div class="form-group col-sm-12 <?= (isset($errors['location'])) ? 'has-error' : '' ?>">
+												<label>Location</label>
+												<input class="form-control" id="location" name="location" placeholder="Location" value="<?= isset($_POST['location']) ? $_POST['location'] : $LOCATION ?>" type="text" />
+												<span class="help-block"><?= isset($errors['location']) ? $errors['location'] : '' ?></span>
+											</div>
+											<div class="row col-sm-12">
+												<div class="form-group col-sm-4 <?= (isset($errors['latitude'])) ? 'has-error' : '' ?>">
+													<label>Latitude</label>
+													<input class="form-control" id="latitude" name="latitude" placeholder="Latitude" value="<?= isset($_POST['latitude']) ? $_POST['latitude'] : $latitude ?>" type="text" />
+													<span class="help-block"><?= isset($errors['latitude']) ? $errors['latitude'] : '' ?></span>
+												</div>
+
+												<div class="form-group col-sm-4 <?= (isset($errors['longitude'])) ? 'has-error' : '' ?>">
+													<label>Longitude</label>
+													<input class="form-control" id="longitude" name="longitude" placeholder="Longitude" value="<?= isset($_POST['longitude']) ? $_POST['longitude'] : $longitude ?>" type="text" />
+													<span class="help-block"><?= isset($errors['longitude']) ? $errors['longitude'] : '' ?></span>
+												</div>
+											</div>
+											<div class="row col-sm-12">
+												<div class="form-group col-sm-3">
+													<?php
+													$video_plan = isset($_POST['video_plan']) ? $_POST['video_plan'] : $video_plan;
+													?>
+													<label for="video_plan" class="control-label">Course Video Plan</label>
+													<div class="radio">
+														<label>
+															<input name="video_plan" id="optionsRadios1" value="1" <?= ($video_plan == 1) ? "checked=''" : ''  ?> type="radio">
+															Active
+														</label>
+														<label>
+															<input name="video_plan" id="optionsRadios2" value="0" <?= ($video_plan == 0) ? "checked=''" : ''  ?> type="radio">
+															Inactive
+														</label>
+													</div>
+												</div>
+												<div class="form-group col-sm-3">
+													<label for="video_date" class="col-sm-12">Video Plan Last Date : </label>
+													<div class="col-sm-12">
+														<input class="form-control" id="video_date" name="video_date" value="<?= isset($_POST['video_date']) ? $_POST['video_date'] : $video_date ?>" type="date">
+														<span class="help-block"><?= isset($errors['video_date']) ? $errors['video_date'] : '' ?></span>
+
+													</div>
+												</div>
+											</div>
+											<div class="row col-sm-12">
+
+												<div class="form-group col-sm-3">
+													<?php
+													$prime_member = isset($_POST['prime_member']) ? $_POST['prime_member'] : $PRIMEMEMBER;
+													?>
+													<label>Prime Member</label>
+													<div class="radio">
+														<label>
+															<input name="prime_member" id="optionsRadios3" value="1" <?= ($prime_member == 1) ? "checked=''" : ''  ?> type="radio">
+															Yes
+														</label>
+														<label>
+															<input name="prime_member" id="optionsRadios4" value="0" <?= ($prime_member == 0) ? "checked=''" : ''  ?> type="radio">
+															No
+														</label>
+													</div>
+												</div>
+
+												<div class="form-group col-sm-3">
+													<label>Prime Member Last Date</label>
+													<input class="form-control pull-right" value="<?= isset($_POST['prime_memberdate']) ? $_POST['prime_memberdate'] : $PRIMEMEMBER_DATE; ?>" id="prime_memberdate" type="date" name="prime_memberdate" max="2999-12-31">
+													<span class="help-block"><?= (isset($errors['prime_memberdate'])) ? $errors['prime_memberdate'] : '' ?></span>
+												</div>
+
+												<div class="form-group col-sm-2">
+													<label>Admissions Count</label>
+													<input type="text" class=" form-control" name="prime_admission" value="<?= isset($_POST['prime_admission']) ? $_POST['prime_admission'] : $NUMBER_OF_ADMISSION ?>" />
+												</div>
+
+											</div>
+
+
+
+
+											<div class="box-footer text-center">
+												<input type="submit" name="update_institute" class="btn btn-info" value="Update Franchise" />
+												<a href="page.php?page=listFranchise" class="btn btn-danger">Cancel</a>
+											</div>
+										</div>
+									</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	function validatePassword() {
+		const password = document.getElementById('pword').value;
+		const errorMessage = document.getElementById('error-message');
+		const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
+		const digitPattern = /\d/g;
+
+		errorMessage.textContent = ''; // Clear previous error message
+
+		if (password.length < 8) {
+			errorMessage.textContent = 'Password must be at least 8 characters long.';
+			return false;
+		}
+		if (!specialCharPattern.test(password)) {
+			errorMessage.textContent = 'Password must contain at least one special character.';
+			return false;
+		}
+		if ((password.match(digitPattern) || []).length < 3) {
+			errorMessage.textContent = 'Password must contain at least three numbers.';
+			return false;
+		}
+
+		errorMessage.textContent = 'Password is valid.';
+		errorMessage.className = 'success';
+		return true;
+	}
+</script>

@@ -1,0 +1,39 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2023-06-22 15:49:13 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:49:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:49:17 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:49:17 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:49:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:49:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:49:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:49:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:49:24 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:49:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:49:28 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:49:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:49:32 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:49:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:49:47 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:49:51 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:50:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:50:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:50:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:50:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:50:28 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:50:31 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:50:31 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:50:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:50:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:50:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:50:57 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:50:57 --> Severity: Notice  --> Trying to get property 'pcontent' of non-object /home/demo.oscdcorporation.in/public_html/exam/application/models/home_model.php 246
+ERROR - 2023-06-22 15:50:57 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:51:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:51:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:51:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:51:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:51:20 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:51:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 15:51:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-06-22 16:55:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/demo.oscdcorporation.in/public_html/exam/system/core/Common.php 257

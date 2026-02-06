@@ -1,0 +1,20 @@
+ChartDirector
+	https://www.advsofteng.com/cdphp.html
+
+GraPHPite
+	https://graphpite.sourceforge.net/
+
+JpGraph
+	https://www.aditus.nu/jpgraph/
+
+LibChart
+	https://naku.dohcrew.com/libchart/pages/introduction/
+
+pChart
+	https://pchart.sourceforge.net/
+
+TeeChart
+	https://www.steema.com/products/teechart/overview.html
+
+PHPGraphLib
+    https://www.ebrueggeman.com/phpgraphlib

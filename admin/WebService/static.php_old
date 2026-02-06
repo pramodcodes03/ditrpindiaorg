@@ -1,0 +1,120 @@
+<?php 
+// headers to tell that result is JSON
+header('Content-type: application/json');
+
+//$imgUrl = "https://localhost:1080/uploads/mobileapp/tutorials/";
+$imgUrl = "https://ditrpindia.com/uploads/mobileapp/tutorials/";
+$output= array(
+	'1'=>array(
+		"image"=>$imgUrl.'1.jpg',
+		"title"=>"Computer case",
+		"description"=>html_entity_decode("The basic parts of a desktop computer are the computer
+case, monitor, keyboard, mouse, and power cord. Each part plays
+an important role whenever you use a computer.
+Watch the video below to learn about the basic parts of a desktop
+computer. The computer case is the metal and plastic box that contains the main components of the computer, including the motherboard, central processing unit (CPU), and power supply. The front of the case usually has an On/Off button and one or more optical drives.
+Computer cases come in different shapes and sizes. A desktop case lies flat on a desk, and the monitor usually sits on top of it. A tower case is tall and sits next to the monitor or on the floor. All-in-one computers come with the internal components built into the monitor, which eliminates the need for a separate case.")),
+	
+	'2'=>array(
+		"image"=>$imgUrl.'2.jpg',
+		"title"=>"MONITOR",
+		"description"=>html_entity_decode("The monitor works with a video card, located inside the computer case, to display images and text on the screen. Most monitors have control buttons that allow you to change your monitor's display settings, and some monitors also have built-in speakers.
+Newer monitors usually have LCD (liquid crystal display) or LED (light-emitting diode) displays. These can be made very thin, and they are often called flat-panel displays. Older monitors use CRT (cathode ray tube) displays. CRT monitors are much larger and heavier, and they take up more desk space.
+Keyboard
+The keyboard is one of the main ways to communicate with a computer. There are many different types of keyboards, but most are very similar and allow you to accomplish the same basic tasks.
+Click the buttons in the interactive below to learn about the different parts of the keyboard.
+Introduction
+Take a look at the front and back of your computer case and count the number of buttons, ports, and slots you see. Now look at your monitor and count any you find there. You probably counted at least 10, and maybe a lot more.
+")
+	),
+
+	'3'=>array(
+		"image"=>$imgUrl.'3.jpg',
+		"description"=>""
+	),
+
+	'4'=>array(
+		"image"=>$imgUrl.'4.jpg',
+		"description"=>""
+	),
+
+	'5'=>array(
+		"image"=>$imgUrl.'5.jpg',
+		"description"=>""
+	),
+
+	'6'=>array(
+		"image"=>$imgUrl.'6.jpg',
+		"description"=>""
+	),
+
+	'7'=>array(
+		"image"=>$imgUrl.'7.jpg',
+		"description"=>""
+	),
+
+	'8'=>array(
+		"image"=>$imgUrl.'8.jpg',
+		"description"=>""
+	),
+
+	'9'=>array(
+		"image"=>$imgUrl.'9.jpg',
+		"description"=>""
+	),
+
+	'10'=>array(
+		"image"=>$imgUrl.'10.jpg',
+		"description"=>""
+	),
+
+	'11'=>array(
+		"image"=>$imgUrl.'11.jpg',
+		"description"=>""
+	),
+
+	'12'=>array(
+		"image"=>$imgUrl.'12.jpg',
+		"description"=>""
+	),
+
+	'13'=>array(
+		"image"=>$imgUrl.'13.jpg',
+		"description"=>""
+	),
+
+	'14'=>array(
+		"image"=>$imgUrl.'14.jpg',
+		"description"=>""
+	),
+
+	'15'=>array(
+		"image"=>$imgUrl.'15.jpg',
+		"description"=>""
+	),
+
+	'16'=>array(
+		"image"=>$imgUrl.'16.jpg',
+		"description"=>""
+	),
+
+	'17'=>array(
+		"image"=>$imgUrl.'17.jpg',
+		"description"=>""
+	),
+
+	'18'=>array(
+		"image"=>$imgUrl.'18.jpg',
+		"description"=>""
+	),
+
+	'19'=>array(
+		"image"=>$imgUrl.'19.jpg',
+		"description"=>""
+	)
+);
+echo  json_encode($output);
+
+
+?>
+

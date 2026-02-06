@@ -1,0 +1,62 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2023-12-13 11:58:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 11:58:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 11:58:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 11:58:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 11:58:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 11:58:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 11:58:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 11:58:54 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 11:58:55 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 11:58:55 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 11:58:59 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:02:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:02:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:02:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:02:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:02:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:02:24 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:02:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:02:28 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:02:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:02:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:02:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:51:04 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:51:04 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:51:04 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:51:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:51:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:51:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:52:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:52:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:52:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:52:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:52:43 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:52:45 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:52:48 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:52:51 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:52:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:52:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:53:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:53:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:53:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:53:49 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:53:49 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:55:31 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:55:31 --> Severity: Notice  --> Undefined index: ad_opt_4 /home/srcti.in/public_html/exam/application/models/home_model.php 1513
+ERROR - 2023-12-13 17:55:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:59:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:59:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 17:59:47 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 18:02:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 18:02:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 18:02:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 18:02:14 --> Severity: Notice  --> Trying to get property 'pcontent' of non-object /home/srcti.in/public_html/exam/application/models/home_model.php 248
+ERROR - 2023-12-13 18:02:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 18:02:14 --> Severity: Notice  --> Undefined variable: lang1 /home/srcti.in/public_html/exam/application/views/otp.php 45
+ERROR - 2023-12-13 18:02:43 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 18:02:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 18:03:32 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 18:03:32 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2023-12-13 18:03:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257

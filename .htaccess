@@ -1,0 +1,25 @@
+# Enable the Rewrite Engine
+Options +SymLinksIfOwnerMatch
+RewriteEngine on
+
+# Admin Section
+RewriteCond %{REQUEST_URI} ^/admin/ [NC]
+RewriteCond %{REQUEST_URI} \.(css|js|jpg|jpeg|png|gif|ico|woff|woff2|ttf|svg|eot|otf|map|json)$ [NC]
+RewriteRule ^admin/(.*)$ /admin/$1 [L,E=EXPIRY:max,ENV=ACCESS_LOG:off]
+
+RewriteRule ^admin/(.*)$ /admin/page.php?page=$1&%{QUERY_STRING} [L]
+
+# Website Management Section
+RewriteRule ^website_management/(.*)$ /admin/pages.php?page=$1&%{QUERY_STRING} [L]
+
+# General Rewrite Rules
+RewriteRule ^([a-zA-Z0-9_-]+)$ page.php?pg=$1 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/$ page.php?pg=$1 [L]
+
+# View News
+RewriteRule ^([a-zA-Z0-9_-]+)/([0-9]+)/(.*?)$ page.php?pg=$1&id=$2&title=$3 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([0-9]+)/(.*?)/$ page.php?pg=$1&id=$2&title=$3 [L]
+
+# View News Pagination
+RewriteRule ^([a-zA-Z0-9_-]+)/([0-9]+)$ page.php?pg=$1&p=$2 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([0-9]+)/$ page.php?pg=$1&p=$2 [L]

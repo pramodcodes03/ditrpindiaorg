@@ -1,0 +1,9 @@
+Alternative sources of Hyphenation programs or TEX files:
+
+https://
+
+OpenOffice: http://wiki.services.openoffice.org/wikihttps://naries
+
+
+
+Hyphenator4PHP- alternative PHP hyphenator scripts: http://apps.sourceforge.net/trac/hyphenator4php/

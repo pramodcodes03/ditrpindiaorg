@@ -1,0 +1,68 @@
+<?php
+$action = isset($_POST['add_social_links']) ? $_POST['add_social_links'] : '';
+include_once('include/classes/websiteManage.class.php');
+$websiteManage = new websiteManage();
+if ($action != '') {
+  $result = $websiteManage->add_social_links();
+  $result = json_decode($result, true);
+  $success = isset($result['success']) ? $result['success'] : '';
+  $message = $result['message'];
+  $errors = isset($result['errors']) ? $result['errors'] : '';
+  if ($success == true) {
+    $_SESSION['msg'] = $message;
+    $_SESSION['msg_flag'] = $success;
+    header('location:/website_management/manageSocialLinks');
+  }
+}
+?>
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Add Social Integration Link</h4>
+          <form class="forms-sample" action="" method="post" enctype="multipart/form-data">
+            <?php
+            if (isset($success)) {
+            ?>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="alert alert-<?= ($success == true) ? 'success' : 'danger' ?> alert-dismissible" id="messages">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
+                    <h4><i class="icon fa fa-check"></i> <?= ($success == true) ? 'Success' : 'Error' ?>:</h4>
+                    <?= isset($message) ? $message : 'Please correct the errors.'; ?>
+                    <?php
+                    echo "<ul>";
+                    foreach ($errors as $error) {
+                      echo "<li>$error</li>";
+                    }
+                    echo "<ul>";
+                    ?>
+                  </div>
+                </div>
+              </div>
+            <?php
+            }
+            ?>
+            <div class="form-group">
+              <label for="exampleFormControlSelect3">Link Type</label>
+              <select class="form-control form-control-sm" id="exampleFormControlSelect3" id="master_id" name="master_id">
+                <?php
+                $master_id = isset($_POST['master_id']) ? $_POST['master_id'] : '';
+                echo $db->MenuItemsDropdown('social_media_master', 'id', 'name', 'id,name', $master_id, ' WHERE active=1');
+                ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputName1">Social Link</label>
+              <input type="text" class="form-control" id="exampleInputName1" name="link" placeholder="link" value="">
+            </div>
+
+            <input type="submit" name="add_social_links" class="btn btn-primary mr-2" value="Submit">
+            <a href="/website_management/manageSocialLinks" class="btn btn-danger mr-2" title="Cancel">Cancel</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

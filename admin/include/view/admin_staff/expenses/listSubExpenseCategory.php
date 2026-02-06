@@ -1,0 +1,67 @@
+ <div class="content-wrapper">
+ 	<div class="col-lg-12 stretch-card">
+ 		<div class="card">
+ 			<div class="card-body">
+ 				<h4 class="card-title">List Expense Sub Category Type
+ 					<a href="page.php?page=addexpensesubtype" class="btn btn-primary" style="float: right">Add Category Sub Type</a>
+ 				</h4>
+
+ 				<div class="table-responsive pt-3">
+ 					<table id="order-listing" class="table">
+ 						<thead>
+ 							<tr>
+ 								<th>Sr.</th>
+ 								<th>Category Sub-Type</th>
+ 								<th>Category Type</th>
+ 								<th>Status</th>
+ 								<th>Action</th>
+ 							</tr>
+ 						</thead>
+ 						<tbody>
+ 							<?php
+								$user_id = $_SESSION['user_id'];
+								include_once('include/classes/expense.class.php');
+								$expense = new expense();
+								$res = $expense->list_expensesubcategory('', " AND INSTITUTE_ID = $user_id");
+
+								if ($res != '') {
+									$srno = 1;
+									while ($data = $res->fetch_assoc()) {
+										$SUBCATEGORY_ID 		= $data['SUBCATEGORY_ID'];
+										$SUBCATEGORY  	= $data['SUBCATEGORY'];
+										$CATEGORY  	= $data['CATEGORY'];
+										$ACTIVE			= $data['ACTIVE'];
+										$CREATED_BY 	= $data['CREATED_BY'];
+										$CREATED_ON 	= $data['CREATED_ON'];
+
+										if ($ACTIVE == 1)
+											$ACTIVE = '<span style="color:#3c763d"><i class="fa fa-check"></i>Active</span>';
+										elseif ($ACTIVE == 0)
+											$ACTIVE = '<span style="color:#f00"><i class="fa fa-times"></i>In-Active</span> ';
+
+										$action = '';
+										$action = "<a href='page.php?page=updateexpensesubtype&id=$SUBCATEGORY_ID' class='btn btn-primary table-btn' title='Edit'><i class='mdi mdi-grease-pencil'></i></a>";
+
+										if ($db->permission('delete_enquiry'))
+											$action .= "<a href='javascript:void(0)' onclick='deleteExpensesSubCategory($SUBCATEGORY_ID)' class='btn btn-danger table-btn' title='Delete'><i class='mdi mdi-delete'></i></a>";
+
+
+										echo " <tr id='row-" . $SUBCATEGORY_ID . "'>									
+									<td>$srno</td>									
+									<td>$SUBCATEGORY</td>											
+									<td>$CATEGORY</td>											
+									<td id='status-$SUBCATEGORY_ID'>$ACTIVE</td>
+									<td>$action</td>
+									</tr>";
+										$srno++;
+									}
+								}
+
+								?>
+ 						</tbody>
+ 					</table>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+ </div>

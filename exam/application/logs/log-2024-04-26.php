@@ -1,0 +1,825 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2024-04-26 10:39:24 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 10:39:24 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 10:39:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 10:39:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 10:58:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 10:58:54 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 10:59:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 10:59:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:09:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:09:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:09:24 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:09:24 --> Severity: Notice  --> Trying to get property 'pcontent' of non-object /home/ditrpindia/public_html/exam/application/models/home_model.php 248
+ERROR - 2024-04-26 12:09:24 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:09:24 --> Severity: Notice  --> Undefined variable: lang1 /home/ditrpindia/public_html/exam/application/views/otp.php 45
+ERROR - 2024-04-26 12:10:01 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:10:01 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:10:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:10:31 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:10:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:10:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:10:37 --> Severity: Notice  --> Undefined variable: answer_status /home/ditrpindia/public_html/exam/application/models/home_model.php 1011
+ERROR - 2024-04-26 12:10:43 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:10:50 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:10:54 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:10:59 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:11:09 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:11:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:11:11 --> Severity: Notice  --> Undefined variable: answer_status /home/ditrpindia/public_html/exam/application/models/home_model.php 1011
+ERROR - 2024-04-26 12:11:31 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:11:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:11:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:12:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:12:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:12:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:12:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:12:32 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:12:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:12:47 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:12:47 --> Severity: Notice  --> Undefined variable: answer_status /home/ditrpindia/public_html/exam/application/models/home_model.php 1011
+ERROR - 2024-04-26 12:12:50 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:12:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:12:55 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:12:55 --> Severity: Notice  --> Undefined variable: answer_status /home/ditrpindia/public_html/exam/application/models/home_model.php 1011
+ERROR - 2024-04-26 12:12:57 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:12:57 --> Severity: Notice  --> Undefined variable: answer_status /home/ditrpindia/public_html/exam/application/models/home_model.php 1011
+ERROR - 2024-04-26 12:13:13 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:13:13 --> Severity: Notice  --> Undefined variable: answer_status /home/ditrpindia/public_html/exam/application/models/home_model.php 1011
+ERROR - 2024-04-26 12:13:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:13:17 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:13:17 --> Severity: Notice  --> Undefined variable: answer_status /home/ditrpindia/public_html/exam/application/models/home_model.php 1011
+ERROR - 2024-04-26 12:13:20 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:13:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:13:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:13:27 --> Severity: Notice  --> Undefined variable: answer_status /home/ditrpindia/public_html/exam/application/models/home_model.php 1011
+ERROR - 2024-04-26 12:13:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:13:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:13:41 --> Severity: Notice  --> Undefined variable: answer_status /home/ditrpindia/public_html/exam/application/models/home_model.php 1011
+ERROR - 2024-04-26 12:13:42 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:13:42 --> Severity: Notice  --> Undefined variable: answer_status /home/ditrpindia/public_html/exam/application/models/home_model.php 1011
+ERROR - 2024-04-26 12:13:45 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:14:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:14:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:14:40 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:14:40 --> Severity: Notice  --> Undefined variable: answer_status /home/ditrpindia/public_html/exam/application/models/home_model.php 1011
+ERROR - 2024-04-26 12:14:42 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:14:42 --> Severity: Notice  --> Undefined variable: answer_status /home/ditrpindia/public_html/exam/application/models/home_model.php 1011
+ERROR - 2024-04-26 12:14:45 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:14:47 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:14:49 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:14:49 --> Severity: Notice  --> Undefined variable: answer_status /home/ditrpindia/public_html/exam/application/models/home_model.php 1011
+ERROR - 2024-04-26 12:14:50 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:14:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:14:54 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:14:54 --> Severity: Notice  --> Undefined variable: answer_status /home/ditrpindia/public_html/exam/application/models/home_model.php 1011
+ERROR - 2024-04-26 12:14:57 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:14:59 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:15:01 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:15:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:15:10 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:15:12 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:15:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:15:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 12:15:24 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:30:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:30:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:30:38 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:30:39 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:37:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:37:16 --> Severity: Notice  --> Undefined index: ad_opt_2 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 13:40:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:43:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:44:42 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:46:39 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:48:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:48:21 --> Severity: Notice  --> Undefined index: ad_opt_7 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 13:49:42 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:49:42 --> Severity: Notice  --> Undefined index: ad_opt_8 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 13:51:42 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:51:42 --> Severity: Notice  --> Undefined index: ad_opt_9 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 13:53:45 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:53:45 --> Severity: Notice  --> Undefined index: ad_opt_10 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 13:55:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:55:15 --> Severity: Notice  --> Undefined index: ad_opt_11 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 13:58:58 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 13:58:58 --> Severity: Notice  --> Undefined index: ad_opt_12 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:01:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:01:35 --> Severity: Notice  --> Undefined index: ad_opt_13 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:04:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:04:29 --> Severity: Notice  --> Undefined index: ad_opt_14 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:05:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:05:14 --> Severity: Notice  --> Undefined index: ad_opt_15 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:06:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:06:35 --> Severity: Notice  --> Undefined index: ad_opt_16 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:08:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:08:16 --> Severity: Notice  --> Undefined index: ad_opt_17 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:09:09 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:09:09 --> Severity: Notice  --> Undefined index: ad_opt_18 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:09:45 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:09:45 --> Severity: Notice  --> Undefined index: ad_opt_19 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:10:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:10:27 --> Severity: Notice  --> Undefined index: ad_opt_20 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:11:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:11:18 --> Severity: Notice  --> Undefined index: ad_opt_21 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:12:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:12:15 --> Severity: Notice  --> Undefined index: ad_opt_22 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:18:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:18:37 --> Severity: Notice  --> Undefined index: ad_opt_23 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:18:50 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:18:50 --> Severity: Notice  --> Undefined index: ad_opt_24 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:19:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:19:05 --> Severity: Notice  --> Undefined index: ad_opt_25 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:19:20 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:19:20 --> Severity: Notice  --> Undefined index: ad_opt_26 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:19:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:19:33 --> Severity: Notice  --> Undefined index: ad_opt_27 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:19:51 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:19:51 --> Severity: Notice  --> Undefined index: ad_opt_28 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:20:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:20:05 --> Severity: Notice  --> Undefined index: ad_opt_29 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:20:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:20:22 --> Severity: Notice  --> Undefined index: ad_opt_30 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:20:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:20:34 --> Severity: Notice  --> Undefined index: ad_opt_31 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:20:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:20:41 --> Severity: Notice  --> Undefined index: ad_opt_32 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:20:49 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:20:49 --> Severity: Notice  --> Undefined index: ad_opt_33 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:20:59 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:20:59 --> Severity: Notice  --> Undefined index: ad_opt_34 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:21:09 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:21:09 --> Severity: Notice  --> Undefined index: ad_opt_35 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:21:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:21:16 --> Severity: Notice  --> Undefined index: ad_opt_36 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:21:24 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:21:24 --> Severity: Notice  --> Undefined index: ad_opt_37 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:21:31 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:21:31 --> Severity: Notice  --> Undefined index: ad_opt_38 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:21:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:21:44 --> Severity: Notice  --> Undefined index: ad_opt_39 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:21:52 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:21:52 --> Severity: Notice  --> Undefined index: ad_opt_40 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:22:01 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:22:01 --> Severity: Notice  --> Undefined index: ad_opt_41 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:22:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:22:14 --> Severity: Notice  --> Undefined index: ad_opt_42 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:22:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:22:26 --> Severity: Notice  --> Undefined index: ad_opt_43 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:22:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:22:35 --> Severity: Notice  --> Undefined index: ad_opt_44 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:22:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:22:44 --> Severity: Notice  --> Undefined index: ad_opt_45 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:22:54 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:22:54 --> Severity: Notice  --> Undefined index: ad_opt_46 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:23:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:23:05 --> Severity: Notice  --> Undefined index: ad_opt_47 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:23:13 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:23:13 --> Severity: Notice  --> Undefined index: ad_opt_48 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:23:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:23:21 --> Severity: Notice  --> Undefined index: ad_opt_49 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 14:23:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 14:23:30 --> Severity: Notice  --> Undefined index: ad_opt_50 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 16:02:28 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:02:28 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:02:39 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:02:39 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:03:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:03:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:04:00 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:04:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:04:57 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:05:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:07:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:08:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:08:47 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:09:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:09:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:10:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:10:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:10:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:10:48 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:10:50 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:10:50 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:11:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:11:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:11:37 --> Severity: Notice  --> Undefined index: ad_opt_15 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 16:11:45 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:12:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:12:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:12:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:13:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:13:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:13:43 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:14:00 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:14:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:14:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:14:56 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:15:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:15:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:15:54 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:16:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:16:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:16:32 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:16:51 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:17:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:17:10 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:17:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:17:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:17:40 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:17:55 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:17:57 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:18:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:18:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:18:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:19:01 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:19:13 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:19:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:19:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:20:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:20:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:20:58 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:21:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:21:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:21:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:21:56 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:22:01 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:22:24 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:22:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:22:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:22:58 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:23:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:23:20 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:23:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:23:59 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:24:01 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:24:10 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:24:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:24:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:24:48 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:17 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:20 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:24 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:24 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:32 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:38 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:42 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:43 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:43 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:45 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:47 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:47 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:48 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:49 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:50 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:50 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:51 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:52 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:52 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:54 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:54 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:56 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:56 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:57 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:57 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:58 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:25:59 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:26:00 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:26:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:26:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:26:04 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:26:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:26:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:26:07 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:26:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:26:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:26:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:26:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:26:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:26:39 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:26:52 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:26:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:13 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:13 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:32 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:38 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:39 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:40 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:40 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:42 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:42 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:43 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:43 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:45 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:47 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:27:49 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:28:07 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:28:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:28:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:28:28 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:29:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:30:09 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:30:43 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:31:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:32:04 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:32:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:32:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:32:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:32:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:32:51 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:33:38 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:34:01 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:34:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:34:28 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:34:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:35:07 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:35:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:35:51 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:36:12 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:36:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:37:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:37:13 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:37:13 --> Severity: Notice  --> Undefined index: ad_opt_39 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 16:37:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:38:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:38:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:39:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:39:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:39:57 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:07 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:10 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:10 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:12 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:17 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:17 --> Severity: Notice  --> Undefined index: ad_opt_16 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 16:40:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:18 --> Severity: Notice  --> Undefined index: ad_opt_17 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 16:40:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:20 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:28 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:31 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:39 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:42 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:43 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:45 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:46 --> Severity: Notice  --> Undefined index: ad_opt_39 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 16:40:47 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:49 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:50 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:52 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:54 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:55 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:57 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:58 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:40:59 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:00 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:04 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:07 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:09 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:09 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:10 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:10 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:12 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:13 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:17 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:20 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:20 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:24 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:28 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:31 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:31 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:38 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:38 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:39 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:40 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:42 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:43 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:43 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:41:45 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:42:00 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:42:00 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:42:01 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:42:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:42:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:42:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:42:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:42:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:42:04 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:42:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:42:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:42:07 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:42:08 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:42:09 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:42:10 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:43:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:43:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:43:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:43:31 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:43:58 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:44:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:44:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:44:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:44:12 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:44:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:44:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:44:39 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:44:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:44:50 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:44:54 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:09 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:12 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:17 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:32 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:40 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:42 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:52 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:54 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:56 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:45:58 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:46:00 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:46:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:46:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:46:08 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:46:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:46:17 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:46:20 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:46:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:46:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:46:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:46:59 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:47:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:47:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:47:07 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:47:10 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:47:12 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:47:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:47:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:47:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:47:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:47:24 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:48:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:49:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:49:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:49:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:49:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:49:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:49:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:49:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:49:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:49:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:50:31 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 16:51:52 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:39:55 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:39:55 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:40:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:40:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:17 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:17 --> Severity: Notice  --> Undefined index: ad_opt_2 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 17:41:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:18 --> Severity: Notice  --> Undefined index: ad_opt_3 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 17:41:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:18 --> Severity: Notice  --> Undefined index: ad_opt_4 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 17:41:24 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:31 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:32 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:33 --> Severity: Notice  --> Undefined index: ad_opt_13 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 17:41:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:38 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:40 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:42 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:45 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:47 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:48 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:49 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:49 --> Severity: Notice  --> Undefined index: ad_opt_27 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 17:41:51 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:54 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:55 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:56 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:41:58 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:00 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:04 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:07 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:08 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:10 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:12 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:13 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:17 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:32 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 17:42:40 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:12:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:12:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:12:52 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:12:52 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:13:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:13:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:13:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:32:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:32:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:33:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:33:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:34:01 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:34:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:34:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:32 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:39 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:42 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:50 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:50 --> Severity: Notice  --> Undefined index: ad_opt_14 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 18:35:51 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:54 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:56 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:58 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:35:59 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:01 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:03 --> Severity: Notice  --> Undefined index: ad_opt_22 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 18:36:04 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:13 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:19 --> Severity: Notice  --> Undefined index: ad_opt_29 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 18:36:20 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:20 --> Severity: Notice  --> Undefined index: ad_opt_30 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 18:36:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:28 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:32 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:40 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:41 --> Severity: Notice  --> Undefined index: ad_opt_40 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 18:36:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:48 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:50 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:52 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:54 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:56 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:36:58 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:37:00 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:37:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:37:02 --> Severity: Notice  --> Undefined index: ad_opt_49 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 18:37:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:37:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:37:08 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:37:10 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:37:12 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:37:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:37:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:37:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:37:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:37:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:38:10 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:38:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:38:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:38:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:38:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:38:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:38:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:38:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:39:09 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:39:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:39:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:39:51 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:00 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:01 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:04 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:08 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:09 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:12 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:13 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:20 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:22 --> Severity: Notice  --> Undefined index: ad_opt_18 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 18:40:24 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:27 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:31 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:38 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:40 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:42 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:48 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:49 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:51 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:55 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:57 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:40:59 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:41:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:41:04 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:41:08 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:41:10 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:41:12 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:41:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:41:17 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:41:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:41:28 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:41:28 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:41:28 --> Severity: Notice  --> Undefined index: ad_opt_47 /home/ditrpindia/public_html/exam/application/models/home_model.php 1513
+ERROR - 2024-04-26 18:41:36 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:41:38 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:41:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:41:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:41:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:53:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:53:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:53:52 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:53:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:54:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:54:55 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:55:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:55:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:56:09 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:56:31 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:56:57 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:57:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:57:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:58:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:58:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:59:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:59:20 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:59:40 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 18:59:56 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:00:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:00:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:00:35 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:00 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:08 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:30 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:31 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:32 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:39 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:40 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:41 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:43 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:44 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:45 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:47 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:49 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:55 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:01:57 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:02:00 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:02:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:02:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:02:07 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:02:09 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:02:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:02:12 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:02:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:02:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:02:17 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:02:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:02:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:02:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:02:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:02:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:03:09 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:05:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 19:05:53 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 23:55:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 23:55:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 23:56:04 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-26 23:56:04 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257

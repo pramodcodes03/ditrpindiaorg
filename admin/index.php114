@@ -1,0 +1,23 @@
+<?php 
+include('include/common/html_header.php'); 
+$user_role = isset($_SESSION['user_role'])?$_SESSION['user_role']:'';
+$page = isset($_GET['page'])?$_GET['page']:'';
+if(!isset($_SESSION['user_login_id']))
+{
+	header('location:login.php');
+}
+
+?>
+<body class="hold-transition skin-blue sidebar-mini" <?php if($page=="pay-online") echo 'onload="submitPayuForm()"'; ?> >
+<div class="wrapper">
+<?php 
+	include('include/common/nav_top.php'); 
+	//include('include/common/nav_left.php');
+
+	include('include/view/default/shutdown.php');
+	include('include/common/footer.php'); 
+?>
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

@@ -1,0 +1,37 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2024-04-10 10:55:52 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 10:55:52 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 10:55:57 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 10:55:57 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 10:55:59 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 10:56:01 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 10:56:02 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 10:56:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 10:56:04 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 10:56:05 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 10:56:07 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 10:56:07 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 10:56:10 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 11:37:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 11:37:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 11:37:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 11:37:29 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 11:37:32 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 11:37:33 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 11:37:34 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 11:37:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 11:37:37 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 11:37:42 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 14:29:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 14:29:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 14:29:10 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 14:29:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 14:29:13 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 14:29:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 14:29:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 14:29:17 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 14:29:18 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 14:29:20 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 14:29:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257
+ERROR - 2024-04-10 14:29:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/ditrpindia/public_html/exam/system/core/Common.php 257

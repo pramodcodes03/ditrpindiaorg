@@ -1,0 +1,7 @@
+# Ignore uploaded/generated QR resources
+uploads/
+admin/resources/AtcDetailsQR/
+admin/resources/studentCertificatesQR/
+admin/resources/studentDetailsQR/
+admin/resources/studentFeesQR/
+admin/resources/TeacherQR/

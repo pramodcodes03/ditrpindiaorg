@@ -1,0 +1,23 @@
+[2025-09-12 18:18:16] Processing image: ../uploads/background_images/1/Certificate_25622527.jpeg (Type: background)
+[2025-09-12 18:18:16] ✓ Original path valid: /home/ditrpindia/public_html/uploads/background_images/1/Certificate_25622527.jpeg
+[2025-09-12 18:18:16] Processing image: ../uploads/student/35892/photo_82864420.jpeg (Type: photo)
+[2025-09-12 18:18:16] ✓ Original path valid: /home/ditrpindia/public_html/uploads/student/35892/photo_82864420.jpeg
+[2025-09-12 18:18:16] Processing image: ../uploads/student/35892/photo_sign_92577376.jpeg (Type: signature)
+[2025-09-12 18:18:16] ✓ Original path valid: /home/ditrpindia/public_html/uploads/student/35892/photo_sign_92577376.jpeg
+[2025-09-12 18:18:16] Processing image: ../uploads/institute/docs/116/sign_98362751.png (Type: sign)
+[2025-09-12 18:18:16] ✓ Original path valid: /home/ditrpindia/public_html/uploads/institute/docs/116/sign_98362751.png
+[2025-09-12 18:18:16] Processing image:  (Type: stamp)
+[2025-09-12 18:18:16] Invalid image format: /home/ditrpindia/public_html
+[2025-09-12 18:18:16] File doesn't exist: ../uploads/default_stamp.png
+[2025-09-12 18:18:16] File doesn't exist: /.jpg
+[2025-09-12 18:18:16] File doesn't exist: /.jpeg
+[2025-09-12 18:18:16] File doesn't exist: /.png
+[2025-09-12 18:18:16] File doesn't exist: /.gif
+[2025-09-12 18:18:16] File doesn't exist: /.webp
+[2025-09-12 18:18:16] Invalid image format: ./
+[2025-09-12 18:18:16] Invalid image format: ../
+[2025-09-12 18:18:16] Invalid image format: /home/ditrpindia/public_html/
+[2025-09-12 18:18:16] File doesn't exist: ../uploads/default_placeholder.png
+[2025-09-12 18:18:16] ✗ All methods failed for: 
+[2025-09-12 18:18:16] Processing image: resources/studentCertificatesQR/35892/68c40945910f3.png (Type: qr)
+[2025-09-12 18:18:16] ✓ Original path valid: /home/ditrpindia/public_html/resources/studentCertificatesQR/35892/68c40945910f3.png

@@ -1,0 +1,14 @@
+Options +SymLinksIfOwnerMatch
+RewriteEngine on
+
+
+RewriteRule ^([a-zA-Z0-9_-]+)$ page.php?pg=$1
+RewriteRule ^([a-zA-Z0-9_-]+)/$ page.php?pg=$1
+
+#View News 
+RewriteRule ^([a-zA-Z0-9_-]+)/([0-9]+)/(.*?)$ page.php?pg=$1&id=$2&title=$3
+RewriteRule ^([a-zA-Z0-9_-]+)/([0-9]+)/(.*?)/$ page.php?pg=$1&id=$2&title=$3
+
+#View News  Pagination
+RewriteRule ^([a-zA-Z0-9_-]+)/([0-9]+)$ page.php?pg=$1&p=$2
+RewriteRule ^([a-zA-Z0-9_-]+)/([0-9]+)/$ page.php?pg=$1&p=$2

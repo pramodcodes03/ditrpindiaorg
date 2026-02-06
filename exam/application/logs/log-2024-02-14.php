@@ -1,0 +1,35 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2024-02-14 10:51:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 10:51:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 10:51:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 10:51:16 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 10:51:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 10:51:21 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 10:51:22 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 10:51:23 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 10:51:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 10:51:26 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 10:51:28 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 10:51:28 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 10:51:38 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 14:57:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 14:57:46 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 14:57:50 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 14:57:50 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 14:57:52 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 14:57:54 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 14:57:56 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 14:57:58 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 14:57:58 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 14:58:03 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 16:03:06 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 16:03:07 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 16:03:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 16:03:11 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 16:03:14 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 16:03:15 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 16:03:17 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 16:03:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 16:03:19 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
+ERROR - 2024-02-14 16:03:25 --> Severity: Notice  --> Only variable references should be returned by reference /home/srcti.in/public_html/exam/system/core/Common.php 257
