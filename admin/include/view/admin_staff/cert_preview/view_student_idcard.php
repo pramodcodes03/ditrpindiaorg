@@ -7,7 +7,7 @@
 	ob_clean(); 
 	$html='';	
 	include_once('include/plugins/mpdf8/autoload.php');
-	$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4']);
+	$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4', 'tempDir' => sys_get_temp_dir() . '/mpdf']);
     $mpdf->AddPageByArray([
         'margin-left' => 0,
         'margin-right' => 0,
