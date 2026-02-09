@@ -17,7 +17,6 @@ session_start();
 
 // Include database connection
 include_once('include/classes/config.php');
-include_once('include/classes/database.class.php');
 include_once('include/classes/database_results.class.php');
 include_once('include/classes/access.class.php');
 
@@ -67,7 +66,7 @@ $sql = "SELECT
     cd.GRADE,
     cd.MARKS_PER,
     cd.QRFILE,
-    cd.SONOF,
+    sd.SONOF,
     cd.ACTIVE,
     cd.DELETE_FLAG,
     DATE_FORMAT(cd.CREATED_ON, '%Y-%m-%d %H:%i:%s') AS CREATED_ON,
@@ -110,6 +109,7 @@ $sql = "SELECT
 
 FROM certificates_details cd
 LEFT JOIN certificate_requests cr ON cd.CERTIFICATE_REQUEST_ID = cr.CERTIFICATE_REQUEST_ID
+LEFT JOIN student_details sd ON cd.STUDENT_ID = sd.STUDENT_ID
 WHERE cd.DELETE_FLAG = 0
 ORDER BY cd.CERTIFICATE_DETAILS_ID ASC";
 
