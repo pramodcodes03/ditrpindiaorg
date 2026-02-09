@@ -80,6 +80,9 @@ $res 	= $exam->list_certificates_requests('', $studid, $institute_id, $cond);
 			<div class="card-body">
 				<h4 class="card-title"> All Certificate Requests
 				</h4>
+				<a href="export_certificates_for_laravel.php" class="btn btn-success btn-sm float-right" style="margin-bottom:10px;">
+					<i class="mdi mdi-file-excel"></i> Export Excel for Laravel
+				</a>
 				<?php
 
 				if (isset($_SESSION['msg'])) {
