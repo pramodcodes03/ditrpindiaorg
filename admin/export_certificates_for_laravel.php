@@ -2,14 +2,17 @@
 /**
  * Export Certificate & Marksheet Data to CSV for Laravel Migration
  *
- * Cursor-based chunking + second DB connection for marksheet lookups.
- * Each chunk: fetch 200 certs → fetch their marksheet subjects → write CSV → flush.
- * Guaranteed no 504: data flows to browser after every chunk.
+ * TWO-PHASE approach to avoid 504 Gateway Timeout:
+ *   Phase 1: Responds INSTANTLY with a "please wait" page, then generates
+ *            the CSV file in background (after fastcgi_finish_request).
+ *   Phase 2: Browser auto-checks every 3 seconds. When file is ready,
+ *            triggers download automatically.
  */
 
 ini_set("memory_limit", "512M");
 ini_set('display_errors', 0);
 set_time_limit(0);
+ignore_user_abort(true);
 date_default_timezone_set("Asia/Kolkata");
 
 session_start();
@@ -26,24 +29,147 @@ if ($user_id == '') {
     die("Unauthorized. Please login first.");
 }
 
-// Kill ALL output buffering
-while (ob_get_level()) {
-    ob_end_clean();
+// Export directory
+$exportDir = __DIR__ . '/exports';
+if (!is_dir($exportDir)) {
+    mkdir($exportDir, 0755, true);
 }
 
-// CSV headers — download starts NOW
-$filename = 'certificates_export_' . date('Y-m-d_His') . '.csv';
-header('Content-Type: text/csv; charset=utf-8');
-header('Content-Disposition: attachment; filename="' . $filename . '"');
-header('Cache-Control: no-cache, no-store, must-revalidate');
-header('Pragma: no-cache');
-header('Expires: 0');
-header('X-Accel-Buffering: no');
+// ============================================================
+// Handle AJAX status check
+// ============================================================
+if (isset($_GET['check'])) {
+    $checkFile = $exportDir . '/' . basename($_GET['check']);
+    header('Content-Type: application/json');
+    if (file_exists($checkFile)) {
+        echo json_encode(['ready' => true, 'url' => 'exports/' . basename($_GET['check'])]);
+    } else {
+        echo json_encode(['ready' => false]);
+    }
+    exit;
+}
 
-$output = fopen('php://output', 'w');
-fwrite($output, "\xEF\xBB\xBF");
+// ============================================================
+// Handle file download
+// ============================================================
+if (isset($_GET['download'])) {
+    $dlFile = $exportDir . '/' . basename($_GET['download']);
+    if (file_exists($dlFile)) {
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename="' . basename($dlFile) . '"');
+        header('Content-Length: ' . filesize($dlFile));
+        header('Cache-Control: no-cache');
+        readfile($dlFile);
+        // Delete file after download
+        @unlink($dlFile);
+    } else {
+        die("File not found.");
+    }
+    exit;
+}
 
-fputcsv($output, [
+// ============================================================
+// PHASE 1: Send "please wait" page INSTANTLY, then generate CSV
+// ============================================================
+$fileId = 'certificates_export_' . date('Y-m-d_His') . '_' . substr(uniqid(), -6) . '.csv';
+
+// Send the HTML response to the browser immediately
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exporting Certificates...</title>
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f5f7ff; }
+        .export-box {
+            max-width: 500px; margin: 100px auto; background: #fff;
+            border-radius: 8px; padding: 40px; text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .spinner { display: inline-block; width: 40px; height: 40px;
+            border: 4px solid #ddd; border-top: 4px solid #4CAF50;
+            border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .done { color: #4CAF50; }
+        .error { color: #f44336; }
+        #status { font-size: 16px; color: #555; margin: 15px 0; }
+        #counter { font-size: 13px; color: #999; }
+    </style>
+</head>
+<body>
+<div class="export-box">
+    <div id="spinnerDiv"><div class="spinner"></div></div>
+    <h3 id="title">Generating CSV Export...</h3>
+    <p id="status">Please wait. Do not close this page.</p>
+    <p id="counter">Checking... 0s</p>
+</div>
+<script>
+var fileId = <?php echo json_encode($fileId); ?>;
+var seconds = 0;
+var checkInterval = setInterval(function() {
+    seconds += 3;
+    document.getElementById('counter').textContent = 'Checking... ' + seconds + 's';
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'export_certificates_for_laravel.php?check=' + encodeURIComponent(fileId));
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            var resp = JSON.parse(xhr.responseText);
+            if (resp.ready) {
+                clearInterval(checkInterval);
+                document.getElementById('spinnerDiv').innerHTML = '<div style="font-size:50px" class="done">&#10003;</div>';
+                document.getElementById('title').textContent = 'Export Complete!';
+                document.getElementById('title').className = 'done';
+                document.getElementById('status').innerHTML = 'Download starting...';
+                document.getElementById('counter').textContent = 'Total time: ' + seconds + 's';
+                // Trigger download
+                window.location.href = 'export_certificates_for_laravel.php?download=' + encodeURIComponent(fileId);
+            }
+        }
+    };
+    xhr.send();
+}, 3000);
+
+// Timeout after 10 minutes
+setTimeout(function() {
+    clearInterval(checkInterval);
+    document.getElementById('spinnerDiv').innerHTML = '<div style="font-size:50px" class="error">&#10007;</div>';
+    document.getElementById('title').textContent = 'Export Timed Out';
+    document.getElementById('title').className = 'error';
+    document.getElementById('status').textContent = 'The export took too long. Please try again.';
+}, 600000);
+</script>
+</body>
+</html>
+<?php
+
+// ============================================================
+// Flush the HTML page to the browser and close the connection
+// PHP continues running in the background to generate the CSV
+// ============================================================
+if (function_exists('fastcgi_finish_request')) {
+    fastcgi_finish_request();
+} else {
+    // Fallback: flush everything and close connection manually
+    header('Connection: close');
+    header('Content-Length: ' . ob_get_length());
+    ob_end_flush();
+    flush();
+}
+
+// ============================================================
+// PHASE 2: Generate CSV file in background (no timeout concern)
+// ============================================================
+$tmpFile = $exportDir . '/' . $fileId;
+$fp = fopen($tmpFile . '.tmp', 'w');
+
+// UTF-8 BOM
+fwrite($fp, "\xEF\xBB\xBF");
+
+// CSV header row
+fputcsv($fp, [
     'certificate_details_id','certificate_request_id','certificate_request_master_id',
     'certificate_file','certificate_serial_no','certificate_prefix','certificate_no',
     'issue_date','issue_date_format','qr_file',
@@ -62,23 +188,18 @@ fputcsv($output, [
     'marksheet_subjects_json',
     'active','delete_flag','created_on','created_by','request_created_on',
 ]);
-flush(); // First bytes to browser — connection is now alive
 
-// Two DB connections: main for certs, second for marksheet lookups
+// Two DB connections
 $conn1 = $db->mysqli;
 $conn2 = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 $conn2->set_charset("utf8");
 
-// ============================================================
-// Cursor-based chunking: WHERE id > lastId LIMIT 200
-// Fast at any position, no O(n²) offset scanning
-// ============================================================
+// Cursor-based chunking
 $chunkSize = 200;
 $lastId = 0;
 
 while (true) {
 
-    // --- STEP 1: Fetch chunk of certificates ---
     $sql = "SELECT
         cd.CERTIFICATE_DETAILS_ID,
         cd.CERTIFICATE_REQUEST_ID,
@@ -158,10 +279,9 @@ while (true) {
 
     $res = $conn1->query($sql);
     if (!$res || $res->num_rows == 0) {
-        break; // Done
+        break;
     }
 
-    // Collect rows + IDs needing marksheet data
     $rows = [];
     $msReqIds = [];
     $tyReqIds = [];
@@ -180,7 +300,7 @@ while (true) {
     $chunkCount = $res->num_rows;
     $res->free();
 
-    // --- STEP 2: Fetch marksheet subjects for THIS chunk only (second connection) ---
+    // Fetch marksheet subjects for this chunk
     $multiSubMarks = [];
     $msReqIds = array_unique($msReqIds);
     if (!empty($msReqIds)) {
@@ -258,12 +378,10 @@ while (true) {
         }
     }
 
-    // --- STEP 3: Write CSV rows for this chunk ---
+    // Write CSV rows for this chunk
     foreach ($rows as $data) {
-
         $marksheetData = [];
 
-        // Single subject
         if (!empty($data['COURSE_ID']) && $data['COURSE_ID'] != 0 && !empty($data['SUBJECT'])) {
             $marksheetData[] = [
                 'type' => 'single',
@@ -274,7 +392,6 @@ while (true) {
             ];
         }
 
-        // Multi-subject
         if (!empty($data['MULTI_SUB_COURSE_ID']) && $data['MULTI_SUB_COURSE_ID'] != 0) {
             $key = $data['CERTIFICATE_REQUEST_ID'] . '_' . $data['STUDENT_ID'] . '_' . $data['INSTITUTE_ID'];
             if (isset($multiSubMarks[$key])) {
@@ -282,7 +399,6 @@ while (true) {
             }
         }
 
-        // Typing course
         if (!empty($data['TYPING_COURSE_ID']) && $data['TYPING_COURSE_ID'] != 0) {
             $key = $data['CERTIFICATE_REQUEST_ID'] . '_' . $data['STUDENT_ID'] . '_' . $data['INSTITUTE_ID'];
             if (isset($typingMarks[$key])) {
@@ -292,7 +408,7 @@ while (true) {
 
         $marksheetJson = !empty($marksheetData) ? json_encode($marksheetData, JSON_UNESCAPED_UNICODE) : '';
 
-        fputcsv($output, [
+        fputcsv($fp, [
             $data['CERTIFICATE_DETAILS_ID'],
             $data['CERTIFICATE_REQUEST_ID'],
             $data['CERTIFICATE_REQUEST_MASTER_ID'],
@@ -357,18 +473,16 @@ while (true) {
         ]);
     }
 
-    // --- STEP 4: Flush this chunk to browser ---
-    flush();
-
-    // Free chunk memory
     unset($rows, $multiSubMarks, $typingMarks);
 
-    // If we got fewer rows than chunk size, we're done
     if ($chunkCount < $chunkSize) {
         break;
     }
 }
 
 $conn2->close();
-fclose($output);
+fclose($fp);
+
+// Rename .tmp to final filename (atomic — signals "ready" to the status check)
+rename($tmpFile . '.tmp', $tmpFile);
 exit;
