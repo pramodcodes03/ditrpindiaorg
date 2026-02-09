@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+
 /**
  * Export Certificate & Marksheet Data to Excel (.xlsx) for Laravel Migration
  *
@@ -170,8 +172,8 @@ while ($hasMore) {
         sd.STUDENT_CODE,
         sd.SONOF,
 
-        (SELECT sf.FILE_NAME FROM student_files sf WHERE sf.STUDENT_ID = cd.STUDENT_ID AND sf.FILE_LABEL = 'profile_photo' AND sf.ACTIVE = 1 AND sf.DELETE_FLAG = 0 ORDER BY sf.STUDENT_FILE_ID DESC LIMIT 1) AS STUDENT_PHOTO_LIVE,
-        (SELECT sf2.FILE_NAME FROM student_files sf2 WHERE sf2.STUDENT_ID = cd.STUDENT_ID AND sf2.FILE_LABEL = 'student_sign' AND sf2.ACTIVE = 1 AND sf2.DELETE_FLAG = 0 ORDER BY sf2.STUDENT_FILE_ID DESC LIMIT 1) AS STUDENT_SIGN_LIVE,
+        (SELECT sf.FILE_NAME FROM student_files sf WHERE sf.STUDENT_ID = cd.STUDENT_ID AND sf.FILE_LABEL = 'profile_photo' AND sf.ACTIVE = 1 AND sf.DELETE_FLAG = 0 ORDER BY sf.FILE_ID DESC LIMIT 1) AS STUDENT_PHOTO_LIVE,
+        (SELECT sf2.FILE_NAME FROM student_files sf2 WHERE sf2.STUDENT_ID = cd.STUDENT_ID AND sf2.FILE_LABEL = 'student_sign' AND sf2.ACTIVE = 1 AND sf2.DELETE_FLAG = 0 ORDER BY sf2.FILE_ID DESC LIMIT 1) AS STUDENT_SIGN_LIVE,
 
         inst.INSTITUTE_CODE,
         inst.INSTITUTE_NAME AS INSTITUTE_NAME_LIVE,
@@ -203,7 +205,7 @@ while ($hasMore) {
     LEFT JOIN student_details sd ON cd.STUDENT_ID = sd.STUDENT_ID
     LEFT JOIN institute_details inst ON cd.INSTITUTE_ID = inst.INSTITUTE_ID
     LEFT JOIN city_master cm ON inst.CITY = cm.CITY_ID
-    LEFT JOIN state_master sm ON inst.STATE = sm.STATE_ID
+    LEFT JOIN states_master sm ON inst.STATE = sm.STATE_ID
     LEFT JOIN courses co ON cd.COURSE_ID = co.COURSE_ID
     LEFT JOIN multi_sub_courses msc ON cd.MULTI_SUB_COURSE_ID = msc.MULTI_SUB_COURSE_ID
     LEFT JOIN courses_typing ct ON cd.TYPING_COURSE_ID = ct.TYPING_COURSE_ID
