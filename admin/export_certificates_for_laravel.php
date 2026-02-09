@@ -72,6 +72,84 @@ fputcsv($output, $columns);
 flush();
 
 // ============================================================
+// Pre-fetch multi-sub & typing marksheet subjects into memory
+// Runs AFTER header is sent, so download has already started.
+// These are small focused queries (only exam result tables).
+// ============================================================
+$mysqli = $db->mysqli;
+
+// --- Multi-sub course subjects ---
+$multiSubMarks = [];
+$msSql = "SELECT
+    creq.CERTIFICATE_REQUEST_ID,
+    erf.STUDENT_ID,
+    erf.INSTITUTE_ID,
+    mscs.COURSE_SUBJECT_NAME AS SUBJECT_NAME,
+    er.EXAM_TITLE,
+    er.MARKS_OBTAINED,
+    er.PRACTICAL_MARKS
+FROM certificate_requests creq
+INNER JOIN multi_sub_exam_result_final erf ON creq.EXAM_RESULT_FINAL_ID = erf.EXAM_RESULT_FINAL_ID
+INNER JOIN multi_sub_exam_result er ON er.STUDENT_ID = erf.STUDENT_ID AND er.INSTITUTE_ID = erf.INSTITUTE_ID AND er.STUD_COURSE_ID = erf.STUD_COURSE_ID
+LEFT JOIN multi_sub_courses_subjects mscs ON er.STUDENT_SUBJECT_ID = mscs.COURSE_SUBJECT_ID
+WHERE er.DELETE_FLAG = 0 AND er.ACTIVE = 1
+ORDER BY er.EXAM_RESULT_ID ASC";
+$msRes = $mysqli->query($msSql);
+if ($msRes && $msRes->num_rows > 0) {
+    while ($row = $msRes->fetch_assoc()) {
+        $key = $row['CERTIFICATE_REQUEST_ID'] . '_' . $row['STUDENT_ID'] . '_' . $row['INSTITUTE_ID'];
+        $multiSubMarks[$key][] = [
+            'type' => 'multi_sub',
+            'subject_name' => $row['SUBJECT_NAME'],
+            'exam_title' => $row['EXAM_TITLE'],
+            'objective_marks' => (float)$row['MARKS_OBTAINED'],
+            'practical_marks' => (float)$row['PRACTICAL_MARKS'],
+            'total_marks' => (float)($row['MARKS_OBTAINED'] + $row['PRACTICAL_MARKS']),
+        ];
+    }
+    $msRes->free();
+}
+flush();
+
+// --- Typing course subjects ---
+$typingMarks = [];
+$tySql = "SELECT
+    creq.CERTIFICATE_REQUEST_ID,
+    ert.STUDENT_ID,
+    ert.INSTITUTE_ID,
+    cts.TYPING_COURSE_SUBJECT_NAME AS SUBJECT_NAME,
+    er.EXAM_TITLE,
+    er.MARKS_OBTAINED,
+    er.EXAM_TOTAL_MARKS,
+    er.TOTAL_MARKS,
+    er.MINIMUM_MARKS,
+    cts.TYPING_COURSE_SPEED
+FROM certificate_requests creq
+INNER JOIN course_typing_exam_result_final ert ON creq.EXAM_RESULT_TYPING_ID = ert.EXAM_RESULT_FINAL_ID
+INNER JOIN course_typing_exam_result er ON er.STUDENT_ID = ert.STUDENT_ID AND er.INSTITUTE_ID = ert.INSTITUTE_ID AND er.STUD_COURSE_ID = ert.STUD_COURSE_ID
+LEFT JOIN courses_typing_subjects cts ON er.STUDENT_SUBJECT_ID = cts.TYPING_COURSE_SUBJECT_ID
+WHERE er.DELETE_FLAG = 0
+ORDER BY er.EXAM_RESULT_ID ASC";
+$tyRes = $mysqli->query($tySql);
+if ($tyRes && $tyRes->num_rows > 0) {
+    while ($row = $tyRes->fetch_assoc()) {
+        $key = $row['CERTIFICATE_REQUEST_ID'] . '_' . $row['STUDENT_ID'] . '_' . $row['INSTITUTE_ID'];
+        $typingMarks[$key][] = [
+            'type' => 'typing',
+            'subject_name' => $row['SUBJECT_NAME'],
+            'exam_title' => $row['EXAM_TITLE'],
+            'speed_wpm' => (int)$row['TYPING_COURSE_SPEED'],
+            'minimum_marks' => (float)$row['MINIMUM_MARKS'],
+            'exam_total_marks' => (float)$row['EXAM_TOTAL_MARKS'],
+            'marks_obtained' => (float)$row['MARKS_OBTAINED'],
+            'total_marks' => (float)$row['TOTAL_MARKS'],
+        ];
+    }
+    $tyRes->free();
+}
+flush();
+
+// ============================================================
 // Single simple query — NO stored functions, NO subqueries
 // ============================================================
 $sql = "SELECT
@@ -153,7 +231,6 @@ WHERE cd.DELETE_FLAG = 0";
 // UNBUFFERED query — rows stream from MySQL one at a time
 // No waiting for full result set, no memory spike
 // ============================================================
-$mysqli = $db->mysqli;
 $mysqli->real_query($sql);
 $result = $mysqli->use_result();
 
@@ -166,17 +243,37 @@ if (!$result) {
 $count = 0;
 while ($data = $result->fetch_assoc()) {
 
-    // Single-subject marksheet JSON from certificates_details columns
-    $marksheetJson = '';
+    // Build marksheet JSON — single, multi-sub, and typing
+    $marksheetData = [];
+
+    // Single subject
     if (!empty($data['COURSE_ID']) && $data['COURSE_ID'] != 0 && !empty($data['SUBJECT'])) {
-        $marksheetJson = json_encode([[
+        $marksheetData[] = [
             'type' => 'single',
             'subject_name' => $data['SUBJECT'],
             'objective_marks' => (float)$data['OBJECTIVE_MARKS'],
             'practical_marks' => (float)$data['PRACTICAL_MARKS'],
             'total_marks' => (float)($data['OBJECTIVE_MARKS'] + $data['PRACTICAL_MARKS']),
-        ]], JSON_UNESCAPED_UNICODE);
+        ];
     }
+
+    // Multi-subject — from pre-fetched array
+    if (!empty($data['MULTI_SUB_COURSE_ID']) && $data['MULTI_SUB_COURSE_ID'] != 0) {
+        $key = $data['CERTIFICATE_REQUEST_ID'] . '_' . $data['STUDENT_ID'] . '_' . $data['INSTITUTE_ID'];
+        if (isset($multiSubMarks[$key])) {
+            $marksheetData = array_merge($marksheetData, $multiSubMarks[$key]);
+        }
+    }
+
+    // Typing course — from pre-fetched array
+    if (!empty($data['TYPING_COURSE_ID']) && $data['TYPING_COURSE_ID'] != 0) {
+        $key = $data['CERTIFICATE_REQUEST_ID'] . '_' . $data['STUDENT_ID'] . '_' . $data['INSTITUTE_ID'];
+        if (isset($typingMarks[$key])) {
+            $marksheetData = array_merge($marksheetData, $typingMarks[$key]);
+        }
+    }
+
+    $marksheetJson = !empty($marksheetData) ? json_encode($marksheetData, JSON_UNESCAPED_UNICODE) : '';
 
     fputcsv($output, [
         $data['CERTIFICATE_DETAILS_ID'],
@@ -249,5 +346,6 @@ while ($data = $result->fetch_assoc()) {
 }
 
 $result->free();
+unset($multiSubMarks, $typingMarks);
 fclose($output);
 exit;
