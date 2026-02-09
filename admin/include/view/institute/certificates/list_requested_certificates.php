@@ -42,7 +42,7 @@ if ($institute != '') $cond .= " AND A.INSTITUTE_ID='" . intval($institute) . "'
 				<h4 class="card-title">All Certificate Requests
 				</h4>
 				<a href="export_certificates_for_laravel.php" class="btn btn-success btn-sm float-right" style="margin-bottom:10px;">
-					<i class="mdi mdi-file-excel"></i> Export Excel for Laravel
+					<i class="mdi mdi-file-excel"></i> Export CSV for Laravel
 				</a>
 				<?php
 				if (isset($_SESSION['msg'])) {

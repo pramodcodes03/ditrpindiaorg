@@ -2,11 +2,11 @@
 ini_set('display_errors', 1);
 
 /**
- * Export Certificate & Marksheet Data to Excel (.xlsx) for Laravel Migration
+ * Export Certificate & Marksheet Data to CSV for Laravel Migration
  *
- * Optimized: All MySQL stored functions replaced with JOINs to prevent timeout.
- * Uses chunked processing (LIMIT/OFFSET) for large datasets.
- * Outputs .xlsx using PhpSpreadsheet.
+ * Streams CSV directly to browser using fputcsv + flush per chunk.
+ * This prevents nginx 504 gateway timeout by keeping data flowing.
+ * All MySQL stored functions replaced with JOINs for performance.
  */
 
 ini_set("memory_limit", "1024M");
@@ -19,13 +19,6 @@ session_start();
 include_once('include/classes/config.php');
 include_once('include/classes/database_results.class.php');
 include_once('include/classes/access.class.php');
-
-// PhpSpreadsheet
-require_once('vendor/autoload.php');
-
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 
 $db = new database_results();
 $access = new access();
@@ -104,32 +97,117 @@ $columns = [
 ];
 
 // ============================================================
-// Create Spreadsheet
+// Stream CSV directly to browser (prevents nginx 504 timeout)
 // ============================================================
-$spreadsheet = new Spreadsheet();
-$sheet = $spreadsheet->getActiveSheet();
-$sheet->setTitle('Certificates');
+$filename = 'certificates_export_' . date('Y-m-d_His') . '.csv';
+header('Content-Type: text/csv; charset=utf-8');
+header('Content-Disposition: attachment; filename="' . $filename . '"');
+header('Cache-Control: max-age=0');
+header('Pragma: no-cache');
+header('Expires: 0');
 
-// Write header row (bold)
-$colIndex = 1;
-foreach ($columns as $col) {
-    $cellRef = Coordinate::stringFromColumnIndex($colIndex) . '1';
-    $sheet->setCellValue($cellRef, $col);
-    $sheet->getStyle($cellRef)->getFont()->setBold(true);
-    $colIndex++;
+// Open output stream
+$output = fopen('php://output', 'w');
+
+// Write BOM for Excel UTF-8 compatibility
+fprintf($output, chr(0xEF) . chr(0xBB) . chr(0xBF));
+
+// Write header row
+fputcsv($output, $columns);
+
+// Flush headers + first row immediately
+ob_flush();
+flush();
+
+// ============================================================
+// Pre-fetch all marksheet subjects in bulk (multi-sub courses)
+// to avoid per-row queries
+// ============================================================
+$multiSubMarks = [];
+$msBulkSql = "SELECT
+    creq.CERTIFICATE_REQUEST_ID,
+    er.STUDENT_ID,
+    er.INSTITUTE_ID,
+    er.SUBJECT AS SUBJECT_NAME,
+    er.EXAM_TITLE,
+    er.MARKS_OBTAINED,
+    er.PRACTICAL_MARKS,
+    er.EXAM_RESULT_ID
+    FROM certificate_requests creq
+    INNER JOIN exam_result_final erf ON creq.EXAM_RESULT_FINAL_ID = erf.EXAM_RESULT_FINAL_ID
+    INNER JOIN exam_result er ON erf.EXAM_RESULT_FINAL_ID = er.EXAM_RESULT_FINAL_ID
+    WHERE er.DELETE_FLAG = 0
+    ORDER BY er.EXAM_RESULT_ID ASC";
+$msBulkRes = $db->execQuery($msBulkSql);
+if ($msBulkRes && $msBulkRes->num_rows > 0) {
+    while ($row = $msBulkRes->fetch_assoc()) {
+        $key = $row['CERTIFICATE_REQUEST_ID'] . '_' . $row['STUDENT_ID'] . '_' . $row['INSTITUTE_ID'];
+        if (!isset($multiSubMarks[$key])) $multiSubMarks[$key] = [];
+        $multiSubMarks[$key][] = [
+            'type' => 'multi_sub',
+            'subject_name' => $row['SUBJECT_NAME'],
+            'exam_title' => $row['EXAM_TITLE'],
+            'objective_marks' => (float)$row['MARKS_OBTAINED'],
+            'practical_marks' => (float)$row['PRACTICAL_MARKS'],
+            'total_marks' => (float)($row['MARKS_OBTAINED'] + $row['PRACTICAL_MARKS']),
+        ];
+    }
 }
+unset($msBulkRes);
+ob_flush();
+flush();
 
 // ============================================================
-// Process in chunks to avoid timeout
+// Pre-fetch all typing course marks in bulk
 // ============================================================
-$chunkSize = 500;
+$typingMarks = [];
+$tyBulkSql = "SELECT
+    creq.CERTIFICATE_REQUEST_ID,
+    er.STUDENT_ID,
+    er.INSTITUTE_ID,
+    er.SUBJECT AS SUBJECT_NAME,
+    er.EXAM_TITLE,
+    er.MARKS_OBTAINED,
+    er.EXAM_TOTAL_MARKS,
+    er.TOTAL_MARKS,
+    er.MINIMUM_MARKS,
+    er.TYPING_COURSE_SPEED,
+    er.EXAM_RESULT_ID
+    FROM certificate_requests creq
+    INNER JOIN exam_result_typing ert ON creq.EXAM_RESULT_FINAL_ID = ert.EXAM_RESULT_TYPING_ID
+    INNER JOIN exam_result er ON ert.EXAM_RESULT_TYPING_ID = er.EXAM_RESULT_FINAL_ID
+    WHERE er.DELETE_FLAG = 0
+    ORDER BY er.EXAM_RESULT_ID ASC";
+$tyBulkRes = $db->execQuery($tyBulkSql);
+if ($tyBulkRes && $tyBulkRes->num_rows > 0) {
+    while ($row = $tyBulkRes->fetch_assoc()) {
+        $key = $row['CERTIFICATE_REQUEST_ID'] . '_' . $row['STUDENT_ID'] . '_' . $row['INSTITUTE_ID'];
+        if (!isset($typingMarks[$key])) $typingMarks[$key] = [];
+        $typingMarks[$key][] = [
+            'type' => 'typing',
+            'subject_name' => $row['SUBJECT_NAME'],
+            'exam_title' => $row['EXAM_TITLE'],
+            'speed_wpm' => (int)$row['TYPING_COURSE_SPEED'],
+            'minimum_marks' => (float)$row['MINIMUM_MARKS'],
+            'exam_total_marks' => (float)$row['EXAM_TOTAL_MARKS'],
+            'marks_obtained' => (float)$row['MARKS_OBTAINED'],
+            'total_marks' => (float)$row['TOTAL_MARKS'],
+        ];
+    }
+}
+unset($tyBulkRes);
+ob_flush();
+flush();
+
+// ============================================================
+// Process certificates in chunks
+// ============================================================
+$chunkSize = 1000;
 $offset = 0;
 $hasMore = true;
-$excelRow = 2; // Start data from row 2
 
 while ($hasMore) {
 
-    // All MySQL stored functions replaced with JOINs for performance
     $sql = "SELECT
         cd.CERTIFICATE_DETAILS_ID,
         cd.CERTIFICATE_REQUEST_ID,
@@ -172,8 +250,8 @@ while ($hasMore) {
         sd.STUDENT_CODE,
         sd.SONOF,
 
-        (SELECT sf.FILE_NAME FROM student_files sf WHERE sf.STUDENT_ID = cd.STUDENT_ID AND sf.FILE_LABEL = 'profile_photo' AND sf.ACTIVE = 1 AND sf.DELETE_FLAG = 0 ORDER BY sf.FILE_ID DESC LIMIT 1) AS STUDENT_PHOTO_LIVE,
-        (SELECT sf2.FILE_NAME FROM student_files sf2 WHERE sf2.STUDENT_ID = cd.STUDENT_ID AND sf2.FILE_LABEL = 'student_sign' AND sf2.ACTIVE = 1 AND sf2.DELETE_FLAG = 0 ORDER BY sf2.FILE_ID DESC LIMIT 1) AS STUDENT_SIGN_LIVE,
+        COALESCE(cd.STUDENT_PHOTO, (SELECT sf.FILE_NAME FROM student_files sf WHERE sf.STUDENT_ID = cd.STUDENT_ID AND sf.FILE_LABEL = 'profile_photo' AND sf.ACTIVE = 1 AND sf.DELETE_FLAG = 0 ORDER BY sf.FILE_ID DESC LIMIT 1)) AS STUDENT_PHOTO_LIVE,
+        COALESCE(cd.STUDENT_SIGN, (SELECT sf2.FILE_NAME FROM student_files sf2 WHERE sf2.STUDENT_ID = cd.STUDENT_ID AND sf2.FILE_LABEL = 'student_sign' AND sf2.ACTIVE = 1 AND sf2.DELETE_FLAG = 0 ORDER BY sf2.FILE_ID DESC LIMIT 1)) AS STUDENT_SIGN_LIVE,
 
         inst.INSTITUTE_CODE,
         inst.INSTITUTE_NAME AS INSTITUTE_NAME_LIVE,
@@ -240,69 +318,20 @@ while ($hasMore) {
             ];
         }
 
-        // Multi-subject course
+        // Multi-subject course — use pre-fetched bulk data
         if ($MULTI_SUB_COURSE_ID != '' && !empty($MULTI_SUB_COURSE_ID) && $MULTI_SUB_COURSE_ID != 0) {
-            $certReqId = $data['CERTIFICATE_REQUEST_ID'];
-            $studId = $data['STUDENT_ID'];
-            $instId = $data['INSTITUTE_ID'];
-            try {
-                $msSql = "SELECT er.SUBJECT AS SUBJECT_NAME, er.EXAM_TITLE, er.MARKS_OBTAINED, er.PRACTICAL_MARKS
-                    FROM certificate_requests creq
-                    INNER JOIN exam_result_final erf ON creq.EXAM_RESULT_FINAL_ID = erf.EXAM_RESULT_FINAL_ID
-                    INNER JOIN exam_result er ON erf.EXAM_RESULT_FINAL_ID = er.EXAM_RESULT_FINAL_ID
-                    WHERE creq.CERTIFICATE_REQUEST_ID = '$certReqId'
-                    AND er.STUDENT_ID = '$studId'
-                    AND er.INSTITUTE_ID = '$instId'
-                    AND er.DELETE_FLAG = 0
-                    ORDER BY er.EXAM_RESULT_ID ASC";
-                $msRes = $db->execQuery($msSql);
-                if ($msRes && $msRes->num_rows > 0) {
-                    while ($subData = $msRes->fetch_assoc()) {
-                        $marksheetData[] = [
-                            'type' => 'multi_sub',
-                            'subject_name' => $subData['SUBJECT_NAME'],
-                            'exam_title' => $subData['EXAM_TITLE'],
-                            'objective_marks' => (float)$subData['MARKS_OBTAINED'],
-                            'practical_marks' => (float)$subData['PRACTICAL_MARKS'],
-                            'total_marks' => (float)($subData['MARKS_OBTAINED'] + $subData['PRACTICAL_MARKS']),
-                        ];
-                    }
-                }
-            } catch (Exception $e) {}
+            $key = $data['CERTIFICATE_REQUEST_ID'] . '_' . $data['STUDENT_ID'] . '_' . $data['INSTITUTE_ID'];
+            if (isset($multiSubMarks[$key])) {
+                $marksheetData = array_merge($marksheetData, $multiSubMarks[$key]);
+            }
         }
 
-        // Typing course
+        // Typing course — use pre-fetched bulk data
         if ($TYPING_COURSE_ID != '' && !empty($TYPING_COURSE_ID) && $TYPING_COURSE_ID != 0) {
-            $certReqId = $data['CERTIFICATE_REQUEST_ID'];
-            $studId = $data['STUDENT_ID'];
-            $instId = $data['INSTITUTE_ID'];
-            try {
-                $tySql = "SELECT er.SUBJECT AS SUBJECT_NAME, er.EXAM_TITLE, er.MARKS_OBTAINED,
-                    er.EXAM_TOTAL_MARKS, er.TOTAL_MARKS, er.MINIMUM_MARKS, er.TYPING_COURSE_SPEED
-                    FROM certificate_requests creq
-                    INNER JOIN exam_result_typing ert ON creq.EXAM_RESULT_FINAL_ID = ert.EXAM_RESULT_TYPING_ID
-                    INNER JOIN exam_result er ON ert.EXAM_RESULT_TYPING_ID = er.EXAM_RESULT_FINAL_ID
-                    WHERE creq.CERTIFICATE_REQUEST_ID = '$certReqId'
-                    AND er.STUDENT_ID = '$studId'
-                    AND er.INSTITUTE_ID = '$instId'
-                    AND er.DELETE_FLAG = 0
-                    ORDER BY er.EXAM_RESULT_ID ASC";
-                $tyRes = $db->execQuery($tySql);
-                if ($tyRes && $tyRes->num_rows > 0) {
-                    while ($subData = $tyRes->fetch_assoc()) {
-                        $marksheetData[] = [
-                            'type' => 'typing',
-                            'subject_name' => $subData['SUBJECT_NAME'],
-                            'exam_title' => $subData['EXAM_TITLE'],
-                            'speed_wpm' => (int)$subData['TYPING_COURSE_SPEED'],
-                            'minimum_marks' => (float)$subData['MINIMUM_MARKS'],
-                            'exam_total_marks' => (float)$subData['EXAM_TOTAL_MARKS'],
-                            'marks_obtained' => (float)$subData['MARKS_OBTAINED'],
-                            'total_marks' => (float)$subData['TOTAL_MARKS'],
-                        ];
-                    }
-                }
-            } catch (Exception $e) {}
+            $key = $data['CERTIFICATE_REQUEST_ID'] . '_' . $data['STUDENT_ID'] . '_' . $data['INSTITUTE_ID'];
+            if (isset($typingMarks[$key])) {
+                $marksheetData = array_merge($marksheetData, $typingMarks[$key]);
+            }
         }
 
         $marksheetJson = !empty($marksheetData) ? json_encode($marksheetData, JSON_UNESCAPED_UNICODE) : '';
@@ -371,14 +400,12 @@ while ($hasMore) {
             $data['REQUEST_CREATED_ON'],
         ];
 
-        $colIndex = 1;
-        foreach ($rowData as $value) {
-            $cellRef = Coordinate::stringFromColumnIndex($colIndex) . $excelRow;
-            $sheet->setCellValueExplicit($cellRef, $value ?? '', \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
-            $colIndex++;
-        }
-        $excelRow++;
+        fputcsv($output, $rowData);
     }
+
+    // Flush each chunk to keep nginx connection alive
+    ob_flush();
+    flush();
 
     $offset += $chunkSize;
 
@@ -387,19 +414,9 @@ while ($hasMore) {
     }
 }
 
-// ============================================================
-// Output Excel file for download
-// ============================================================
-$filename = 'certificates_export_' . date('Y-m-d_His') . '.xlsx';
-header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment; filename="' . $filename . '"');
-header('Cache-Control: max-age=0');
-header('Pragma: no-cache');
-header('Expires: 0');
+// Free bulk data memory
+unset($multiSubMarks);
+unset($typingMarks);
 
-$writer = new Xlsx($spreadsheet);
-$writer->save('php://output');
-
-$spreadsheet->disconnectWorksheets();
-unset($spreadsheet);
+fclose($output);
 exit;
