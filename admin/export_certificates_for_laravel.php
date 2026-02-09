@@ -128,15 +128,16 @@ $msBulkSql = "SELECT
     creq.CERTIFICATE_REQUEST_ID,
     er.STUDENT_ID,
     er.INSTITUTE_ID,
-    er.SUBJECT AS SUBJECT_NAME,
+    mscs.COURSE_SUBJECT_NAME AS SUBJECT_NAME,
     er.EXAM_TITLE,
     er.MARKS_OBTAINED,
     er.PRACTICAL_MARKS,
     er.EXAM_RESULT_ID
     FROM certificate_requests creq
-    INNER JOIN exam_result_final erf ON creq.EXAM_RESULT_FINAL_ID = erf.EXAM_RESULT_FINAL_ID
-    INNER JOIN exam_result er ON erf.EXAM_RESULT_FINAL_ID = er.EXAM_RESULT_FINAL_ID
-    WHERE er.DELETE_FLAG = 0
+    INNER JOIN multi_sub_exam_result_final erf ON creq.EXAM_RESULT_FINAL_ID = erf.EXAM_RESULT_FINAL_ID
+    INNER JOIN multi_sub_exam_result er ON er.STUDENT_ID = erf.STUDENT_ID AND er.INSTITUTE_ID = erf.INSTITUTE_ID AND er.STUD_COURSE_ID = erf.STUD_COURSE_ID
+    LEFT JOIN multi_sub_courses_subjects mscs ON er.STUDENT_SUBJECT_ID = mscs.COURSE_SUBJECT_ID
+    WHERE er.DELETE_FLAG = 0 AND er.ACTIVE = 1
     ORDER BY er.EXAM_RESULT_ID ASC";
 $msBulkRes = $db->execQuery($msBulkSql);
 if ($msBulkRes && $msBulkRes->num_rows > 0) {
@@ -165,17 +166,18 @@ $tyBulkSql = "SELECT
     creq.CERTIFICATE_REQUEST_ID,
     er.STUDENT_ID,
     er.INSTITUTE_ID,
-    er.SUBJECT AS SUBJECT_NAME,
+    cts.TYPING_COURSE_SUBJECT_NAME AS SUBJECT_NAME,
     er.EXAM_TITLE,
     er.MARKS_OBTAINED,
     er.EXAM_TOTAL_MARKS,
     er.TOTAL_MARKS,
     er.MINIMUM_MARKS,
-    er.TYPING_COURSE_SPEED,
+    cts.TYPING_COURSE_SPEED,
     er.EXAM_RESULT_ID
     FROM certificate_requests creq
-    INNER JOIN exam_result_typing ert ON creq.EXAM_RESULT_FINAL_ID = ert.EXAM_RESULT_TYPING_ID
-    INNER JOIN exam_result er ON ert.EXAM_RESULT_TYPING_ID = er.EXAM_RESULT_FINAL_ID
+    INNER JOIN course_typing_exam_result_final ert ON creq.EXAM_RESULT_TYPING_ID = ert.EXAM_RESULT_FINAL_ID
+    INNER JOIN course_typing_exam_result er ON er.STUDENT_ID = ert.STUDENT_ID AND er.INSTITUTE_ID = ert.INSTITUTE_ID AND er.STUD_COURSE_ID = ert.STUD_COURSE_ID
+    LEFT JOIN courses_typing_subjects cts ON er.STUDENT_SUBJECT_ID = cts.TYPING_COURSE_SUBJECT_ID
     WHERE er.DELETE_FLAG = 0
     ORDER BY er.EXAM_RESULT_ID ASC";
 $tyBulkRes = $db->execQuery($tyBulkSql);
