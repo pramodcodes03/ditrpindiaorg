@@ -39,7 +39,7 @@ if ($checkstud != '' && !empty($checkstud)) {
 			extract($dataB);
 			$imageId = $dataB['inst_id'];
 			$certificate_image = $dataB['certificate_image'];
-			$certificate_image    = BACKGROUND_IMAGE_PATH . '/' . $imageId . '/' . $certificate_image;
+			$certificate_image    = $_SERVER['DOCUMENT_ROOT'] . '/admin/uploads/background_images/' . $imageId . '/' . $certificate_image;
 		}
 	}
 
@@ -69,12 +69,12 @@ if ($checkstud != '' && !empty($checkstud)) {
 	$type = pathinfo($STUDENT_PHOTO, PATHINFO_EXTENSION);
 	$cert_photo = $filename . '.' . $type;
 
-	$PHOTO = '../uploads/default_user.png';
+	$PHOTO = $_SERVER['DOCUMENT_ROOT'] . '/admin/uploads/default_user.png';
 
 	if ($STUDENT_PHOTO != '')
-		$PHOTO = STUDENT_DOCUMENTS_PATH . '/' . $STUDENT_ID . '/' . $STUDENT_PHOTO;
+		$PHOTO = $_SERVER['DOCUMENT_ROOT'] . '/admin/uploads/student/' . $STUDENT_ID . '/' . $STUDENT_PHOTO;
 	//==============================================================
-	$STUD_SIGN = STUDENT_DOCUMENTS_PATH . '/' . $STUDENT_ID . '/' . $STUDENT_SIGN;
+	$STUD_SIGN = $_SERVER['DOCUMENT_ROOT'] . '/admin/uploads/student/' . $STUDENT_ID . '/' . $STUDENT_SIGN;
 
 	$sign = $institute->get_institute_docs_all($INSTITUTE_ID, 'sign', false);
 
@@ -86,13 +86,13 @@ if ($checkstud != '' && !empty($checkstud)) {
 	$stamp_photo = $stamp[0]['file_name'];
 
 
-	$INSTITUTE_SIGN = INSTITUTE_DOCUMENTS_PATH . '/' . $INSTITUTE_ID . '/' . $sign_photo;
+	$INSTITUTE_SIGN = $_SERVER['DOCUMENT_ROOT'] . '/admin/uploads/institute/docs/' . $INSTITUTE_ID . '/' . $sign_photo;
 
-	$INSTITUTE_STAMP = INSTITUTE_DOCUMENTS_PATH . '/' . $INSTITUTE_ID . '/' . $stamp_photo;
+	$INSTITUTE_STAMP = $_SERVER['DOCUMENT_ROOT'] . '/admin/uploads/institute/docs/' . $INSTITUTE_ID . '/' . $stamp_photo;
 
 	$file = "";
 	if ($QRFILE !== '') {
-		$file = HTTP_HOST_ADMIN . '/' . $QRFILE;
+		$file = $_SERVER['DOCUMENT_ROOT'] . '/admin/' . $QRFILE;
 	}
 
 	$idproof = '';
@@ -167,13 +167,13 @@ if ($checkstud != '' && !empty($checkstud)) {
 	
 	.courseperiod{position:absolute;top:810px;text-align:center;width:100%; font-size:10px;font-weight:normal;}
 	
-	.studphoto{position:absolute;top:420px;right:42.9%;width:80px; height:100px;background-image:url("' . $PHOTO . '"); background-size:80px 100px; background-repeat:no-repeat; border:2px solid #000;}
+	.studphoto{position:absolute;top:420px;right:42.9%;width:80px; height:100px; border:2px solid #000; overflow:hidden;}
 
-	.studsign{position:absolute;top:520px;left:45%;width:100px; height:35px;background-image:url("' . $STUD_SIGN . '"); background-size:100px 35px; background-repeat:no-repeat; border:2px solid #000;}
+	.studsign{position:absolute;top:520px;left:45%;width:100px; height:35px; border:2px solid #000; overflow:hidden;}
 
-	.instsign{position:absolute;bottom:105px;left:8%;width:135px; height:40px;background-image:url("' . $INSTITUTE_SIGN . '"); background-size:135px 40px; background-repeat:no-repeat; border:0px solid #000;}
+	.instsign{position:absolute;bottom:105px;left:8%;width:135px; height:40px; border:0px solid #000; overflow:hidden;}
 
-	.inststamp{position:absolute;bottom:125px;left:9%;width:135px; height:40px;background-image:url("' . $INSTITUTE_STAMP . '"); background-size:135px 40px; background-repeat:no-repeat;}
+	.inststamp{position:absolute;bottom:125px;left:9%;width:135px; height:40px; overflow:hidden;}
     .weblink{position:absolute;top:94%;left:29%; font-size:12px;}
     
     .ownername{position:absolute;bottom:80px;left:8%;  font-weight:normal; font-size:12px;}
@@ -190,8 +190,8 @@ if ($checkstud != '' && !empty($checkstud)) {
 <!-- <img src="' . $certificate_image . '" style="width:100%" /> -->
  <h3 class="qrheadtext"><b> FOR ONLINE VERIFICATION SCAN </b></h3>
 <div class="qrcodeimage"><img src="' . $file . '"></div> 
-	<div class="studphoto"></div>
-	<div class="studsign"></div>
+	<div class="studphoto"><img src="' . $PHOTO . '" style="width:80px;height:100px;" /></div>
+	<div class="studsign"><img src="' . $STUD_SIGN . '" style="width:100px;height:35px;" /></div>
 				<h2 class="studname">' . $STUDENT_NAME . '</h2>
 				<h3 class="atcname">' . htmlspecialchars_decode($atcName) . '</h3>
 				' . $idproof . '
@@ -203,7 +203,7 @@ if ($checkstud != '' && !empty($checkstud)) {
 				<h3 class="certicateno"> Certificate No : ' . $CERTIFICATE_NO . '</h3>
 				<h3 class="date"> Date Of Issue : ' . $ISSUE_DATE_FORMAT . '</h3>
 				
-				<div class="instsign"></div>
+				<div class="instsign"><img src="' . $INSTITUTE_SIGN . '" style="width:135px;height:40px;" /></div>
 				<div class="line">---------------------------------------------</div>
 				<div class="ownername">' . $OWNER_NAME . '</div>
 			    <div class="bttext">Controller Of Examination</div> 
