@@ -11,7 +11,8 @@
    ],
      "homepage": "https://developer.paytm.com/docs/checksum/#php",
     "require": {
-        "php": ">=5.6.0"
+        "php": ">=5.6.0",
+        "phpoffice/phpspreadsheet": "^5.4"
     },
  "autoload": {
         "psr-4": {"paytm\\paytmchecksum\\": "paytmchecksum/"}

@@ -7,5 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
-    'paytm\\paytmchecksum\\PaytmChecksum' => $vendorDir . '/paytm/paytmchecksum/paytmchecksum/PaytmChecksum.php',
 );
