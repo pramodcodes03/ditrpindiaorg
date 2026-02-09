@@ -23,7 +23,7 @@ require_once('vendor/autoload.php');
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 
 $db = new database_results();
 $access = new access();
@@ -111,8 +111,9 @@ $sheet->setTitle('Certificates');
 // Write header row (bold)
 $colIndex = 1;
 foreach ($columns as $col) {
-    $sheet->setCellValueByColumnAndRow($colIndex, 1, $col);
-    $sheet->getStyleByColumnAndRow($colIndex, 1)->getFont()->setBold(true);
+    $cellRef = Coordinate::stringFromColumnIndex($colIndex) . '1';
+    $sheet->setCellValue($cellRef, $col);
+    $sheet->getStyle($cellRef)->getFont()->setBold(true);
     $colIndex++;
 }
 
@@ -370,8 +371,8 @@ while ($hasMore) {
 
         $colIndex = 1;
         foreach ($rowData as $value) {
-            // Use explicit string type for codes/numbers that should stay as text
-            $sheet->setCellValueExplicitByColumnAndRow($colIndex, $excelRow, $value ?? '', DataType::TYPE_STRING);
+            $cellRef = Coordinate::stringFromColumnIndex($colIndex) . $excelRow;
+            $sheet->setCellValueExplicit($cellRef, $value ?? '', \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             $colIndex++;
         }
         $excelRow++;
