@@ -4,42 +4,85 @@
  *
  * Runs as a separate PHP CLI process, completely independent of PHP-FPM.
  * Called by: php export_certificates_worker.php <fileId>
- * Writes CSV to admin/exports/<fileId>.csv
+ * Writes CSV to admin/exports/<fileId>
+ * Writes progress to admin/exports/<fileId>.status (JSON)
  */
 
 ini_set("memory_limit", "512M");
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 set_time_limit(0);
 date_default_timezone_set("Asia/Kolkata");
 
 // Get file ID from command line argument
 $fileId = isset($argv[1]) ? $argv[1] : '';
-if ($fileId == '') {
-    file_put_contents(__DIR__ . '/exports/export_error.log', date('Y-m-d H:i:s') . " No fileId provided\n", FILE_APPEND);
-    exit(1);
-}
-
-// Include database connection
-include_once(__DIR__ . '/include/classes/config.php');
-include_once(__DIR__ . '/include/classes/database_results.class.php');
-
-$db = new database_results();
-
 $exportDir = __DIR__ . '/exports';
 if (!is_dir($exportDir)) {
     mkdir($exportDir, 0755, true);
 }
 
 $logFile = $exportDir . '/export_error.log';
+$statusFile = $exportDir . '/' . $fileId . '.status';
+
+// Helper: write status file for AJAX polling
+function writeStatus($statusFile, $state, $message, $rows = 0) {
+    file_put_contents($statusFile, json_encode([
+        'state' => $state,       // 'running', 'done', 'error'
+        'message' => $message,
+        'rows' => $rows,
+        'time' => date('H:i:s'),
+    ]));
+}
+
+if ($fileId == '') {
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " No fileId provided\n", FILE_APPEND);
+    exit(1);
+}
+
+writeStatus($statusFile, 'running', 'Starting export...', 0);
+
+// Include database connection
+try {
+    include_once(__DIR__ . '/include/classes/config.php');
+    include_once(__DIR__ . '/include/classes/database_results.class.php');
+} catch (Throwable $e) {
+    $msg = "Failed to include config: " . $e->getMessage();
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " $msg\n", FILE_APPEND);
+    writeStatus($statusFile, 'error', $msg);
+    exit(1);
+}
+
+writeStatus($statusFile, 'running', 'Connecting to database...', 0);
+
+try {
+    $db = new database_results();
+    $conn1 = $db->mysqli;
+    if (!$conn1 || $conn1->connect_error) {
+        throw new Exception("DB conn1 failed: " . ($conn1 ? $conn1->connect_error : 'null'));
+    }
+
+    $conn2 = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
+    if ($conn2->connect_error) {
+        throw new Exception("DB conn2 failed: " . $conn2->connect_error);
+    }
+    $conn2->set_charset("utf8");
+} catch (Throwable $e) {
+    $msg = "DB connection error: " . $e->getMessage();
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " $msg\n", FILE_APPEND);
+    writeStatus($statusFile, 'error', $msg);
+    exit(1);
+}
+
 $tmpFile = $exportDir . '/' . $fileId . '.tmp';
 $finalFile = $exportDir . '/' . $fileId;
 
-// Log start
 file_put_contents($logFile, date('Y-m-d H:i:s') . " START export: $fileId\n", FILE_APPEND);
 
 $fp = fopen($tmpFile, 'w');
 if (!$fp) {
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " ERROR: Cannot create file $tmpFile\n", FILE_APPEND);
+    $msg = "Cannot create file $tmpFile";
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " ERROR: $msg\n", FILE_APPEND);
+    writeStatus($statusFile, 'error', $msg);
     exit(1);
 }
 
@@ -67,17 +110,16 @@ fputcsv($fp, [
     'active','delete_flag','created_on','created_by','request_created_on',
 ]);
 
-// Two DB connections
-$conn1 = $db->mysqli;
-$conn2 = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
-$conn2->set_charset("utf8");
+writeStatus($statusFile, 'running', 'Querying data...', 0);
 
 // Cursor-based chunking
 $chunkSize = 200;
 $lastId = 0;
 $totalRows = 0;
+$chunkNum = 0;
 
 while (true) {
+    $chunkNum++;
 
     $sql = "SELECT
         cd.CERTIFICATE_DETAILS_ID,
@@ -157,7 +199,17 @@ while (true) {
     LIMIT $chunkSize";
 
     $res = $conn1->query($sql);
-    if (!$res || $res->num_rows == 0) {
+    if ($res === false) {
+        $msg = "Main query error (chunk $chunkNum, lastId=$lastId): " . $conn1->error;
+        file_put_contents($logFile, date('Y-m-d H:i:s') . " $msg\n", FILE_APPEND);
+        writeStatus($statusFile, 'error', $msg);
+        fclose($fp);
+        @unlink($tmpFile);
+        exit(1);
+    }
+
+    if ($res->num_rows == 0) {
+        $res->free();
         break;
     }
 
@@ -199,8 +251,17 @@ while (true) {
         WHERE creq.CERTIFICATE_REQUEST_ID IN ($idList)
         AND er.DELETE_FLAG = 0 AND er.ACTIVE = 1
         ORDER BY er.EXAM_RESULT_ID ASC";
+
         $msRes = $conn2->query($msSql);
-        if ($msRes && $msRes->num_rows > 0) {
+        if ($msRes === false) {
+            $msg = "Multi-sub query error (chunk $chunkNum): " . $conn2->error;
+            file_put_contents($logFile, date('Y-m-d H:i:s') . " $msg\n", FILE_APPEND);
+            writeStatus($statusFile, 'error', $msg);
+            fclose($fp);
+            @unlink($tmpFile);
+            exit(1);
+        }
+        if ($msRes->num_rows > 0) {
             while ($row = $msRes->fetch_assoc()) {
                 $key = $row['CERTIFICATE_REQUEST_ID'] . '_' . $row['STUDENT_ID'] . '_' . $row['INSTITUTE_ID'];
                 $multiSubMarks[$key][] = [
@@ -212,8 +273,8 @@ while (true) {
                     'total_marks' => (float)($row['MARKS_OBTAINED'] + $row['PRACTICAL_MARKS']),
                 ];
             }
-            $msRes->free();
         }
+        $msRes->free();
     }
 
     // Fetch typing marksheet subjects for this chunk
@@ -239,8 +300,17 @@ while (true) {
         WHERE creq.CERTIFICATE_REQUEST_ID IN ($idList)
         AND er.DELETE_FLAG = 0
         ORDER BY er.EXAM_RESULT_ID ASC";
+
         $tyRes = $conn2->query($tySql);
-        if ($tyRes && $tyRes->num_rows > 0) {
+        if ($tyRes === false) {
+            $msg = "Typing query error (chunk $chunkNum): " . $conn2->error;
+            file_put_contents($logFile, date('Y-m-d H:i:s') . " $msg\n", FILE_APPEND);
+            writeStatus($statusFile, 'error', $msg);
+            fclose($fp);
+            @unlink($tmpFile);
+            exit(1);
+        }
+        if ($tyRes->num_rows > 0) {
             while ($row = $tyRes->fetch_assoc()) {
                 $key = $row['CERTIFICATE_REQUEST_ID'] . '_' . $row['STUDENT_ID'] . '_' . $row['INSTITUTE_ID'];
                 $typingMarks[$key][] = [
@@ -254,8 +324,8 @@ while (true) {
                     'total_marks' => (float)$row['TOTAL_MARKS'],
                 ];
             }
-            $tyRes->free();
         }
+        $tyRes->free();
     }
 
     // Write CSV rows for this chunk
@@ -356,6 +426,8 @@ while (true) {
     $totalRows += count($rows);
     unset($rows, $multiSubMarks, $typingMarks);
 
+    writeStatus($statusFile, 'running', "Processed $totalRows rows (chunk $chunkNum)...", $totalRows);
+
     if ($chunkCount < $chunkSize) {
         break;
     }
@@ -367,5 +439,6 @@ fclose($fp);
 // Rename .tmp to final filename (atomic — signals "ready")
 rename($tmpFile, $finalFile);
 
+writeStatus($statusFile, 'done', "Export complete: $totalRows rows", $totalRows);
 file_put_contents($logFile, date('Y-m-d H:i:s') . " DONE export: $fileId ($totalRows rows)\n", FILE_APPEND);
 exit(0);
