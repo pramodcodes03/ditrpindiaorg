@@ -69,8 +69,14 @@ if (isset($_GET['download'])) {
 // ============================================================
 $fileId = 'certificates_export_' . date('Y-m-d_His') . '_' . substr(uniqid(), -6) . '.csv';
 
-// Find PHP binary
-$phpBin = PHP_BINARY ?: '/usr/bin/php';
+// Find PHP CLI binary (PHP_BINARY returns php-fpm when running under FPM)
+$phpBin = '/usr/bin/php';
+if (!file_exists($phpBin)) {
+    $phpBin = trim(shell_exec('which php 2>/dev/null') ?: '');
+}
+if (empty($phpBin) || !file_exists($phpBin)) {
+    die("Cannot find PHP CLI binary.");
+}
 
 // Worker script path
 $workerScript = __DIR__ . '/export_certificates_worker.php';
