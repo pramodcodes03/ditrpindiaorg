@@ -1,79 +1,18 @@
 # Laravel Certificate & Marksheet System - Implementation Guide
 
+## Overview
+
+Single table approach: **`ditrp_gold_certificates`** — one Laravel table with the same structure as the source data. No normalization into multiple tables. The `marksheet_subjects_json` column holds all subject/marks data as JSON.
+
+---
+
 ## Source Data
 
-All certificate/marksheet data has been exported into a MySQL table called `laravel_certificates_export` in the existing database. Laravel should connect to the **same database** and read from this table for import.
+The data already exists in `laravel_certificates_export` table in the **core PHP project database**. Connect Laravel to the same MySQL database (or a second connection) and import it into `ditrp_gold_certificates`.
 
-### `laravel_certificates_export` Table Columns:
+### `marksheet_subjects_json` Column Format:
 
-| Column | Type | Description |
-|--------|------|-------------|
-| id | INT (auto) | Auto-increment primary key |
-| certificate_details_id | INT | Original certificate detail ID from core PHP system |
-| certificate_request_id | INT | Certificate request ID |
-| certificate_request_master_id | INT | Master request batch ID |
-| certificate_file | VARCHAR | PDF filename of the certificate |
-| certificate_serial_no | VARCHAR | Serial number |
-| certificate_prefix | VARCHAR | Prefix (e.g., "DITRP") |
-| certificate_no | VARCHAR | Certificate number |
-| issue_date | DATE | Issue date (Y-m-d) |
-| issue_date_format | VARCHAR | Issue date formatted (d-m-Y) |
-| qr_file | VARCHAR | QR code image filename |
-| student_id | INT | Student ID |
-| student_code | VARCHAR | Student unique code |
-| student_name | VARCHAR | Full name |
-| student_fname | VARCHAR | First name |
-| student_mname | VARCHAR | Middle name |
-| student_lname | VARCHAR | Last name |
-| student_mother_name | VARCHAR | Mother's name |
-| student_father_name | VARCHAR | Father's name |
-| son_of | VARCHAR | Son/Daughter of |
-| student_photo | VARCHAR | Photo filename |
-| student_sign | VARCHAR | Signature filename |
-| student_dob | DATE | Date of birth |
-| student_dob_format | VARCHAR | DOB formatted (d.m.Y) |
-| stud_id_proof_type | VARCHAR | ID proof type (Aadhar, PAN, etc.) |
-| stud_id_proof_number | VARCHAR | ID proof number |
-| institute_id | INT | Institute ID |
-| institute_code | VARCHAR | Institute unique code |
-| institute_name | VARCHAR | Institute name |
-| owner_name | VARCHAR | Institute owner name |
-| institute_city | VARCHAR | City name |
-| institute_state | VARCHAR | State name |
-| institute_address | TEXT | Full address |
-| institute_email | VARCHAR | Email |
-| institute_mobile | VARCHAR | Mobile number |
-| course_id | INT | Single-subject course ID (NULL if multi-sub or typing) |
-| multi_sub_course_id | INT | Multi-subject course ID (NULL if single or typing) |
-| typing_course_id | INT | Typing course ID (NULL if single or multi-sub) |
-| course_name | VARCHAR | Course name from certificate |
-| course_name_computed | VARCHAR | Course name from courses master table |
-| multi_sub_course_name | VARCHAR | Multi-subject course name |
-| course_duration | VARCHAR | Single course duration (e.g., "6 MONTHS", "1 YEAR") |
-| multi_sub_course_duration | VARCHAR | Multi-sub course duration |
-| typing_course_duration | VARCHAR | Typing course duration |
-| exam_title | VARCHAR | Exam title |
-| exam_type | VARCHAR | Exam type |
-| exam_result_id | INT | Exam result ID |
-| exam_result_final_id | INT | Final exam result ID |
-| subject | VARCHAR | Subject name (for single-subject courses) |
-| objective_marks | VARCHAR | Theory/objective marks |
-| practical_marks | VARCHAR | Practical marks |
-| marks_per | VARCHAR | Percentage |
-| grade | VARCHAR | Grade (A, B, C, etc.) |
-| result_status | VARCHAR | Result status (PASS/FAIL) |
-| exam_fees | VARCHAR | Exam fees |
-| request_status | VARCHAR | Request status |
-| marksheet_subjects_json | LONGTEXT | JSON array of all subjects with marks (see below) |
-| active | TINYINT | Active flag (1=active) |
-| delete_flag | TINYINT | Soft delete (0=not deleted) |
-| created_on | DATETIME | Record creation date |
-| created_by | INT | Created by user ID |
-| request_created_on | DATETIME | Certificate request creation date |
-
-### `marksheet_subjects_json` Format:
-
-This column contains a JSON array of subjects with marks. Three types exist:
+This column contains a JSON array of subjects with marks. Three types:
 
 **Single subject:**
 ```json
@@ -97,426 +36,648 @@ This column contains a JSON array of subjects with marks. Three types exist:
 ```
 
 ### Course Type Logic:
-- If `course_id` is NOT NULL and > 0 → **Single-subject course**
-- If `multi_sub_course_id` is NOT NULL and > 0 → **Multi-subject course**
-- If `typing_course_id` is NOT NULL and > 0 → **Typing course**
-- A certificate can belong to one or more course types
+- `course_id > 0` → **Single-subject course**
+- `multi_sub_course_id > 0` → **Multi-subject course**
+- `typing_course_id > 0` → **Typing course**
 
 ---
 
-## STEP 1: Database Schema & Models
+## STEP 1: Model with Migration
 
-### Create these Laravel migrations and models:
-
-#### 1.1 Students Table
-```
-php artisan make:model Student -m
+### Create model + migration:
+```bash
+php artisan make:model DitrpGoldCertificate -m
 ```
 
-**Migration columns:**
-- `id` - bigIncrements
-- `legacy_student_id` - integer, nullable (maps to `student_id` from export)
-- `student_code` - string, unique
-- `first_name` - string
-- `middle_name` - string, nullable
-- `last_name` - string, nullable
-- `full_name` - string
-- `mother_name` - string, nullable
-- `father_name` - string, nullable
-- `son_daughter_of` - string, nullable
-- `photo` - string, nullable (filename/path)
-- `signature` - string, nullable (filename/path)
-- `date_of_birth` - date, nullable
-- `id_proof_type` - string, nullable
-- `id_proof_number` - string, nullable
-- `timestamps`
-- `softDeletes`
+### Migration: `create_ditrp_gold_certificates_table`
 
-**Indexes:** `legacy_student_id`, `student_code`
+```php
+Schema::create('ditrp_gold_certificates', function (Blueprint $table) {
+    $table->id();
+    $table->integer('certificate_details_id')->nullable()->index();
+    $table->integer('certificate_request_id')->nullable()->index();
+    $table->integer('certificate_request_master_id')->nullable();
+    $table->string('certificate_file', 255)->nullable();
+    $table->string('certificate_serial_no', 100)->nullable();
+    $table->string('certificate_prefix', 50)->nullable();
+    $table->string('certificate_no', 100)->nullable()->index();
+    $table->date('issue_date')->nullable();
+    $table->string('issue_date_format', 20)->nullable();
+    $table->string('qr_file', 255)->nullable();
 
-#### 1.2 Institutes Table
-```
-php artisan make:model Institute -m
-```
+    // Student
+    $table->integer('student_id')->nullable()->index();
+    $table->string('student_code', 100)->nullable()->index();
+    $table->string('student_name', 255)->nullable();
+    $table->string('student_fname', 255)->nullable();
+    $table->string('student_mname', 255)->nullable();
+    $table->string('student_lname', 255)->nullable();
+    $table->string('student_mother_name', 255)->nullable();
+    $table->string('student_father_name', 255)->nullable();
+    $table->string('son_of', 255)->nullable();
+    $table->string('student_photo', 255)->nullable();
+    $table->string('student_sign', 255)->nullable();
+    $table->date('student_dob')->nullable();
+    $table->string('student_dob_format', 20)->nullable();
+    $table->string('stud_id_proof_type', 100)->nullable();
+    $table->string('stud_id_proof_number', 100)->nullable();
 
-**Migration columns:**
-- `id` - bigIncrements
-- `legacy_institute_id` - integer, nullable
-- `institute_code` - string, unique
-- `name` - string
-- `owner_name` - string, nullable
-- `city` - string, nullable
-- `state` - string, nullable
-- `address` - text, nullable
-- `email` - string, nullable
-- `mobile` - string, nullable
-- `timestamps`
-- `softDeletes`
+    // Institute
+    $table->integer('institute_id')->nullable()->index();
+    $table->string('institute_code', 100)->nullable();
+    $table->string('institute_name', 255)->nullable();
+    $table->string('owner_name', 255)->nullable();
+    $table->string('institute_city', 100)->nullable();
+    $table->string('institute_state', 100)->nullable();
+    $table->text('institute_address')->nullable();
+    $table->string('institute_email', 255)->nullable();
+    $table->string('institute_mobile', 20)->nullable();
 
-**Indexes:** `legacy_institute_id`, `institute_code`
+    // Course
+    $table->integer('course_id')->nullable();
+    $table->integer('multi_sub_course_id')->nullable();
+    $table->integer('typing_course_id')->nullable();
+    $table->string('course_name', 255)->nullable();
+    $table->string('course_name_computed', 255)->nullable();
+    $table->string('multi_sub_course_name', 255)->nullable();
+    $table->string('course_duration', 100)->nullable();
+    $table->string('multi_sub_course_duration', 100)->nullable();
+    $table->string('typing_course_duration', 100)->nullable();
 
-#### 1.3 Courses Table
-```
-php artisan make:model Course -m
-```
+    // Exam & Results
+    $table->string('exam_title', 255)->nullable();
+    $table->string('exam_type', 100)->nullable();
+    $table->integer('exam_result_id')->nullable();
+    $table->integer('exam_result_final_id')->nullable();
+    $table->string('subject', 255)->nullable();
+    $table->string('objective_marks', 50)->nullable();
+    $table->string('practical_marks', 50)->nullable();
+    $table->string('marks_per', 50)->nullable();
+    $table->string('grade', 10)->nullable();
+    $table->string('result_status', 50)->nullable();
+    $table->string('exam_fees', 50)->nullable();
+    $table->string('request_status', 50)->nullable();
 
-**Migration columns:**
-- `id` - bigIncrements
-- `legacy_course_id` - integer, nullable (maps to course_id / multi_sub_course_id / typing_course_id)
-- `course_type` - enum: ['single', 'multi_sub', 'typing']
-- `name` - string
-- `duration` - string, nullable (e.g., "6 MONTHS", "1 YEAR")
-- `timestamps`
-- `softDeletes`
+    // Marksheet JSON (all subjects with marks)
+    $table->longText('marksheet_subjects_json')->nullable();
 
-**Indexes:** `legacy_course_id`, `course_type`
+    // Verification
+    $table->string('verification_token', 64)->nullable()->unique();
 
-#### 1.4 Certificates Table
-```
-php artisan make:model Certificate -m
-```
+    // Flags
+    $table->tinyInteger('active')->default(1);
+    $table->tinyInteger('delete_flag')->default(0);
+    $table->dateTime('created_on')->nullable();
+    $table->integer('created_by')->nullable();
+    $table->dateTime('request_created_on')->nullable();
 
-**Migration columns:**
-- `id` - bigIncrements
-- `legacy_certificate_details_id` - integer, nullable
-- `legacy_certificate_request_id` - integer, nullable
-- `student_id` - foreignId → students table
-- `institute_id` - foreignId → institutes table
-- `course_id` - foreignId → courses table
-- `certificate_file` - string, nullable (PDF filename)
-- `serial_no` - string, nullable
-- `prefix` - string, nullable
-- `certificate_no` - string, nullable, unique
-- `qr_code_file` - string, nullable
-- `issue_date` - date, nullable
-- `exam_title` - string, nullable
-- `exam_type` - string, nullable
-- `result_status` - string, nullable (PASS/FAIL)
-- `grade` - string, nullable
-- `marks_percentage` - string, nullable
-- `total_objective_marks` - decimal(8,2), nullable
-- `total_practical_marks` - decimal(8,2), nullable
-- `exam_fees` - decimal(8,2), nullable
-- `request_status` - string, nullable
-- `verification_token` - string, unique, nullable (for public verification URL)
-- `is_active` - boolean, default true
-- `issued_at` - datetime, nullable
-- `timestamps`
-- `softDeletes`
-
-**Indexes:** `legacy_certificate_details_id`, `certificate_no`, `serial_no`, `verification_token`
-
-#### 1.5 Certificate Subjects (Marksheet) Table
-```
-php artisan make:model CertificateSubject -m
+    $table->timestamps();
+});
 ```
 
-**Migration columns:**
-- `id` - bigIncrements
-- `certificate_id` - foreignId → certificates table
-- `subject_type` - enum: ['single', 'multi_sub', 'typing']
-- `subject_name` - string
-- `exam_title` - string, nullable
-- `objective_marks` - decimal(8,2), nullable
-- `practical_marks` - decimal(8,2), nullable
-- `total_marks` - decimal(8,2), nullable
-- `speed_wpm` - integer, nullable (for typing courses only)
-- `minimum_marks` - decimal(8,2), nullable (for typing courses only)
-- `exam_total_marks` - decimal(8,2), nullable (for typing courses only)
-- `marks_obtained` - decimal(8,2), nullable (for typing courses only)
-- `sort_order` - integer, default 0
-- `timestamps`
+### Model: `DitrpGoldCertificate`
 
-**Indexes:** `certificate_id`, `subject_type`
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
+class DitrpGoldCertificate extends Model
+{
+    protected $table = 'ditrp_gold_certificates';
+
+    protected $guarded = ['id'];
+
+    protected $casts = [
+        'issue_date' => 'date',
+        'student_dob' => 'date',
+        'created_on' => 'datetime',
+        'request_created_on' => 'datetime',
+        'marksheet_subjects_json' => 'array',
+    ];
+
+    /**
+     * Get the course type for this certificate.
+     */
+    public function getCourseTypeAttribute(): string
+    {
+        if ($this->multi_sub_course_id && $this->multi_sub_course_id > 0) return 'multi_sub';
+        if ($this->typing_course_id && $this->typing_course_id > 0) return 'typing';
+        return 'single';
+    }
+
+    /**
+     * Get the effective course name.
+     */
+    public function getEffectiveCourseNameAttribute(): string
+    {
+        if ($this->course_type === 'multi_sub') return $this->multi_sub_course_name ?? $this->course_name ?? '';
+        return $this->course_name_computed ?? $this->course_name ?? '';
+    }
+
+    /**
+     * Get the effective course duration.
+     */
+    public function getEffectiveCourseDurationAttribute(): string
+    {
+        if ($this->course_type === 'multi_sub') return $this->multi_sub_course_duration ?? '';
+        if ($this->course_type === 'typing') return $this->typing_course_duration ?? '';
+        return $this->course_duration ?? '';
+    }
+
+    /**
+     * Get parsed marksheet subjects.
+     */
+    public function getMarksheetSubjectsAttribute(): array
+    {
+        return $this->marksheet_subjects_json ?? [];
+    }
+
+    /**
+     * Get the verification URL.
+     */
+    public function getVerificationUrlAttribute(): string
+    {
+        return url("/verify/{$this->verification_token}");
+    }
+
+    /**
+     * Scope for active, non-deleted records.
+     */
+    public function scopeValid($query)
+    {
+        return $query->where('active', 1)->where('delete_flag', 0);
+    }
+
+    /**
+     * Scope for searching.
+     */
+    public function scopeSearch($query, $term)
+    {
+        return $query->where(function ($q) use ($term) {
+            $q->where('student_name', 'LIKE', "%{$term}%")
+              ->orWhere('student_code', 'LIKE', "%{$term}%")
+              ->orWhere('certificate_no', 'LIKE', "%{$term}%")
+              ->orWhere('institute_name', 'LIKE', "%{$term}%")
+              ->orWhere('certificate_serial_no', 'LIKE', "%{$term}%");
+        });
+    }
+
+    /**
+     * Boot: auto-generate verification token.
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            if (empty($model->verification_token)) {
+                $model->verification_token = Str::uuid()->toString();
+            }
+        });
+    }
+}
+```
 
 ---
 
 ## STEP 2: Import Data from `laravel_certificates_export`
 
-### Create an Artisan command:
-```
+### Create artisan command:
+```bash
 php artisan make:command ImportCertificates
 ```
 
-**Command name:** `import:certificates`
-
-### Import Logic:
-
-The command should read from `laravel_certificates_export` table (same database) and populate the normalized Laravel tables.
+### Command: `app/Console/Commands/ImportCertificates.php`
 
 ```php
-// Pseudocode for the import command:
+<?php
 
-// 1. Read all rows from laravel_certificates_export
-// 2. For each row:
-//    a. Find or create Student (by legacy_student_id)
-//    b. Find or create Institute (by legacy_institute_id)
-//    c. Determine course type and find or create Course
-//    d. Create Certificate record
-//    e. Parse marksheet_subjects_json and create CertificateSubject records
-//    f. Generate verification_token (use Str::uuid() or hash of certificate_no)
+namespace App\Console\Commands;
 
-// Process in chunks of 200 for memory efficiency:
-DB::table('laravel_certificates_export')
-    ->where('delete_flag', 0)
-    ->orderBy('id')
-    ->chunk(200, function ($rows) {
-        foreach ($rows as $row) {
-            // ... import logic
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+
+class ImportCertificates extends Command
+{
+    protected $signature = 'import:certificates {--fresh : Truncate table before import}';
+    protected $description = 'Import certificates from laravel_certificates_export into ditrp_gold_certificates';
+
+    public function handle()
+    {
+        if ($this->option('fresh')) {
+            DB::table('ditrp_gold_certificates')->truncate();
+            $this->info('Table truncated.');
         }
-    });
+
+        $total = DB::table('laravel_certificates_export')->count();
+        $this->info("Total records to import: {$total}");
+
+        $bar = $this->output->createProgressBar($total);
+        $bar->start();
+
+        $imported = 0;
+
+        DB::table('laravel_certificates_export')
+            ->orderBy('id')
+            ->chunk(500, function ($rows) use (&$imported, $bar) {
+                $insertData = [];
+                foreach ($rows as $row) {
+                    $insertData[] = [
+                        'certificate_details_id' => $row->certificate_details_id,
+                        'certificate_request_id' => $row->certificate_request_id,
+                        'certificate_request_master_id' => $row->certificate_request_master_id,
+                        'certificate_file' => $row->certificate_file,
+                        'certificate_serial_no' => $row->certificate_serial_no,
+                        'certificate_prefix' => $row->certificate_prefix,
+                        'certificate_no' => $row->certificate_no,
+                        'issue_date' => $row->issue_date,
+                        'issue_date_format' => $row->issue_date_format,
+                        'qr_file' => $row->qr_file,
+                        'student_id' => $row->student_id,
+                        'student_code' => $row->student_code,
+                        'student_name' => $row->student_name,
+                        'student_fname' => $row->student_fname,
+                        'student_mname' => $row->student_mname,
+                        'student_lname' => $row->student_lname,
+                        'student_mother_name' => $row->student_mother_name,
+                        'student_father_name' => $row->student_father_name,
+                        'son_of' => $row->son_of,
+                        'student_photo' => $row->student_photo,
+                        'student_sign' => $row->student_sign,
+                        'student_dob' => $row->student_dob,
+                        'student_dob_format' => $row->student_dob_format,
+                        'stud_id_proof_type' => $row->stud_id_proof_type,
+                        'stud_id_proof_number' => $row->stud_id_proof_number,
+                        'institute_id' => $row->institute_id,
+                        'institute_code' => $row->institute_code,
+                        'institute_name' => $row->institute_name,
+                        'owner_name' => $row->owner_name,
+                        'institute_city' => $row->institute_city,
+                        'institute_state' => $row->institute_state,
+                        'institute_address' => $row->institute_address,
+                        'institute_email' => $row->institute_email,
+                        'institute_mobile' => $row->institute_mobile,
+                        'course_id' => $row->course_id,
+                        'multi_sub_course_id' => $row->multi_sub_course_id,
+                        'typing_course_id' => $row->typing_course_id,
+                        'course_name' => $row->course_name,
+                        'course_name_computed' => $row->course_name_computed,
+                        'multi_sub_course_name' => $row->multi_sub_course_name,
+                        'course_duration' => $row->course_duration,
+                        'multi_sub_course_duration' => $row->multi_sub_course_duration,
+                        'typing_course_duration' => $row->typing_course_duration,
+                        'exam_title' => $row->exam_title,
+                        'exam_type' => $row->exam_type,
+                        'exam_result_id' => $row->exam_result_id,
+                        'exam_result_final_id' => $row->exam_result_final_id,
+                        'subject' => $row->subject,
+                        'objective_marks' => $row->objective_marks,
+                        'practical_marks' => $row->practical_marks,
+                        'marks_per' => $row->marks_per,
+                        'grade' => $row->grade,
+                        'result_status' => $row->result_status,
+                        'exam_fees' => $row->exam_fees,
+                        'request_status' => $row->request_status,
+                        'marksheet_subjects_json' => $row->marksheet_subjects_json,
+                        'verification_token' => Str::uuid()->toString(),
+                        'active' => $row->active,
+                        'delete_flag' => $row->delete_flag,
+                        'created_on' => $row->created_on,
+                        'created_by' => $row->created_by,
+                        'request_created_on' => $row->request_created_on,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
+
+                DB::table('ditrp_gold_certificates')->insert($insertData);
+                $imported += count($insertData);
+                $bar->advance(count($insertData));
+            });
+
+        $bar->finish();
+        $this->newLine();
+        $this->info("Import complete! {$imported} records imported.");
+    }
+}
 ```
 
-**Important rules for import:**
-- Use `firstOrCreate()` for students, institutes, courses to avoid duplicates
-- Match students by `legacy_student_id` (the `student_id` from export)
-- Match institutes by `legacy_institute_id`
-- For courses: determine type from which ID is non-null:
-  - `course_id > 0` → type = 'single', `legacy_course_id = course_id`, name = `course_name_computed` or `course_name`
-  - `multi_sub_course_id > 0` → type = 'multi_sub', `legacy_course_id = multi_sub_course_id`, name = `multi_sub_course_name`
-  - `typing_course_id > 0` → type = 'typing', `legacy_course_id = typing_course_id`, name = `course_name`
-- Parse `marksheet_subjects_json` with `json_decode()` and create `CertificateSubject` rows
-- Generate `verification_token` = `Str::uuid()` for each certificate
-- Wrap each chunk in a DB transaction
-- Log progress: "Imported 200/15000 certificates..."
-- Handle NULL/empty values gracefully
+### Run import:
+```bash
+php artisan import:certificates --fresh
+```
 
 ---
 
-## STEP 3: Display Certificate & Marksheet Data
+## STEP 3: Controllers & Routes
 
-### 3.1 List All Certificates Page
+### Routes: `routes/web.php`
 
-**Route:** `GET /admin/certificates`
-**Controller:** `CertificateController@index`
+```php
+// Admin routes (auth required)
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/certificates', [CertificateController::class, 'index'])->name('certificates.index');
+    Route::get('/certificates/{id}', [CertificateController::class, 'show'])->name('certificates.show');
+    Route::get('/certificates/{id}/marksheet', [CertificateController::class, 'marksheet'])->name('certificates.marksheet');
+});
 
-**Features:**
-- Paginated table (15-25 per page) showing: Serial No, Student Name, Student Code, Institute, Course, Issue Date, Status, Actions
-- Search by: student name, student code, certificate number, institute name
-- Filter by: course type (single/multi-sub/typing), result status (PASS/FAIL), date range
-- Sort by: issue date, student name, certificate number
-- Export to Excel/PDF option
+// Public verification (no auth)
+Route::get('/verify', [VerificationController::class, 'index'])->name('verify.index');
+Route::post('/verify', [VerificationController::class, 'search'])->name('verify.search');
+Route::get('/verify/{token}', [VerificationController::class, 'verify'])->name('verify.show');
+Route::get('/verify/{token}/marksheet', [VerificationController::class, 'marksheet'])->name('verify.marksheet');
+```
 
-### 3.2 View Certificate Page
+### CertificateController
 
-**Route:** `GET /admin/certificates/{id}`
-**Controller:** `CertificateController@show`
+```bash
+php artisan make:controller CertificateController
+```
 
-**Display:**
-- Certificate details: number, serial no, prefix, issue date
-- Student info: photo, name, father name, DOB, ID proof
-- Institute info: name, code, city, state, owner
-- Course info: name, type, duration
-- Result: status, grade, percentage, marks
-- QR code image
-- Link to view marksheet
-- Link to download original PDF (if certificate_file exists)
-- Button: "Print Certificate"
+```php
+<?php
 
-### 3.3 View Marksheet Page
+namespace App\Http\Controllers;
 
-**Route:** `GET /admin/certificates/{id}/marksheet`
-**Controller:** `CertificateController@marksheet`
+use App\Models\DitrpGoldCertificate;
+use Illuminate\Http\Request;
 
-**Display:**
-- Student details header (name, code, photo, father name, DOB)
-- Institute details (name, code, address)
-- Course details (name, duration, type)
-- **Subjects table:**
-  - For single: Subject | Theory Marks | Practical Marks | Total
-  - For multi_sub: Subject | Exam Title | Theory Marks | Practical Marks | Total
-  - For typing: Subject | Speed (WPM) | Min Marks | Total Marks | Marks Obtained | Total
-- Grand total row
-- Result: PASS/FAIL, Grade, Percentage
-- Certificate number and issue date at bottom
-- Button: "Print Marksheet"
+class CertificateController extends Controller
+{
+    // List all certificates with search, filter, pagination
+    public function index(Request $request)
+    {
+        $query = DitrpGoldCertificate::valid();
 
-### 3.4 Print-Friendly Views
+        if ($request->filled('search')) {
+            $query->search($request->search);
+        }
 
-Create separate Blade views for printing:
-- `certificates.print-certificate` - Clean certificate layout for printing
-- `certificates.print-marksheet` - Clean marksheet layout for printing
+        if ($request->filled('course_type')) {
+            $type = $request->course_type;
+            if ($type === 'single') {
+                $query->where('course_id', '>', 0)
+                      ->where(function($q) {
+                          $q->whereNull('multi_sub_course_id')->orWhere('multi_sub_course_id', 0);
+                      })
+                      ->where(function($q) {
+                          $q->whereNull('typing_course_id')->orWhere('typing_course_id', 0);
+                      });
+            } elseif ($type === 'multi_sub') {
+                $query->where('multi_sub_course_id', '>', 0);
+            } elseif ($type === 'typing') {
+                $query->where('typing_course_id', '>', 0);
+            }
+        }
 
-Use `@media print` CSS to hide navigation, buttons, etc.
+        if ($request->filled('result_status')) {
+            $query->where('result_status', $request->result_status);
+        }
+
+        $certificates = $query->orderByDesc('issue_date')->paginate(20);
+
+        return view('certificates.index', compact('certificates'));
+    }
+
+    // View single certificate
+    public function show($id)
+    {
+        $certificate = DitrpGoldCertificate::findOrFail($id);
+        return view('certificates.show', compact('certificate'));
+    }
+
+    // View marksheet for a certificate
+    public function marksheet($id)
+    {
+        $certificate = DitrpGoldCertificate::findOrFail($id);
+        $subjects = $certificate->marksheet_subjects;
+        return view('certificates.marksheet', compact('certificate', 'subjects'));
+    }
+}
+```
+
+### VerificationController
+
+```bash
+php artisan make:controller VerificationController
+```
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\DitrpGoldCertificate;
+use Illuminate\Http\Request;
+
+class VerificationController extends Controller
+{
+    // Show verification search page
+    public function index()
+    {
+        return view('verification.index');
+    }
+
+    // Search by certificate number or student code
+    public function search(Request $request)
+    {
+        $request->validate([
+            'query' => 'required|string|min:2',
+        ]);
+
+        $term = $request->query_input;
+
+        $certificate = DitrpGoldCertificate::valid()
+            ->where(function ($q) use ($term) {
+                $q->where('certificate_no', $term)
+                  ->orWhere('student_code', $term)
+                  ->orWhere('certificate_serial_no', $term);
+            })
+            ->first();
+
+        if (!$certificate) {
+            return back()->with('error', 'Certificate not found. Please check the number and try again.');
+        }
+
+        return redirect()->route('verify.show', $certificate->verification_token);
+    }
+
+    // Show verified certificate (via token from QR code or search)
+    public function verify($token)
+    {
+        $certificate = DitrpGoldCertificate::where('verification_token', $token)
+            ->valid()
+            ->first();
+
+        if (!$certificate) {
+            return view('verification.not_found');
+        }
+
+        return view('verification.verified', compact('certificate'));
+    }
+
+    // Show marksheet via verification token
+    public function marksheet($token)
+    {
+        $certificate = DitrpGoldCertificate::where('verification_token', $token)
+            ->valid()
+            ->first();
+
+        if (!$certificate) {
+            return view('verification.not_found');
+        }
+
+        $subjects = $certificate->marksheet_subjects;
+        return view('verification.marksheet', compact('certificate', 'subjects'));
+    }
+}
+```
 
 ---
 
-## STEP 4: Public Verification System
+## STEP 4: Blade Views
 
-### 4.1 Certificate Verification Page
+### 4.1 `resources/views/certificates/index.blade.php` — List Certificates
 
-**Route:** `GET /verify` (public, no auth required)
-**Route:** `GET /verify/{token}` (direct verification link)
-**Controller:** `VerificationController@index` / `VerificationController@verify`
+- Paginated table: Certificate No, Student Name, Student Code, Course, Institute, Issue Date, Result, Actions
+- Search bar (student name, code, certificate number)
+- Filter dropdowns: Course Type (Single/Multi-Sub/Typing), Result (PASS/FAIL)
+- Action buttons: View Certificate, View Marksheet
 
-**Verification Page (`/verify`):**
-- Clean public-facing page (not admin layout)
-- Organization logo and name at top
-- Search form with fields:
-  - Certificate Number (text input)
-  - OR Student Code (text input)
-  - OR Scan QR Code (camera-based QR scanner using JavaScript)
-- Submit button: "Verify Certificate"
+### 4.2 `resources/views/certificates/show.blade.php` — View Certificate
 
-**Verification Result (`/verify/{token}` or POST `/verify`):**
+- Student photo and signature images
+- Student info: name, father name, DOB, ID proof
+- Institute info: name, code, city, state, address
+- Course: `$certificate->effective_course_name`, `$certificate->effective_course_duration`
+- Certificate: number, serial no, prefix, issue date, QR code image
+- Result: status, grade, percentage
+- Buttons: View Marksheet, Print, Back to List
 
-**If found (valid certificate):**
-- Green success banner: "Certificate is Valid and Verified"
-- Show: Certificate No, Student Name, Student Photo, Course Name, Institute Name, Issue Date, Grade, Result Status
-- Show marksheet subjects table (read-only)
+### 4.3 `resources/views/certificates/marksheet.blade.php` — View Marksheet
+
+- Student + Institute + Course header
+- Subjects table built from `$subjects` array (parsed from `marksheet_subjects_json`):
+
+```blade
+@if(!empty($subjects))
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Subject</th>
+            <th>Theory/Objective Marks</th>
+            <th>Practical Marks</th>
+            <th>Total Marks</th>
+            @if($certificate->course_type === 'typing')
+                <th>Speed (WPM)</th>
+            @endif
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($subjects as $i => $sub)
+        <tr>
+            <td>{{ $i + 1 }}</td>
+            <td>{{ $sub['subject_name'] ?? '' }}</td>
+            @if(($sub['type'] ?? '') === 'typing')
+                <td>{{ $sub['marks_obtained'] ?? '-' }}</td>
+                <td>-</td>
+                <td>{{ $sub['total_marks'] ?? '-' }}</td>
+                <td>{{ $sub['speed_wpm'] ?? '-' }} WPM</td>
+            @else
+                <td>{{ $sub['objective_marks'] ?? '-' }}</td>
+                <td>{{ $sub['practical_marks'] ?? '-' }}</td>
+                <td>{{ $sub['total_marks'] ?? '-' }}</td>
+            @endif
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+@endif
+```
+
+- Grand total, result, grade, percentage at bottom
 - Print button
 
-**If not found:**
-- Red error banner: "Certificate Not Found"
-- Message: "The certificate number or code you entered could not be verified. Please check and try again."
+### 4.4 `resources/views/verification/index.blade.php` — Public Verification Page
 
-### 4.2 QR Code Verification
+- Clean public layout (no admin sidebar)
+- Organization logo + name
+- Search form:
+  - Input: "Enter Certificate Number or Student Code"
+  - Submit: "Verify Certificate"
+- Error flash message if not found
 
-Each certificate has a QR code. The QR code should encode the verification URL:
+### 4.5 `resources/views/verification/verified.blade.php` — Verification Result
+
+- Green banner: "Certificate is Valid and Verified ✓"
+- Certificate details: number, student name, photo, course, institute, issue date, grade, result
+- Marksheet subjects table (read-only)
+- Print button
+- "Verify Another" link
+
+### 4.6 `resources/views/verification/not_found.blade.php` — Not Found
+
+- Red banner: "Certificate Not Found ✗"
+- Message: "The certificate number or code could not be verified."
+- "Try Again" button
+
+### 4.7 `resources/views/verification/marksheet.blade.php` — Public Marksheet View
+
+- Same as certificates/marksheet but with public layout (no admin nav)
+- Read-only, print-friendly
+
+---
+
+## STEP 5: QR Code Verification URL
+
+Each certificate has a `verification_token`. The QR code should link to:
 ```
 https://yourdomain.com/verify/{verification_token}
 ```
 
-When someone scans the QR code, it opens the verification page directly showing the certificate details.
-
-**Update existing QR codes:** Create an artisan command to regenerate QR codes with the new verification URL:
-```
-php artisan certificates:generate-qr
-```
-
-Use the `simplesoftwareio/simple-qrcode` package or `chillerlan/php-qrcode`.
-
-### 4.3 Marksheet Verification
-
-**Route:** `GET /verify/{token}/marksheet`
-
-Same as certificate verification but shows the full marksheet with all subjects and marks.
-
----
-
-## STEP 5: Model Relationships
-
-### Student Model
-```php
-class Student extends Model {
-    use SoftDeletes;
-
-    public function certificates() {
-        return $this->hasMany(Certificate::class);
-    }
-}
-```
-
-### Institute Model
-```php
-class Institute extends Model {
-    use SoftDeletes;
-
-    public function certificates() {
-        return $this->hasMany(Certificate::class);
-    }
-}
-```
-
-### Course Model
-```php
-class Course extends Model {
-    use SoftDeletes;
-
-    public function certificates() {
-        return $this->hasMany(Certificate::class);
-    }
-
-    public function isSingle() { return $this->course_type === 'single'; }
-    public function isMultiSub() { return $this->course_type === 'multi_sub'; }
-    public function isTyping() { return $this->course_type === 'typing'; }
-}
-```
-
-### Certificate Model
-```php
-class Certificate extends Model {
-    use SoftDeletes;
-
-    public function student() {
-        return $this->belongsTo(Student::class);
-    }
-
-    public function institute() {
-        return $this->belongsTo(Institute::class);
-    }
-
-    public function course() {
-        return $this->belongsTo(Course::class);
-    }
-
-    public function subjects() {
-        return $this->hasMany(CertificateSubject::class)->orderBy('sort_order');
-    }
-
-    public function getVerificationUrlAttribute() {
-        return url("/verify/{$this->verification_token}");
-    }
-}
-```
-
-### CertificateSubject Model
-```php
-class CertificateSubject extends Model {
-
-    public function certificate() {
-        return $this->belongsTo(Certificate::class);
-    }
-}
-```
-
----
-
-## STEP 6: Required Laravel Packages
+To generate QR codes for all certificates:
 
 ```bash
-composer require maatwebsite/excel          # For Excel export
-composer require simplesoftwareio/simple-qrcode  # For QR code generation
-composer require barryvdh/laravel-dompdf     # For PDF generation (optional)
+composer require simplesoftwareio/simple-qrcode
+php artisan make:command GenerateQrCodes
+```
+
+```php
+// In the command:
+DitrpGoldCertificate::valid()->chunk(200, function ($certs) {
+    foreach ($certs as $cert) {
+        $url = route('verify.show', $cert->verification_token);
+        $qrPath = storage_path("app/public/qrcodes/{$cert->certificate_no}.png");
+        QrCode::format('png')->size(300)->generate($url, $qrPath);
+        $cert->update(['qr_file' => "qrcodes/{$cert->certificate_no}.png"]);
+    }
+});
 ```
 
 ---
 
-## File/Image Paths
+## STEP 6: Required Packages
 
-Student photos and signatures from the core PHP system are stored at:
-- Photos: `uploads/student_photos/{filename}`
-- Signatures: `uploads/student_signs/{filename}`
-- QR codes: `uploads/qr_codes/{filename}` or `certificates/qr/{filename}`
-- Certificate PDFs: `uploads/certificates/{filename}`
-
-You may need to:
-1. Copy these files to Laravel's `storage/app/public/` directory
-2. Or create symbolic links to the old upload directory
-3. Or update the paths in the database after import
-
----
-
-## Summary of Artisan Commands to Create
-
-| Command | Purpose |
-|---------|---------|
-| `php artisan make:model Student -m` | Student model + migration |
-| `php artisan make:model Institute -m` | Institute model + migration |
-| `php artisan make:model Course -m` | Course model + migration |
-| `php artisan make:model Certificate -m` | Certificate model + migration |
-| `php artisan make:model CertificateSubject -m` | Subject/marks model + migration |
-| `php artisan make:command ImportCertificates` | Import from laravel_certificates_export |
-| `php artisan make:controller CertificateController --resource` | CRUD controller |
-| `php artisan make:controller VerificationController` | Public verification |
-| `php artisan make:command GenerateQrCodes` | Regenerate QR codes with verification URLs |
+```bash
+composer require simplesoftwareio/simple-qrcode   # QR code generation
+composer require barryvdh/laravel-dompdf           # PDF generation (optional)
+```
 
 ---
 
 ## Execution Order
 
-1. Run migrations: `php artisan migrate`
-2. Import data: `php artisan import:certificates`
-3. Generate QR codes: `php artisan certificates:generate-qr`
-4. Build views and controllers
-5. Test verification system
+1. `php artisan make:model DitrpGoldCertificate -m` → edit migration with schema above
+2. `php artisan migrate`
+3. `php artisan make:command ImportCertificates` → add import logic above
+4. `php artisan import:certificates --fresh` → import data from `laravel_certificates_export`
+5. Create controllers: `CertificateController`, `VerificationController`
+6. Add routes to `routes/web.php`
+7. Create Blade views for list, show, marksheet, verification
+8. `php artisan make:command GenerateQrCodes` → generate QR codes
+9. Test verification at `/verify`
