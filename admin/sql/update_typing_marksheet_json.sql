@@ -12,6 +12,18 @@
 --   course_typing_exam_result_final   -> final result header (ert)
 --   course_typing_exam_result         -> per-subject result rows (er)
 --   courses_typing_subjects           -> subject name + speed lookup (cts)
+--   course_typing_exam_structure      -> holds TOTAL_MARKS (NOT used here; see note below)
+--
+-- NOTE on TOTAL_MARKS:
+--   course_typing_exam_result does NOT have a TOTAL_MARKS column.
+--   Columns confirmed from INSERT statement in coursetypingexam.class.php:
+--     EXAM_RESULT_ID, STUD_COURSE_ID, STUDENT_ID, STUDENT_SUBJECT_ID, INSTITUTE_ID,
+--     EXAM_ID, INSTITUTE_COURSE_ID, EXAM_TITLE, EXAM_TOTAL_MARKS, MARKS_OBTAINED,
+--     EXAM_TYPE, CREATED_BY, CREATED_ON, CREATED_ON_IP, MINIMUM_MARKS
+--   TOTAL_MARKS is a column of course_typing_exam_structure, not course_typing_exam_result.
+--   For typing courses there is no practical component, so total_marks = marks_obtained.
+--   This matches the JSON example in LARAVEL_MIGRATION_PROMPT.md where both values
+--   are equal (e.g. marks_obtained=78, total_marks=78).
 --
 -- KEY DIFFERENCES vs. the multi_sub equivalent:
 --   1. JOIN key on result_final : creq.EXAM_RESULT_TYPING_ID  (not EXAM_RESULT_FINAL_ID)
@@ -51,7 +63,7 @@ SET marksheet_subjects_json = (
       'minimum_marks',    CAST(er.MINIMUM_MARKS    AS DECIMAL(10,2)),
       'exam_total_marks', CAST(er.EXAM_TOTAL_MARKS AS DECIMAL(10,2)),
       'marks_obtained',   CAST(er.MARKS_OBTAINED   AS DECIMAL(10,2)),
-      'total_marks',      CAST(er.TOTAL_MARKS      AS DECIMAL(10,2))
+      'total_marks',      CAST(er.MARKS_OBTAINED   AS DECIMAL(10,2))  -- no TOTAL_MARKS column; total = obtained for typing
     )
     ORDER BY er.EXAM_RESULT_ID ASC
   ), ']')
