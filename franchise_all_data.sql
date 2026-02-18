@@ -1,11 +1,14 @@
 -- ============================================================
 -- Franchise All Data Table
 -- Creates a consolidated table with all franchise/institute data
--- including login credentials (USER_ROLE = 8)
+-- including login credentials, wallet balances, and approved status
+-- (USER_ROLE = 8)
 -- ============================================================
 
--- Step 1: Create the new consolidated table
-CREATE TABLE IF NOT EXISTS `franchise_all_data` (
+-- Step 1: Drop and recreate the table (clean slate)
+DROP TABLE IF EXISTS `franchise_all_data`;
+
+CREATE TABLE `franchise_all_data` (
     -- Institute Details columns
     `INSTITUTE_ID`           INT(11)        NOT NULL,
     `INSTITUTE_NAME`         VARCHAR(255)   DEFAULT NULL,
@@ -21,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `franchise_all_data` (
     `DOB`                    DATE           DEFAULT NULL,
     `ACTIVE`                 TINYINT(1)     DEFAULT NULL,
     `VERIFIED`               TINYINT(1)     DEFAULT NULL,
+    `APPROVED`               VARCHAR(5)     DEFAULT NULL COMMENT 'YES or NO based on VERIFIED flag',
     `VERIFIED_ON`            DATETIME       DEFAULT NULL,
     `SHOW_ON_WEBSITE`        TINYINT(1)     DEFAULT NULL,
     `DELETE_FLAG`            TINYINT(1)     DEFAULT 0,
@@ -34,6 +38,10 @@ CREATE TABLE IF NOT EXISTS `franchise_all_data` (
     `USER_ROLE`              INT(11)        DEFAULT NULL,
     `ACCOUNT_REGISTERED_ON`  DATE           DEFAULT NULL,
     `ACCOUNT_EXPIRED_ON`     DATE           DEFAULT NULL,
+
+    -- Wallet balances
+    `MAIN_WALLET_BALANCE`    DECIMAL(15,2)  DEFAULT 0.00 COMMENT 'From wallet table',
+    `COURIER_WALLET_BALANCE` DECIMAL(15,2)  DEFAULT 0.00 COMMENT 'From courier_wallet table',
 
     -- Snapshot timestamp
     `SNAPSHOT_CREATED_AT`    DATETIME       DEFAULT CURRENT_TIMESTAMP,
@@ -60,6 +68,7 @@ INSERT INTO `franchise_all_data` (
     `DOB`,
     `ACTIVE`,
     `VERIFIED`,
+    `APPROVED`,
     `VERIFIED_ON`,
     `SHOW_ON_WEBSITE`,
     `DELETE_FLAG`,
@@ -70,7 +79,9 @@ INSERT INTO `franchise_all_data` (
     `PASS_WORD`,
     `USER_ROLE`,
     `ACCOUNT_REGISTERED_ON`,
-    `ACCOUNT_EXPIRED_ON`
+    `ACCOUNT_EXPIRED_ON`,
+    `MAIN_WALLET_BALANCE`,
+    `COURIER_WALLET_BALANCE`
 )
 SELECT
     A.INSTITUTE_ID,
@@ -87,6 +98,7 @@ SELECT
     A.DOB,
     A.ACTIVE,
     A.VERIFIED,
+    IF(A.VERIFIED = 1, 'YES', 'NO') AS APPROVED,
     A.VERIFIED_ON,
     A.SHOW_ON_WEBSITE,
     A.DELETE_FLAG,
@@ -97,7 +109,19 @@ SELECT
     B.PASS_WORD,
     B.USER_ROLE,
     B.ACCOUNT_REGISTERED_ON,
-    B.ACCOUNT_EXPIRED_ON
+    B.ACCOUNT_EXPIRED_ON,
+    COALESCE(
+        (SELECT TOTAL_BALANCE FROM wallet
+         WHERE USER_ID = A.INSTITUTE_ID AND USER_ROLE = 8 AND DELETE_FLAG = 0
+         ORDER BY WALLET_ID DESC LIMIT 1),
+        0
+    ) AS MAIN_WALLET_BALANCE,
+    COALESCE(
+        (SELECT TOTAL_BALANCE FROM courier_wallet
+         WHERE USER_ID = A.INSTITUTE_ID AND USER_ROLE = 8 AND DELETE_FLAG = 0
+         ORDER BY WALLET_ID ASC LIMIT 1),
+        0
+    ) AS COURIER_WALLET_BALANCE
 FROM
     institute_details A
     LEFT JOIN user_login_master B ON A.INSTITUTE_ID = B.USER_ID
@@ -108,6 +132,18 @@ ORDER BY
     A.CREATED_ON DESC;
 
 -- ============================================================
--- Verification: Check record count after insert
+-- Verification: Check record count and sample data after insert
 -- ============================================================
 SELECT COUNT(*) AS total_franchises_imported FROM franchise_all_data;
+
+SELECT
+    INSTITUTE_ID,
+    INSTITUTE_NAME,
+    INSTITUTE_CODE,
+    USER_NAME,
+    APPROVED,
+    MAIN_WALLET_BALANCE,
+    COURIER_WALLET_BALANCE
+FROM franchise_all_data
+ORDER BY CREATED_ON DESC
+LIMIT 10;
