@@ -20,6 +20,10 @@ if (!is_dir($exportDir)) {
 
 $logFile    = $exportDir . '/import_certificates_error.log';
 $statusFile = $exportDir . '/import_certificates.status';
+$pidFile    = $exportDir . '/import_certificates_worker.pid';
+
+// Write our PID so the trigger page can kill us if needed
+file_put_contents($pidFile, getmypid());
 
 function writeStatus($statusFile, $state, $message, $rows = 0, $total = 0) {
     $remaining = max(0, $total - $rows);
@@ -55,6 +59,13 @@ try {
         throw new Exception("DB connection failed: " . ($conn ? $conn->connect_error : 'null'));
     }
     $conn->set_charset("utf8mb4");
+    // Prevent idle/lock timeouts on long-running imports
+    $conn->query("SET SESSION wait_timeout        = 86400");
+    $conn->query("SET SESSION interactive_timeout = 86400");
+    $conn->query("SET SESSION net_read_timeout    = 3600");
+    $conn->query("SET SESSION net_write_timeout   = 3600");
+    // If DROP TABLE is waiting for a lock, fail fast (30s) instead of hanging forever
+    $conn->query("SET SESSION lock_wait_timeout   = 30");
 } catch (Throwable $e) {
     $msg = "DB connection error: " . $e->getMessage();
     file_put_contents($logFile, date('Y-m-d H:i:s') . " $msg\n", FILE_APPEND);
@@ -141,8 +152,14 @@ $ddlStatements = [
 ];
 
 foreach ($ddlStatements as $sql) {
+    $ddlStart = time();
     if ($conn->query($sql) === false) {
-        $msg = "DDL error: " . $conn->error . " | SQL: " . substr($sql, 0, 80);
+        $elapsed = time() - $ddlStart;
+        $hint = '';
+        if (stripos($conn->error, 'lock') !== false || $elapsed >= 29) {
+            $hint = ' — Table is locked by another process. Run: SHOW PROCESSLIST; in MySQL and KILL the blocking query, then retry.';
+        }
+        $msg = "DDL error: " . $conn->error . $hint . " | SQL: " . substr($sql, 0, 80);
         file_put_contents($logFile, date('Y-m-d H:i:s') . " $msg\n", FILE_APPEND);
         writeStatus($statusFile, 'error', $msg);
         exit(1);
@@ -209,14 +226,7 @@ while (true) {
             inst.ADDRESS_LINE1,
             inst.EMAIL,
             inst.MOBILE,
-            (
-                SELECT instf.FILE_NAME
-                FROM   institute_files instf
-                WHERE  instf.INSTITUTE_ID = cd.INSTITUTE_ID
-                  AND  instf.FILE_LABEL   = 'sign'
-                ORDER BY instf.FILE_ID ASC
-                LIMIT 1
-            )                                               AS INSTITUTE_SIGN,
+            inst_sign.FILE_NAME                             AS INSTITUTE_SIGN,
             cd.COURSE_ID,
             cd.MULTI_SUB_COURSE_ID,
             cd.TYPING_COURSE_ID,
@@ -252,6 +262,11 @@ while (true) {
         LEFT JOIN courses              co  ON cd.COURSE_ID               = co.COURSE_ID
         LEFT JOIN multi_sub_courses    msc ON cd.MULTI_SUB_COURSE_ID     = msc.MULTI_SUB_COURSE_ID
         LEFT JOIN courses_typing       ct  ON cd.TYPING_COURSE_ID        = ct.TYPING_COURSE_ID
+        LEFT JOIN (
+            SELECT MIN(FILE_ID) AS FILE_ID, INSTITUTE_ID FROM institute_files
+            WHERE FILE_LABEL = 'sign' GROUP BY INSTITUTE_ID
+        ) sign_min ON sign_min.INSTITUTE_ID = cd.INSTITUTE_ID
+        LEFT JOIN institute_files inst_sign ON inst_sign.FILE_ID = sign_min.FILE_ID
         WHERE cd.DELETE_FLAG = 0
           AND cd.CERTIFICATE_DETAILS_ID > $lastId
         ORDER BY cd.CERTIFICATE_DETAILS_ID ASC

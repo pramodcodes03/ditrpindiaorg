@@ -13,15 +13,15 @@ ini_set('display_errors', 0);
 date_default_timezone_set("Asia/Kolkata");
 
 session_start();
-
-include_once('include/classes/config.php');
-include_once('include/classes/database_results.class.php');
-
-$db      = new database_results();
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
+// Release session lock immediately — prevents 504 when another tab holds the session
+session_write_close();
+
 if ($user_id == '') {
     die("Unauthorized. Please login first.");
 }
+
+include_once('include/classes/config.php');
 
 $exportDir  = __DIR__ . '/exports';
 if (!is_dir($exportDir)) {
@@ -49,6 +49,18 @@ if (isset($_GET['check'])) {
 
 // ── Spawn background worker ──────────────────────────────────
 
+$pidFile = $exportDir . '/import_certificates_worker.pid';
+
+// Kill any stale/stuck previous worker
+if (file_exists($pidFile)) {
+    $oldPid = (int)trim(file_get_contents($pidFile));
+    if ($oldPid > 0 && file_exists("/proc/$oldPid")) {
+        posix_kill($oldPid, 9);   // force-kill stuck worker
+        sleep(1);
+    }
+    @unlink($pidFile);
+}
+
 // Clear previous status/log
 @file_put_contents($statusFile, '');
 @file_put_contents($logFile, '');
@@ -65,10 +77,11 @@ $workerScript = __DIR__ . '/import_certificates_worker.php';
 $workerLog    = $exportDir . '/import_worker_stdout.log';
 
 $cmd = sprintf(
-    'nohup %s %s > %s 2>&1 &',
+    'nohup %s %s > %s 2>&1 & echo $! > %s',
     escapeshellarg($phpBin),
     escapeshellarg($workerScript),
-    escapeshellarg($workerLog)
+    escapeshellarg($workerLog),
+    escapeshellarg($pidFile)
 );
 exec($cmd);
 
