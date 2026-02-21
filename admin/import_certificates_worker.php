@@ -10,14 +10,23 @@
 
 ini_set("memory_limit", "512M");
 ini_set('display_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);  // suppress HTTP_HOST notices from config.php
 set_time_limit(0);
 date_default_timezone_set("Asia/Kolkata");
 
+// Fake HTTP_HOST so config.php doesn't throw notices when running from CLI
+if (php_sapi_name() === 'cli' && empty($_SERVER['HTTP_HOST'])) {
+    $_SERVER['HTTP_HOST']  = 'localhost';
+    $_SERVER['HTTPS']      = 'off';
+    $_SERVER['SCRIPT_NAME']= '/admin/import_certificates_worker.php';
+}
+
 $exportDir  = __DIR__ . '/exports';
 if (!is_dir($exportDir)) {
-    mkdir($exportDir, 0755, true);
+    mkdir($exportDir, 0777, true);
 }
+// Ensure the directory is writable by both web (www-data) and CLI users
+@chmod($exportDir, 0777);
 
 $logFile    = $exportDir . '/import_certificates_error.log';
 $statusFile = $exportDir . '/import_certificates.status';
