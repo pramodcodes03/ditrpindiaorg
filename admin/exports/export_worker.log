@@ -1,0 +1,23 @@
+PHP Warning:  Undefined array key "HTTP_HOST" in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/config.php on line 48
+
+Warning: Undefined array key "HTTP_HOST" in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/config.php on line 48
+PHP Warning:  Undefined array key "HTTP_HOST" in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/config.php on line 49
+
+Warning: Undefined array key "HTTP_HOST" in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/config.php on line 49
+PHP Warning:  Undefined array key "HTTP_HOST" in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/config.php on line 94
+
+Warning: Undefined array key "HTTP_HOST" in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/config.php on line 94
+PHP Deprecated:  Creation of dynamic property database_results::$mysqli is deprecated in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/database_results.class.php on line 10
+
+Deprecated: Creation of dynamic property database_results::$mysqli is deprecated in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/database_results.class.php on line 10
+PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'er.TOTAL_MARKS' in 'SELECT' in /var/www/ditrp.digitalnexstep.com/html/admin/export_certificates_worker.php:304
+Stack trace:
+#0 /var/www/ditrp.digitalnexstep.com/html/admin/export_certificates_worker.php(304): mysqli->query()
+#1 {main}
+  thrown in /var/www/ditrp.digitalnexstep.com/html/admin/export_certificates_worker.php on line 304
+
+Fatal error: Uncaught mysqli_sql_exception: Unknown column 'er.TOTAL_MARKS' in 'SELECT' in /var/www/ditrp.digitalnexstep.com/html/admin/export_certificates_worker.php:304
+Stack trace:
+#0 /var/www/ditrp.digitalnexstep.com/html/admin/export_certificates_worker.php(304): mysqli->query()
+#1 {main}
+  thrown in /var/www/ditrp.digitalnexstep.com/html/admin/export_certificates_worker.php on line 304
