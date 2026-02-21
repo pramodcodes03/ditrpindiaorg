@@ -1,0 +1,33 @@
+PHP Warning:  file_put_contents(/var/www/ditrp.digitalnexstep.com/html/admin/exports/import_certificates.status): Failed to open stream: Permission denied in /var/www/ditrp.digitalnexstep.com/html/admin/import_certificates_worker.php on line 31
+
+Warning: file_put_contents(/var/www/ditrp.digitalnexstep.com/html/admin/exports/import_certificates.status): Failed to open stream: Permission denied in /var/www/ditrp.digitalnexstep.com/html/admin/import_certificates_worker.php on line 31
+PHP Warning:  Undefined array key "HTTP_HOST" in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/config.php on line 48
+
+Warning: Undefined array key "HTTP_HOST" in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/config.php on line 48
+PHP Warning:  Undefined array key "HTTP_HOST" in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/config.php on line 49
+
+Warning: Undefined array key "HTTP_HOST" in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/config.php on line 49
+PHP Warning:  Undefined array key "HTTP_HOST" in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/config.php on line 94
+
+Warning: Undefined array key "HTTP_HOST" in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/config.php on line 94
+PHP Deprecated:  Creation of dynamic property database_results::$mysqli is deprecated in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/database_results.class.php on line 10
+
+Deprecated: Creation of dynamic property database_results::$mysqli is deprecated in /var/www/ditrp.digitalnexstep.com/html/admin/include/classes/database_results.class.php on line 10
+PHP Warning:  file_put_contents(/var/www/ditrp.digitalnexstep.com/html/admin/exports/import_certificates_error.log): Failed to open stream: Permission denied in /var/www/ditrp.digitalnexstep.com/html/admin/import_certificates_worker.php on line 76
+
+Warning: file_put_contents(/var/www/ditrp.digitalnexstep.com/html/admin/exports/import_certificates_error.log): Failed to open stream: Permission denied in /var/www/ditrp.digitalnexstep.com/html/admin/import_certificates_worker.php on line 76
+PHP Warning:  file_put_contents(/var/www/ditrp.digitalnexstep.com/html/admin/exports/import_certificates.status): Failed to open stream: Permission denied in /var/www/ditrp.digitalnexstep.com/html/admin/import_certificates_worker.php on line 31
+
+Warning: file_put_contents(/var/www/ditrp.digitalnexstep.com/html/admin/exports/import_certificates.status): Failed to open stream: Permission denied in /var/www/ditrp.digitalnexstep.com/html/admin/import_certificates_worker.php on line 31
+PHP Warning:  file_put_contents(/var/www/ditrp.digitalnexstep.com/html/admin/exports/import_certificates_error.log): Failed to open stream: Permission denied in /var/www/ditrp.digitalnexstep.com/html/admin/import_certificates_worker.php on line 169
+
+Warning: file_put_contents(/var/www/ditrp.digitalnexstep.com/html/admin/exports/import_certificates_error.log): Failed to open stream: Permission denied in /var/www/ditrp.digitalnexstep.com/html/admin/import_certificates_worker.php on line 169
+PHP Warning:  file_put_contents(/var/www/ditrp.digitalnexstep.com/html/admin/exports/import_certificates.status): Failed to open stream: Permission denied in /var/www/ditrp.digitalnexstep.com/html/admin/import_certificates_worker.php on line 31
+
+Warning: file_put_contents(/var/www/ditrp.digitalnexstep.com/html/admin/exports/import_certificates.status): Failed to open stream: Permission denied in /var/www/ditrp.digitalnexstep.com/html/admin/import_certificates_worker.php on line 31
+PHP Warning:  file_put_contents(/var/www/ditrp.digitalnexstep.com/html/admin/exports/import_certificates_error.log): Failed to open stream: Permission denied in /var/www/ditrp.digitalnexstep.com/html/admin/import_certificates_worker.php on line 180
+
+Warning: file_put_contents(/var/www/ditrp.digitalnexstep.com/html/admin/exports/import_certificates_error.log): Failed to open stream: Permission denied in /var/www/ditrp.digitalnexstep.com/html/admin/import_certificates_worker.php on line 180
+PHP Warning:  file_put_contents(/var/www/ditrp.digitalnexstep.com/html/admin/exports/import_certificates.status): Failed to open stream: Permission denied in /var/www/ditrp.digitalnexstep.com/html/admin/import_certificates_worker.php on line 31
+
+Warning: file_put_contents(/var/www/ditrp.digitalnexstep.com/html/admin/exports/import_certificates.status): Failed to open stream: Permission denied in /var/www/ditrp.digitalnexstep.com/html/admin/import_certificates_worker.php on line 31

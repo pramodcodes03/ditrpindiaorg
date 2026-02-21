@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Background Import Worker — laravel_certificates_export
  *
@@ -25,7 +26,8 @@ $pidFile    = $exportDir . '/import_certificates_worker.pid';
 // Write our PID so the trigger page can kill us if needed
 file_put_contents($pidFile, getmypid());
 
-function writeStatus($statusFile, $state, $message, $rows = 0, $total = 0) {
+function writeStatus($statusFile, $state, $message, $rows = 0, $total = 0)
+{
     $remaining = max(0, $total - $rows);
     $percent   = ($total > 0) ? round(($rows / $total) * 100, 1) : 0;
     file_put_contents($statusFile, json_encode([
@@ -80,9 +82,9 @@ writeStatus($statusFile, 'running', 'Creating table...', 0);
 
 $ddlStatements = [
 
-"DROP TABLE IF EXISTS `laravel_certificates_export`",
+    "DROP TABLE IF EXISTS `laravel_certificates_export`",
 
-"CREATE TABLE `laravel_certificates_export` (
+    "CREATE TABLE `laravel_certificates_export` (
   `id`                            int(10) UNSIGNED     NOT NULL AUTO_INCREMENT,
   `certificate_details_id`        int(11)              DEFAULT NULL,
   `certificate_request_id`        int(11)              DEFAULT NULL,
@@ -221,8 +223,8 @@ while (true) {
             inst.INSTITUTE_CODE,
             cd.INSTITUTE_NAME,
             inst.INSTITUTE_OWNER_NAME,
-            cm.CITY_NAME,
-            sm.STATE_NAME,
+            inst.CITY,
+            inst.STATE,
             inst.ADDRESS_LINE1,
             inst.EMAIL,
             inst.MOBILE,
@@ -257,8 +259,6 @@ while (true) {
         LEFT JOIN certificate_requests cr  ON cd.CERTIFICATE_REQUEST_ID  = cr.CERTIFICATE_REQUEST_ID
         LEFT JOIN student_details      sd  ON cd.STUDENT_ID              = sd.STUDENT_ID
         LEFT JOIN institute_details    inst ON cd.INSTITUTE_ID           = inst.INSTITUTE_ID
-        LEFT JOIN city_master          cm  ON inst.CITY                  = cm.CITY_ID
-        LEFT JOIN states_master        sm  ON inst.STATE                 = sm.STATE_ID
         LEFT JOIN courses              co  ON cd.COURSE_ID               = co.COURSE_ID
         LEFT JOIN multi_sub_courses    msc ON cd.MULTI_SUB_COURSE_ID     = msc.MULTI_SUB_COURSE_ID
         LEFT JOIN courses_typing       ct  ON cd.TYPING_COURSE_ID        = ct.TYPING_COURSE_ID
@@ -406,12 +406,14 @@ file_put_contents($logFile, date('Y-m-d H:i:s') . " DONE: $totalRows rows import
 exit(0);
 
 // ── Helpers ──────────────────────────────────────────────────
-function nullOrStr($conn, $val) {
+function nullOrStr($conn, $val)
+{
     if ($val === null || $val === '') return 'NULL';
     return "'" . $conn->real_escape_string($val) . "'";
 }
 
-function nullOrInt($val) {
+function nullOrInt($val)
+{
     if ($val === null || $val === '') return 'NULL';
     return (int)$val;
 }
