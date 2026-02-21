@@ -21,12 +21,17 @@ if (!is_dir($exportDir)) {
 $logFile    = $exportDir . '/import_certificates_error.log';
 $statusFile = $exportDir . '/import_certificates.status';
 
-function writeStatus($statusFile, $state, $message, $rows = 0) {
+function writeStatus($statusFile, $state, $message, $rows = 0, $total = 0) {
+    $remaining = max(0, $total - $rows);
+    $percent   = ($total > 0) ? round(($rows / $total) * 100, 1) : 0;
     file_put_contents($statusFile, json_encode([
-        'state'   => $state,   // 'running', 'done', 'error'
-        'message' => $message,
-        'rows'    => $rows,
-        'time'    => date('H:i:s'),
+        'state'     => $state,   // 'running', 'done', 'error'
+        'message'   => $message,
+        'rows'      => $rows,
+        'total'     => $total,
+        'remaining' => $remaining,
+        'percent'   => $percent,
+        'time'      => date('H:i:s'),
     ]));
 }
 
@@ -145,9 +150,20 @@ foreach ($ddlStatements as $sql) {
 }
 
 file_put_contents($logFile, date('Y-m-d H:i:s') . " Table created\n", FILE_APPEND);
-writeStatus($statusFile, 'running', 'Table created. Starting data import...', 0);
 
-// ── Step 2: Chunked INSERT ───────────────────────────────────
+// ── Step 2: Count total records ──────────────────────────────
+writeStatus($statusFile, 'running', 'Counting total records...', 0, 0);
+
+$countRes = $conn->query("SELECT COUNT(*) AS total FROM certificates_details WHERE DELETE_FLAG = 0");
+$totalCount = 0;
+if ($countRes && $row = $countRes->fetch_assoc()) {
+    $totalCount = (int)$row['total'];
+    $countRes->free();
+}
+file_put_contents($logFile, date('Y-m-d H:i:s') . " Total records to import: $totalCount\n", FILE_APPEND);
+writeStatus($statusFile, 'running', "Total records: $totalCount. Starting import...", 0, $totalCount);
+
+// ── Step 3: Chunked INSERT ───────────────────────────────────
 $chunkSize = 500;
 $lastId    = 0;
 $totalRows = 0;
@@ -360,8 +376,8 @@ while (true) {
     $totalRows += $chunkCount;
     unset($valueParts);
 
-    writeStatus($statusFile, 'running', "Imported $totalRows rows (chunk $chunkNum)...", $totalRows);
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " chunk $chunkNum: $totalRows rows done\n", FILE_APPEND);
+    writeStatus($statusFile, 'running', "Importing... chunk $chunkNum", $totalRows, $totalCount);
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " chunk $chunkNum: $totalRows / $totalCount rows done\n", FILE_APPEND);
 
     if ($chunkCount < $chunkSize) {
         break;
@@ -370,7 +386,7 @@ while (true) {
 
 $conn->close();
 
-writeStatus($statusFile, 'done', "Import complete: $totalRows rows inserted", $totalRows);
+writeStatus($statusFile, 'done', "Import complete: $totalRows rows inserted", $totalRows, $totalCount);
 file_put_contents($logFile, date('Y-m-d H:i:s') . " DONE: $totalRows rows imported\n", FILE_APPEND);
 exit(0);
 

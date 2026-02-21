@@ -80,37 +80,87 @@ exec($cmd);
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        body { font-family: Arial, sans-serif; background: #f5f7ff; }
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f0f2f8; margin: 0; padding: 30px 16px; }
         .box {
-            max-width: 560px; margin: 80px auto; background: #fff;
-            border-radius: 8px; padding: 40px; text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+            max-width: 620px; margin: 40px auto; background: #fff;
+            border-radius: 10px; padding: 36px 40px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.10);
         }
-        .spinner { display: inline-block; width: 44px; height: 44px;
-            border: 4px solid #ddd; border-top: 4px solid #3f80ea;
-            border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
+        .icon-area { text-align: center; margin-bottom: 10px; }
+        .spinner { display: inline-block; width: 46px; height: 46px;
+            border: 4px solid #dde; border-top: 4px solid #3f80ea;
+            border-radius: 50%; animation: spin 0.9s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .done  { color: #4CAF50; font-size: 52px; }
-        .error { color: #f44336; font-size: 52px; }
-        #status   { font-size: 16px; color: #555; margin: 12px 0; }
-        #progress { font-size: 14px; color: #2196F3; font-weight: bold; margin: 6px 0; }
-        #timer    { font-size: 13px; color: #999; }
-        #errBox   { font-size: 12px; color: #f44336; margin-top: 12px; text-align: left;
-                    background: #fff5f5; padding: 10px; border-radius: 4px;
-                    display: none; max-height: 200px; overflow-y: auto; word-break: break-all; }
+        .icon-done  { color: #4CAF50; font-size: 54px; line-height: 1; }
+        .icon-error { color: #f44336; font-size: 54px; line-height: 1; }
+
+        h3 { text-align: center; margin: 10px 0 22px; font-size: 18px; color: #333; }
+
+        /* ── stat cards ── */
+        .stats { display: flex; gap: 12px; margin-bottom: 22px; }
+        .stat {
+            flex: 1; border-radius: 8px; padding: 14px 10px; text-align: center;
+            background: #f5f7ff; border: 1px solid #e0e4f0;
+        }
+        .stat .label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+        .stat .value { font-size: 22px; font-weight: 700; color: #3f80ea; }
+        .stat.done-card  .value { color: #4CAF50; }
+        .stat.rem-card   .value { color: #FF9800; }
+        .stat.total-card .value { color: #607D8B; }
+
+        /* ── progress bar ── */
+        .bar-wrap { background: #eee; border-radius: 20px; height: 18px; overflow: hidden; margin-bottom: 8px; }
+        .bar-fill  { height: 100%; background: linear-gradient(90deg,#3f80ea,#6ab0ff);
+                     border-radius: 20px; transition: width .5s ease; width: 0%; }
+        .bar-label { text-align: center; font-size: 13px; color: #555; margin-bottom: 20px; }
+
+        /* ── status / timer ── */
+        #status { text-align: center; font-size: 14px; color: #666; margin: 0 0 6px; min-height: 20px; }
+        #timer  { text-align: center; font-size: 12px; color: #aaa; margin: 0; }
+
+        /* ── error box ── */
+        #errBox { font-size: 12px; color: #f44336; margin-top: 16px; text-align: left;
+                  background: #fff5f5; padding: 12px; border-radius: 6px;
+                  display: none; max-height: 180px; overflow-y: auto; word-break: break-all; }
     </style>
 </head>
 <body>
 <div class="box">
-    <div id="iconArea"><div class="spinner"></div></div>
+
+    <div class="icon-area" id="iconArea"><div class="spinner"></div></div>
     <h3 id="title">Importing Certificates to Laravel Table...</h3>
+
+    <!-- Stat cards -->
+    <div class="stats">
+        <div class="stat total-card">
+            <div class="label">Total</div>
+            <div class="value" id="statTotal">—</div>
+        </div>
+        <div class="stat done-card">
+            <div class="label">Imported</div>
+            <div class="value" id="statDone">0</div>
+        </div>
+        <div class="stat rem-card">
+            <div class="label">Remaining</div>
+            <div class="value" id="statRem">—</div>
+        </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="bar-wrap"><div class="bar-fill" id="barFill"></div></div>
+    <div class="bar-label" id="barLabel">0%</div>
+
     <p id="status">Starting worker process...</p>
-    <p id="progress"></p>
-    <p id="timer">0s</p>
+    <p id="timer">0s elapsed</p>
     <div id="errBox"></div>
 </div>
+
 <script>
 var seconds = 0;
+
+function fmt(n) { return Number(n).toLocaleString(); }
+
 var timer = setInterval(function () {
     seconds += 3;
     document.getElementById('timer').textContent = seconds + 's elapsed';
@@ -122,21 +172,37 @@ var timer = setInterval(function () {
         try {
             var r = JSON.parse(xhr.responseText);
 
+            // ── Update stat cards & bar whenever we have data ──
+            if (r.total > 0) {
+                document.getElementById('statTotal').textContent = fmt(r.total);
+                document.getElementById('statRem').textContent   = fmt(r.remaining);
+            }
+            if (r.rows >= 0) {
+                document.getElementById('statDone').textContent  = fmt(r.rows);
+            }
+            var pct = r.percent || 0;
+            document.getElementById('barFill').style.width  = pct + '%';
+            document.getElementById('barLabel').textContent = pct + '%';
+
+            // ── DONE ──
             if (r.state === 'done') {
                 clearInterval(timer);
-                document.getElementById('iconArea').innerHTML = '<div class="done">&#10003;</div>';
-                document.getElementById('title').textContent  = 'Import Complete!';
-                document.getElementById('title').style.color  = '#4CAF50';
-                document.getElementById('status').textContent = r.rows + ' rows imported successfully.';
-                document.getElementById('progress').textContent = '';
-                document.getElementById('timer').textContent  = 'Total time: ' + seconds + 's';
+                document.getElementById('iconArea').innerHTML   = '<div class="icon-done">&#10003;</div>';
+                document.getElementById('title').textContent    = 'Import Complete!';
+                document.getElementById('title').style.color   = '#4CAF50';
+                document.getElementById('statRem').textContent = '0';
+                document.getElementById('barFill').style.width = '100%';
+                document.getElementById('barLabel').textContent= '100%';
+                document.getElementById('status').textContent  = fmt(r.rows) + ' rows imported successfully.';
+                document.getElementById('timer').textContent   = 'Total time: ' + seconds + 's';
                 return;
             }
 
+            // ── ERROR ──
             if (r.state === 'error') {
                 clearInterval(timer);
-                document.getElementById('iconArea').innerHTML = '<div class="error">&#10007;</div>';
-                document.getElementById('title').textContent  = 'Import Failed';
+                document.getElementById('iconArea').innerHTML  = '<div class="icon-error">&#10007;</div>';
+                document.getElementById('title').textContent   = 'Import Failed';
                 document.getElementById('title').style.color  = '#f44336';
                 document.getElementById('status').textContent = 'Worker encountered an error:';
                 document.getElementById('errBox').style.display = 'block';
@@ -144,9 +210,8 @@ var timer = setInterval(function () {
                 return;
             }
 
-            // running / waiting
-            document.getElementById('status').textContent   = r.message || 'Processing...';
-            document.getElementById('progress').textContent = r.rows > 0 ? r.rows + ' rows imported' : '';
+            // ── RUNNING / WAITING ──
+            document.getElementById('status').textContent = r.message || 'Processing...';
 
         } catch (e) {}
     };
@@ -156,8 +221,8 @@ var timer = setInterval(function () {
 // Safety timeout — 60 minutes
 setTimeout(function () {
     clearInterval(timer);
-    document.getElementById('iconArea').innerHTML = '<div class="error">&#10007;</div>';
-    document.getElementById('title').textContent  = 'Timed Out';
+    document.getElementById('iconArea').innerHTML  = '<div class="icon-error">&#10007;</div>';
+    document.getElementById('title').textContent   = 'Timed Out';
     document.getElementById('status').textContent = 'Check admin/exports/import_certificates_error.log on the server.';
 }, 3600000);
 </script>
