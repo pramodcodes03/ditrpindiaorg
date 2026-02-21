@@ -3,10 +3,8 @@
 -- Generated: 2026-02-21
 -- Notes:
 --   • institute_sign column added (filename from institute_files)
---   • marksheet_subjects_json is intentionally left NULL
---   • Only single-course (COURSE_ID != 0) rows are imported for
---     marksheet data; multi-sub and typing rows have NULL subject fields
---     in certificates_details anyway, so no extra filter is needed for them
+--   • All columns inserted for ALL course types (single, multi-sub, typing)
+--   • marksheet_subjects_json is intentionally left NULL (to be filled later)
 -- ============================================================
 
 -- ============================================================
@@ -99,10 +97,8 @@ CREATE TABLE `laravel_certificates_export` (
 --
 -- Rules applied:
 --   • WHERE cd.DELETE_FLAG = 0  (exclude soft-deleted records)
---   • For marksheet, only single-course rows carry subject/marks
---     columns; multi_sub and typing rows naturally have NULL in
---     cd.SUBJECT / cd.OBJECTIVE_MARKS / cd.PRACTICAL_MARKS
---   • marksheet_subjects_json  → NULL  (not required)
+--   • All columns populated for all course types (no filtering by type)
+--   • marksheet_subjects_json  → NULL  (to be filled later)
 --   • institute_sign → filename only (e.g. "sign_abc.jpg"),
 --     full path: uploads/institute/docs/{institute_id}/{institute_sign}
 -- ============================================================
@@ -242,33 +238,12 @@ SELECT
     cr.EXAM_RESULT_ID,
     cr.EXAM_RESULT_FINAL_ID,
 
-    -- Marksheet columns — single-course type only
-    -- (multi-sub and typing rows have NULL here in certificates_details naturally)
-    CASE
-        WHEN cd.COURSE_ID IS NOT NULL AND cd.COURSE_ID != 0
-        THEN cd.SUBJECT
-        ELSE NULL
-    END                                          AS subject,
-    CASE
-        WHEN cd.COURSE_ID IS NOT NULL AND cd.COURSE_ID != 0
-        THEN cd.OBJECTIVE_MARKS
-        ELSE NULL
-    END                                          AS objective_marks,
-    CASE
-        WHEN cd.COURSE_ID IS NOT NULL AND cd.COURSE_ID != 0
-        THEN cd.PRACTICAL_MARKS
-        ELSE NULL
-    END                                          AS practical_marks,
-    CASE
-        WHEN cd.COURSE_ID IS NOT NULL AND cd.COURSE_ID != 0
-        THEN cd.MARKS_PER
-        ELSE NULL
-    END                                          AS marks_per,
-    CASE
-        WHEN cd.COURSE_ID IS NOT NULL AND cd.COURSE_ID != 0
-        THEN cd.GRADE
-        ELSE NULL
-    END                                          AS grade,
+    -- Marksheet columns — all course types
+    cd.SUBJECT,
+    cd.OBJECTIVE_MARKS,
+    cd.PRACTICAL_MARKS,
+    cd.MARKS_PER,
+    cd.GRADE,
 
     -- Result / status fields
     cr.RESULT_STATUS,
